@@ -8,7 +8,8 @@ export default function LanguageSelector() {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
-  const currentLang = languages.find((l) => l.code === i18n.language) || languages[1]
+  const langBase = i18n.language?.split('-')[0] || 'en'
+  const currentLang = languages.find((l) => l.code === langBase) || languages.find((l) => l.code === 'en') || languages[1]
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -40,7 +41,7 @@ export default function LanguageSelector() {
                 setOpen(false)
               }}
               className={`w-full flex items-center gap-2.5 px-3 py-2 text-left text-xs transition-colors cursor-pointer ${
-                i18n.language === lang.code
+                langBase === lang.code
                   ? 'text-gold bg-gold/10'
                   : 'text-gray-400 hover:text-white hover:bg-surface-light'
               }`}
