@@ -1,4 +1,7 @@
+import { useState } from 'react'
 import { useAuth } from '../lib/auth'
+import { useTranslation } from 'react-i18next'
+import api from '../lib/api'
 import Card from '../components/ui/Card'
 import Button from '../components/ui/Button'
 import { Check, Star, Zap, Crown } from 'lucide-react'
@@ -6,40 +9,21 @@ import { cn } from '../lib/utils'
 
 const plans = [
   {
-    key: 'free',
-    name: 'Free',
+    key: 'single',
+    name: 'Investigação Única',
     icon: Zap,
-    price: 'R$ 0',
-    period: 'para sempre',
-    credits: '3 pesquisas totais',
+    price: 'R$ 129',
+    period: 'por investigação',
+    credits: '1 investigação completa',
     features: [
       'Pesquisa textual',
       'Varredura social',
-      'Score de risco',
+      'Análise facial',
+      'Score de risco detalhado',
+      'Relatório completo em PDF',
     ],
     notIncluded: [
-      'Análise facial',
-      'Histórico completo',
-      'Exportar PDF',
-      'Acesso via API',
-    ],
-  },
-  {
-    key: 'basic',
-    name: 'Basic',
-    icon: Star,
-    price: 'R$ 29',
-    period: '/mês',
-    credits: '30 pesquisas/mês',
-    features: [
-      'Pesquisa textual',
-      'Varredura social',
-      'Score de risco',
-      'Análise facial',
-      'Histórico completo',
-      'Exportar PDF',
-    ],
-    notIncluded: [
+      'Monitoramento contínuo',
       'Acesso via API',
       'Suporte prioritário',
     ],
@@ -47,18 +31,19 @@ const plans = [
   },
   {
     key: 'pro',
-    name: 'Pro',
+    name: 'Monitoramento Pro',
     icon: Crown,
-    price: 'R$ 79',
+    price: 'R$ 479',
     period: '/mês',
-    credits: 'Pesquisas ilimitadas',
+    credits: 'Investigações ilimitadas',
     features: [
       'Pesquisa textual',
       'Varredura social',
-      'Score de risco',
       'Análise facial',
-      'Histórico completo',
-      'Exportar PDF',
+      'Score de risco detalhado',
+      'Relatório completo em PDF',
+      'Monitoramento contínuo',
+      'Alertas em tempo real',
       'Acesso via API',
       'Suporte prioritário',
       'Dashboard avançado',
@@ -68,27 +53,47 @@ const plans = [
 ]
 
 const creditPacks = [
-  { amount: 10, price: 'R$ 15', perUnit: 'R$ 1,50/pesquisa' },
-  { amount: 50, price: 'R$ 59', perUnit: 'R$ 1,18/pesquisa' },
-  { amount: 100, price: 'R$ 99', perUnit: 'R$ 0,99/pesquisa' },
+  { amount: 2, price: 'R$ 248', perUnit: 'R$ 124/investigação', planType: 'pack2' },
+  { amount: 3, price: 'R$ 340', perUnit: 'R$ 113/investigação', planType: 'pack3' },
+  { amount: 4, price: 'R$ 443', perUnit: 'R$ 110/investigação', planType: 'pack4' },
+  { amount: 5, price: 'R$ 541', perUnit: 'R$ 108/investigação', planType: 'pack5' },
+  { amount: 10, price: 'R$ 1.057', perUnit: 'R$ 105/investigação', planType: 'pack10' },
 ]
 
 export default function PlansPage() {
   const { user } = useAuth()
+  const { t } = useTranslation()
+  const [loadingPlan, setLoadingPlan] = useState<string | null>(null)
+
+  async function handleCheckout(planType: string) {
+    setLoadingPlan(planType)
+    try {
+      const { data } = await api.post('/billing/checkout', { planType })
+      const result = data.data || data
+      if (result.url) {
+        window.location.href = result.url
+      }
+    } catch (err: unknown) {
+      const msg = (err as { response?: { data?: { message?: string } } })?.response?.data?.message
+      alert(msg || 'Erro ao iniciar pagamento. Tente novamente.')
+    } finally {
+      setLoadingPlan(null)
+    }
+  }
 
   return (
     <div className="space-y-10 max-w-6xl">
       <div>
-        <h1 className="font-display font-bold text-2xl text-white">Planos e Preços</h1>
+        <h1 className="font-display font-bold text-2xl text-white">{t('plans.title')}</h1>
         <p className="text-gray-500 mt-1">
-          Plano atual: <span className="text-gold font-medium capitalize">{user?.plan || 'Free'}</span>
+          {t('plans.current_plan')}: <span className="text-gold font-medium capitalize">{user?.plan || t('plans.no_plan')}</span>
           {' '}&middot;{' '}
-          Créditos: <span className="text-gold font-mono">{user?.credits ?? 0}</span>
+          {t('plans.credits_label')}: <span className="text-gold font-mono">{user?.credits ?? 0}</span>
         </p>
       </div>
 
       {/* Plans */}
-      <div className="grid md:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-2 gap-6 max-w-3xl">
         {plans.map((plan) => {
           const isCurrent = (user?.plan || 'free').toLowerCase() === plan.key
           return (
@@ -101,7 +106,7 @@ export default function PlansPage() {
             >
               {plan.highlight && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-black text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
-                  <Star className="h-3 w-3" /> Mais Popular
+                  <Star className="h-3 w-3" /> {t('plans.most_sold')}
                 </div>
               )}
 
@@ -138,18 +143,16 @@ export default function PlansPage() {
 
               {isCurrent ? (
                 <Button variant="secondary" disabled className="w-full">
-                  Plano Atual
+                  {t('plans.current')}
                 </Button>
               ) : (
                 <Button
                   variant={plan.highlight ? 'primary' : 'outline'}
                   className="w-full"
-                  onClick={() => {
-                    // TODO: integrate with payment API
-                    alert(`Upgrade para ${plan.name} será implementado em breve.`)
-                  }}
+                  loading={loadingPlan === plan.key}
+                  onClick={() => handleCheckout(plan.key)}
                 >
-                  {plan.key === 'free' ? 'Plano Atual' : `Assinar ${plan.name}`}
+                  {plan.key === 'single' ? t('plans.investigate_now') : t('plans.subscribe', { name: plan.name })}
                 </Button>
               )}
             </Card>
@@ -159,22 +162,23 @@ export default function PlansPage() {
 
       {/* Credit Packs */}
       <div>
-        <h2 className="font-display font-bold text-xl text-white mb-2">Pacotes de Créditos Avulsos</h2>
-        <p className="text-sm text-gray-500 mb-6">Precisa de mais pesquisas sem trocar de plano? Compre créditos avulsos.</p>
+        <h2 className="font-display font-bold text-xl text-white mb-2">{t('plans.packs_title')}</h2>
+        <p className="text-sm text-gray-500 mb-6">{t('plans.packs_desc')}</p>
         <div className="grid sm:grid-cols-3 gap-4">
           {creditPacks.map((pack) => (
             <Card key={pack.amount} className="text-center hover:border-gold/20 transition-colors">
               <p className="font-display font-bold text-3xl text-white">{pack.amount}</p>
-              <p className="text-sm text-gray-500 mb-1">pesquisas</p>
+              <p className="text-sm text-gray-500 mb-1">{t('plans.investigations')}</p>
               <p className="font-display font-bold text-xl text-gold mb-1">{pack.price}</p>
               <p className="text-xs text-gray-600 mb-4">{pack.perUnit}</p>
               <Button
                 variant="outline"
                 size="sm"
                 className="w-full"
-                onClick={() => alert('Compra de créditos será implementada em breve.')}
+                loading={loadingPlan === pack.planType}
+                onClick={() => handleCheckout(pack.planType)}
               >
-                Comprar
+                {t('plans.buy')}
               </Button>
             </Card>
           ))}

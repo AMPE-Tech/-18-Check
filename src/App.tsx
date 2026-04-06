@@ -5,6 +5,7 @@ import Layout from './components/Layout'
 import Landing from './pages/Landing'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import ForgotPassword from './pages/ForgotPassword'
 import Dashboard from './pages/Dashboard'
 import SearchPage from './pages/Search'
 import HistoryPage from './pages/History'
@@ -40,9 +41,11 @@ export default function App() {
     <BrowserRouter>
       <AuthProvider>
         <Routes>
-          {/* Public routes */}
+          {/* Landing — standalone, no PublicLayout wrapper */}
+          <Route index element={<Landing />} />
+
+          {/* Public routes with header/footer */}
           <Route element={<PublicLayout />}>
-            <Route index element={<Landing />} />
             <Route
               path="login"
               element={<PublicOnly><Login /></PublicOnly>}
@@ -50,6 +53,10 @@ export default function App() {
             <Route
               path="register"
               element={<PublicOnly><Register /></PublicOnly>}
+            />
+            <Route
+              path="forgot-password"
+              element={<PublicOnly><ForgotPassword /></PublicOnly>}
             />
           </Route>
 

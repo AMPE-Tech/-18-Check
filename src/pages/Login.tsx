@@ -3,11 +3,13 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { Link, useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useAuth } from '../lib/auth'
 import { ShieldCheck } from 'lucide-react'
 import Input from '../components/ui/Input'
 import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
+import LanguageSelector from '../components/LanguageSelector'
 
 const schema = z.object({
   email: z.string().email('E-mail inválido'),
@@ -19,6 +21,7 @@ type FormData = z.infer<typeof schema>
 export default function Login() {
   const { login } = useAuth()
   const navigate = useNavigate()
+  const { t } = useTranslation()
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
@@ -34,7 +37,7 @@ export default function Login() {
       navigate('/app')
     } catch (err: unknown) {
       const msg = (err as { response?: { data?: { message?: string } } })?.response?.data?.message
-      setError(msg || 'Erro ao fazer login. Verifique suas credenciais.')
+      setError(msg || t('auth.login_error'))
     } finally {
       setLoading(false)
     }
@@ -50,8 +53,11 @@ export default function Login() {
               <span className="text-gold">[18+]</span>Check
             </span>
           </div>
-          <h1 className="font-display font-bold text-2xl text-white">Entrar na sua conta</h1>
-          <p className="text-sm text-gray-500 mt-1">Acesse o painel de verificação</p>
+          <div className="flex justify-center mb-3">
+            <LanguageSelector />
+          </div>
+          <h1 className="font-display font-bold text-2xl text-white">{t('auth.login_title')}</h1>
+          <p className="text-sm text-gray-500 mt-1">{t('auth.login_subtitle')}</p>
         </div>
 
         {error && (
@@ -63,29 +69,35 @@ export default function Login() {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           <Input
             id="email"
-            label="E-mail"
+            label={t('auth.email')}
             type="email"
-            placeholder="seu@email.com"
+            placeholder={t('auth.email_placeholder')}
             error={errors.email?.message}
             {...register('email')}
           />
           <Input
             id="password"
-            label="Senha"
+            label={t('auth.password')}
             type="password"
-            placeholder="Sua senha"
+            placeholder={t('auth.password_placeholder')}
             error={errors.password?.message}
             {...register('password')}
           />
           <Button type="submit" loading={loading} className="w-full">
-            Entrar
+            {t('auth.login_button')}
           </Button>
         </form>
 
-        <p className="text-center text-sm text-gray-500 mt-6">
-          Não tem conta?{' '}
+        <div className="text-center mt-4">
+          <Link to="/forgot-password" className="text-xs text-gray-500 hover:text-gold transition-colors">
+            {t('auth.forgot_password')}
+          </Link>
+        </div>
+
+        <p className="text-center text-sm text-gray-500 mt-4">
+          {t('auth.no_account')}{' '}
           <Link to="/register" className="text-gold hover:text-gold-light transition-colors">
-            Criar conta grátis
+            {t('auth.create_account')}
           </Link>
         </p>
       </Card>

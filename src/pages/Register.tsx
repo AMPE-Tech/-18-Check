@@ -3,11 +3,13 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { Link, useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useAuth } from '../lib/auth'
 import { ShieldCheck } from 'lucide-react'
 import Input from '../components/ui/Input'
 import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
+import LanguageSelector from '../components/LanguageSelector'
 
 const schema = z.object({
   name: z.string().min(2, 'Mínimo 2 caracteres'),
@@ -20,6 +22,7 @@ type FormData = z.infer<typeof schema>
 export default function Register() {
   const { register: registerUser } = useAuth()
   const navigate = useNavigate()
+  const { t } = useTranslation()
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
@@ -35,7 +38,7 @@ export default function Register() {
       navigate('/app')
     } catch (err: unknown) {
       const msg = (err as { response?: { data?: { message?: string } } })?.response?.data?.message
-      setError(msg || 'Erro ao criar conta. Tente novamente.')
+      setError(msg || t('auth.register_error'))
     } finally {
       setLoading(false)
     }
@@ -51,8 +54,11 @@ export default function Register() {
               <span className="text-gold">[18+]</span>Check
             </span>
           </div>
-          <h1 className="font-display font-bold text-2xl text-white">Criar sua conta</h1>
-          <p className="text-sm text-gray-500 mt-1">3 pesquisas grátis para começar</p>
+          <div className="flex justify-center mb-3">
+            <LanguageSelector />
+          </div>
+          <h1 className="font-display font-bold text-2xl text-white">{t('auth.register_title')}</h1>
+          <p className="text-sm text-gray-500 mt-1">{t('auth.register_subtitle')}</p>
         </div>
 
         {error && (
@@ -64,36 +70,36 @@ export default function Register() {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           <Input
             id="name"
-            label="Nome completo"
-            placeholder="Seu nome"
+            label={t('auth.name')}
+            placeholder={t('auth.name_placeholder')}
             error={errors.name?.message}
             {...register('name')}
           />
           <Input
             id="email"
-            label="E-mail"
+            label={t('auth.email')}
             type="email"
-            placeholder="seu@email.com"
+            placeholder={t('auth.email_placeholder')}
             error={errors.email?.message}
             {...register('email')}
           />
           <Input
             id="password"
-            label="Senha"
+            label={t('auth.password')}
             type="password"
-            placeholder="Mínimo 6 caracteres"
+            placeholder={t('auth.password_min')}
             error={errors.password?.message}
             {...register('password')}
           />
           <Button type="submit" loading={loading} className="w-full">
-            Criar Conta
+            {t('auth.register_button')}
           </Button>
         </form>
 
         <p className="text-center text-sm text-gray-500 mt-6">
-          Já tem conta?{' '}
+          {t('auth.has_account')}{' '}
           <Link to="/login" className="text-gold hover:text-gold-light transition-colors">
-            Entrar
+            {t('auth.sign_in')}
           </Link>
         </p>
       </Card>

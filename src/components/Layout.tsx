@@ -1,4 +1,5 @@
-import { Outlet, NavLink, useNavigate } from 'react-router-dom'
+import { Outlet, NavLink, Link, useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useAuth } from '../lib/auth'
 import {
   ShieldCheck,
@@ -9,21 +10,24 @@ import {
   LogOut,
   Menu,
   X,
+  Home,
 } from 'lucide-react'
 import { useState } from 'react'
 import { cn } from '../lib/utils'
-
-const navItems = [
-  { to: '/app', icon: LayoutDashboard, label: 'Painel' },
-  { to: '/app/search', icon: Search, label: 'Pesquisar' },
-  { to: '/app/history', icon: History, label: 'Histórico' },
-  { to: '/app/plans', icon: CreditCard, label: 'Planos' },
-]
+import LanguageSelector from './LanguageSelector'
 
 export default function Layout() {
   const { user, logout } = useAuth()
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const [sidebarOpen, setSidebarOpen] = useState(false)
+
+  const navItems = [
+    { to: '/app', icon: LayoutDashboard, label: t('layout.panel') },
+    { to: '/app/search', icon: Search, label: t('layout.search') },
+    { to: '/app/history', icon: History, label: t('layout.history') },
+    { to: '/app/plans', icon: CreditCard, label: t('layout.plans') },
+  ]
 
   return (
     <div className="min-h-screen bg-bg flex">
@@ -56,6 +60,14 @@ export default function Layout() {
         </div>
 
         <nav className="flex-1 py-4 px-3 space-y-1">
+          <Link
+            to="/"
+            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-white/5 transition-colors mb-2"
+          >
+            <Home className="h-4.5 w-4.5" />
+            {t('layout.home')}
+          </Link>
+          <div className="border-b border-surface-border mb-2" />
           {navItems.map((item) => (
             <NavLink
               key={item.to}
@@ -92,7 +104,7 @@ export default function Layout() {
             className="flex items-center gap-2 text-sm text-gray-500 hover:text-red-400 transition-colors w-full"
           >
             <LogOut className="h-4 w-4" />
-            Sair
+            {t('layout.logout')}
           </button>
         </div>
       </aside>
@@ -107,8 +119,9 @@ export default function Layout() {
             <Menu className="h-5 w-5" />
           </button>
           <div className="flex-1" />
-          <div className="flex items-center gap-3 text-sm">
-            <span className="text-gray-500">Créditos:</span>
+          <div className="flex items-center gap-4 text-sm">
+            <LanguageSelector />
+            <span className="text-gray-500">{t('dashboard.credits')}:</span>
             <span className="font-mono font-medium text-gold">{user?.credits ?? 0}</span>
           </div>
         </header>

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useAuth } from '../lib/auth'
 import api from '../lib/api'
 import Card, { CardHeader, CardTitle } from '../components/ui/Card'
@@ -31,15 +32,16 @@ interface SearchResult {
   summary: string
 }
 
-const tabs = [
-  { key: 'name', label: 'Nome', icon: User },
-  { key: 'phone', label: 'Telefone', icon: Phone },
-  { key: 'social', label: 'Rede Social', icon: AtSign },
-  { key: 'photo', label: 'Foto', icon: Camera },
-] as const
-
 export default function SearchPage() {
   const { user, refreshUser } = useAuth()
+  const { t } = useTranslation()
+
+  const tabs = [
+    { key: 'name', label: t('search.tab_name'), icon: User },
+    { key: 'phone', label: t('search.tab_phone'), icon: Phone },
+    { key: 'social', label: t('search.tab_social'), icon: AtSign },
+    { key: 'photo', label: t('search.tab_photo'), icon: Camera },
+  ] as const
   const [activeTab, setActiveTab] = useState<string>('name')
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
@@ -62,7 +64,7 @@ export default function SearchPage() {
 
   async function handleSearch() {
     if ((user?.credits ?? 0) <= 0) {
-      setError('Sem créditos. Faça upgrade do seu plano para continuar.')
+      setError(t('search.no_credits'))
       return
     }
 
@@ -86,7 +88,7 @@ export default function SearchPage() {
       }
 
       if (Object.keys(payload).length === 0) {
-        setError('Preencha ao menos um campo para pesquisar.')
+        setError(t('search.subtitle'))
         setLoading(false)
         return
       }
@@ -114,9 +116,9 @@ export default function SearchPage() {
   return (
     <div className="space-y-6 max-w-4xl">
       <div>
-        <h1 className="font-display font-bold text-2xl text-white">Nova Pesquisa</h1>
+        <h1 className="font-display font-bold text-2xl text-white">{t('search.title')}</h1>
         <p className="text-gray-500 mt-1">
-          Preencha os dados disponíveis. Quanto mais informações, mais precisa a análise.
+          {t('search.subtitle')}
         </p>
       </div>
 
@@ -149,8 +151,8 @@ export default function SearchPage() {
           {activeTab === 'name' && (
             <Input
               id="name"
-              label="Nome completo"
-              placeholder="Ex: João da Silva Santos"
+              label={t('search.tab_name')}
+              placeholder={t('search.name_placeholder')}
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
@@ -158,8 +160,8 @@ export default function SearchPage() {
           {activeTab === 'phone' && (
             <Input
               id="phone"
-              label="Telefone"
-              placeholder="Ex: (11) 99999-9999"
+              label={t('search.tab_phone')}
+              placeholder={t('search.phone_placeholder')}
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
             />
@@ -167,8 +169,8 @@ export default function SearchPage() {
           {activeTab === 'social' && (
             <Input
               id="social"
-              label="Perfil de rede social"
-              placeholder="Ex: @usuario ou URL do perfil"
+              label={t('search.tab_social')}
+              placeholder={t('search.social_placeholder')}
               value={social}
               onChange={(e) => setSocial(e.target.value)}
             />
@@ -176,7 +178,7 @@ export default function SearchPage() {
           {activeTab === 'photo' && (
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-1.5">
-                Foto para análise facial
+                {t('search.tab_photo')}
               </label>
               <label
                 className={cn(
@@ -191,8 +193,8 @@ export default function SearchPage() {
                 ) : (
                   <div className="text-center">
                     <Upload className="h-8 w-8 text-gray-600 mx-auto mb-2" />
-                    <p className="text-sm text-gray-500">Clique para enviar uma foto</p>
-                    <p className="text-xs text-gray-600 mt-1">JPG, PNG até 10MB</p>
+                    <p className="text-sm text-gray-500">{t('search.photo_label')}</p>
+                    <p className="text-xs text-gray-600 mt-1">{t('search.photo_formats')}</p>
                   </div>
                 )}
                 <input
@@ -227,7 +229,7 @@ export default function SearchPage() {
             )}
             {imageFile && (
               <span className="inline-flex items-center gap-1.5 bg-gold/10 text-gold text-xs px-2.5 py-1 rounded-full">
-                <Camera className="h-3 w-3" /> Foto anexada
+                <Camera className="h-3 w-3" /> {t('search.tab_photo')}
               </span>
             )}
           </div>
@@ -242,7 +244,7 @@ export default function SearchPage() {
         <div className="mt-6 flex justify-end">
           <Button onClick={handleSearch} loading={loading}>
             <SearchIcon className="h-4 w-4" />
-            Pesquisar ({user?.credits ?? 0} créditos)
+            {t('search.investigate_button')} ({user?.credits ?? 0})
           </Button>
         </div>
       </Card>
@@ -260,12 +262,12 @@ export default function SearchPage() {
             {riskIcon(result.riskLevel)}
             <div className="flex-1">
               <div className="flex items-center gap-3">
-                <h2 className="font-display font-bold text-xl text-white">Resultado da Análise</h2>
+                <h2 className="font-display font-bold text-xl text-white">{t('search.result_title')}</h2>
                 <Badge level={result.riskLevel} />
               </div>
               {result.riskScore !== undefined && (
                 <p className="text-sm text-gray-400 mt-1">
-                  Score de risco: <span className={cn('font-mono font-bold', riskColor(result.riskLevel).split(' ')[0])}>{result.riskScore}/100</span>
+                  {t('search.risk_score')}: <span className={cn('font-mono font-bold', riskColor(result.riskLevel).split(' ')[0])}>{result.riskScore}/100</span>
                 </p>
               )}
             </div>
@@ -279,14 +281,14 @@ export default function SearchPage() {
 
           {result.summary && (
             <div className="mb-6">
-              <h3 className="text-sm font-semibold text-gray-300 mb-2">Resumo</h3>
+              <h3 className="text-sm font-semibold text-gray-300 mb-2">{t('search.result_title')}</h3>
               <p className="text-sm text-gray-400 leading-relaxed">{result.summary}</p>
             </div>
           )}
 
           {result.findings && result.findings.length > 0 && (
             <div>
-              <h3 className="text-sm font-semibold text-gray-300 mb-3">Descobertas</h3>
+              <h3 className="text-sm font-semibold text-gray-300 mb-3">{t('search.findings')}</h3>
               <div className="space-y-2">
                 {result.findings.map((f, i) => (
                   <div

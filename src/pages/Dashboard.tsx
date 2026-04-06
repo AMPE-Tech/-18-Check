@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useAuth } from '../lib/auth'
 import api from '../lib/api'
 import Card, { CardHeader, CardTitle } from '../components/ui/Card'
@@ -20,13 +21,18 @@ interface SearchItem {
 
 export default function Dashboard() {
   const { user } = useAuth()
+  const { t } = useTranslation()
   const [recent, setRecent] = useState<SearchItem[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     api.get('/search/history?limit=5')
-      .then(({ data }) => setRecent(data.items || data || []))
-      .catch(() => {})
+      .then(({ data: res }) => {
+        const payload = res.data || res
+        const items = Array.isArray(payload) ? payload : payload.items || payload.searches || []
+        setRecent(items)
+      })
+      .catch(() => setRecent([]))
       .finally(() => setLoading(false))
   }, [])
 
@@ -35,9 +41,9 @@ export default function Dashboard() {
       {/* Welcome */}
       <div>
         <h1 className="font-display font-bold text-2xl text-white">
-          Bem-vindo, {user?.name?.split(' ')[0]}
+          {t('dashboard.welcome', { name: user?.name?.split(' ')[0] })}
         </h1>
-        <p className="text-gray-500 mt-1">Painel de verificação de identidade</p>
+        <p className="text-gray-500 mt-1">{t('dashboard.subtitle')}</p>
       </div>
 
       {/* Quick stats */}
@@ -47,7 +53,7 @@ export default function Dashboard() {
             <CreditCard className="h-6 w-6 text-gold" />
           </div>
           <div>
-            <p className="text-sm text-gray-500">Créditos restantes</p>
+            <p className="text-sm text-gray-500">{t('dashboard.credits')}</p>
             <p className="font-display font-bold text-2xl text-white">{user?.credits ?? 0}</p>
           </div>
         </Card>
@@ -56,8 +62,8 @@ export default function Dashboard() {
             <Search className="h-6 w-6 text-gold" />
           </div>
           <div>
-            <p className="text-sm text-gray-500">Plano atual</p>
-            <p className="font-display font-bold text-lg text-white capitalize">{user?.plan || 'Free'}</p>
+            <p className="text-sm text-gray-500">{t('dashboard.plan')}</p>
+            <p className="font-display font-bold text-lg text-white capitalize">{user?.plan || t('dashboard.no_plan')}</p>
           </div>
         </Card>
         <Card className="flex items-center gap-4">
@@ -65,7 +71,7 @@ export default function Dashboard() {
             <History className="h-6 w-6 text-gold" />
           </div>
           <div>
-            <p className="text-sm text-gray-500">Pesquisas recentes</p>
+            <p className="text-sm text-gray-500">{t('dashboard.recent_count')}</p>
             <p className="font-display font-bold text-2xl text-white">{recent.length}</p>
           </div>
         </Card>
@@ -76,9 +82,9 @@ export default function Dashboard() {
         <div className="flex items-center gap-3 bg-yellow-500/10 border border-yellow-500/30 rounded-lg px-4 py-3">
           <AlertTriangle className="h-5 w-5 text-yellow-400 shrink-0" />
           <p className="text-sm text-yellow-300">
-            Seus créditos estão acabando.{' '}
+            {t('dashboard.low_credits')}{' '}
             <Link to="/app/plans" className="text-gold font-medium underline">
-              Fazer upgrade
+              {t('dashboard.upgrade')}
             </Link>
           </p>
         </div>
@@ -90,8 +96,8 @@ export default function Dashboard() {
           <Card className="hover:border-gold/30 transition-colors cursor-pointer group">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="font-display font-semibold text-white mb-1">Nova Pesquisa</h3>
-                <p className="text-sm text-gray-500">Verificar identidade de um indivíduo</p>
+                <h3 className="font-display font-semibold text-white mb-1">{t('dashboard.new_search')}</h3>
+                <p className="text-sm text-gray-500">{t('dashboard.new_search_desc')}</p>
               </div>
               <ArrowRight className="h-5 w-5 text-gray-600 group-hover:text-gold transition-colors" />
             </div>
@@ -101,8 +107,8 @@ export default function Dashboard() {
           <Card className="hover:border-gold/30 transition-colors cursor-pointer group">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="font-display font-semibold text-white mb-1">Ver Histórico</h3>
-                <p className="text-sm text-gray-500">Consultar pesquisas anteriores</p>
+                <h3 className="font-display font-semibold text-white mb-1">{t('dashboard.view_history')}</h3>
+                <p className="text-sm text-gray-500">{t('dashboard.view_history_desc')}</p>
               </div>
               <ArrowRight className="h-5 w-5 text-gray-600 group-hover:text-gold transition-colors" />
             </div>
@@ -114,21 +120,21 @@ export default function Dashboard() {
       <Card>
         <CardHeader>
           <div className="flex items-center justify-between">
-            <CardTitle>Pesquisas Recentes</CardTitle>
+            <CardTitle>{t('dashboard.recent_searches')}</CardTitle>
             <Link to="/app/history">
-              <Button variant="ghost" size="sm">Ver todas</Button>
+              <Button variant="ghost" size="sm">{t('dashboard.view_all')}</Button>
             </Link>
           </div>
         </CardHeader>
         {loading ? (
-          <div className="text-center py-8 text-gray-500">Carregando...</div>
+          <div className="text-center py-8 text-gray-500">{t('dashboard.loading')}</div>
         ) : recent.length === 0 ? (
           <div className="text-center py-8">
             <Search className="h-10 w-10 text-gray-700 mx-auto mb-3" />
-            <p className="text-gray-500">Nenhuma pesquisa realizada ainda</p>
+            <p className="text-gray-500">{t('dashboard.no_searches')}</p>
             <Link to="/app/search">
               <Button variant="outline" size="sm" className="mt-4">
-                Fazer primeira pesquisa
+                {t('dashboard.first_search')}
               </Button>
             </Link>
           </div>
@@ -142,7 +148,7 @@ export default function Dashboard() {
               >
                 <div>
                   <p className="text-sm font-medium text-white">
-                    {s.name || s.phone || s.social || 'Pesquisa'}
+                    {s.name || s.phone || s.social || t('dashboard.search_label')}
                   </p>
                   <p className="text-xs text-gray-500">{formatDate(s.createdAt)}</p>
                 </div>

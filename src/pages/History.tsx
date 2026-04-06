@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import api from '../lib/api'
 import Card, { CardHeader, CardTitle } from '../components/ui/Card'
 import Button from '../components/ui/Button'
@@ -19,6 +20,7 @@ interface SearchItem {
 }
 
 export default function HistoryPage() {
+  const { t } = useTranslation()
   const [items, setItems] = useState<SearchItem[]>([])
   const [loading, setLoading] = useState(true)
   const [page, setPage] = useState(1)
@@ -40,13 +42,13 @@ export default function HistoryPage() {
     <div className="space-y-6 max-w-5xl">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="font-display font-bold text-2xl text-white">Histórico de Pesquisas</h1>
-          <p className="text-gray-500 mt-1">Todas as verificações realizadas na sua conta</p>
+          <h1 className="font-display font-bold text-2xl text-white">{t('history.title')}</h1>
+          <p className="text-gray-500 mt-1">{t('history.title')}</p>
         </div>
         <Link to="/app/search">
           <Button size="sm">
             <Search className="h-4 w-4" />
-            Nova Pesquisa
+            {t('search.new_search')}
           </Button>
         </Link>
       </div>
@@ -57,14 +59,14 @@ export default function HistoryPage() {
         </CardHeader>
 
         {loading ? (
-          <div className="text-center py-12 text-gray-500">Carregando...</div>
+          <div className="text-center py-12 text-gray-500">{t('dashboard.loading')}</div>
         ) : items.length === 0 ? (
           <div className="text-center py-12">
             <HistoryIcon className="h-10 w-10 text-gray-700 mx-auto mb-3" />
-            <p className="text-gray-500">Nenhuma pesquisa encontrada</p>
+            <p className="text-gray-500">{t('history.no_results')}</p>
             <Link to="/app/search">
               <Button variant="outline" size="sm" className="mt-4">
-                Fazer primeira pesquisa
+                {t('dashboard.first_search')}
               </Button>
             </Link>
           </div>
@@ -72,11 +74,11 @@ export default function HistoryPage() {
           <>
             {/* Table header */}
             <div className="hidden md:grid grid-cols-12 gap-4 px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider border-b border-surface-border">
-              <div className="col-span-4">Consulta</div>
-              <div className="col-span-2">Tipo</div>
-              <div className="col-span-2">Score</div>
-              <div className="col-span-2">Risco</div>
-              <div className="col-span-2">Data</div>
+              <div className="col-span-4">{t('history.query')}</div>
+              <div className="col-span-2">{t('history.type')}</div>
+              <div className="col-span-2">{t('history.score')}</div>
+              <div className="col-span-2">{t('history.risk')}</div>
+              <div className="col-span-2">{t('history.date')}</div>
             </div>
 
             {/* Table rows */}
@@ -118,7 +120,7 @@ export default function HistoryPage() {
         {/* Pagination */}
         {items.length > 0 && (
           <div className="flex items-center justify-between px-6 py-4 border-t border-surface-border">
-            <p className="text-sm text-gray-500">Página {page}</p>
+            <p className="text-sm text-gray-500">{t('history.page', { current: page, total: '...' })}</p>
             <div className="flex gap-2">
               <Button
                 variant="ghost"
@@ -127,7 +129,7 @@ export default function HistoryPage() {
                 onClick={() => setPage((p) => Math.max(1, p - 1))}
               >
                 <ChevronLeft className="h-4 w-4" />
-                Anterior
+                {t('history.previous')}
               </Button>
               <Button
                 variant="ghost"
@@ -135,7 +137,7 @@ export default function HistoryPage() {
                 disabled={!hasMore}
                 onClick={() => setPage((p) => p + 1)}
               >
-                Próxima
+                {t('history.next')}
                 <ChevronRight className="h-4 w-4" />
               </Button>
             </div>

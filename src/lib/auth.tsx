@@ -34,15 +34,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [])
 
   async function login(email: string, password: string) {
-    const { data } = await api.post('/auth/login', { email, password })
-    localStorage.setItem('token', data.token)
-    setUser(data.user)
+    const { data: res } = await api.post('/auth/login', { email, password })
+    const payload = res.data || res
+    localStorage.setItem('token', payload.token)
+    setUser(payload.user)
   }
 
   async function register(name: string, email: string, password: string) {
-    const { data } = await api.post('/auth/register', { email, password, name })
-    localStorage.setItem('token', data.token)
-    setUser(data.user)
+    const { data: res } = await api.post('/auth/register', { email, password, name })
+    const payload = res.data || res
+    localStorage.setItem('token', payload.token)
+    setUser(payload.user)
   }
 
   function logout() {
@@ -53,8 +55,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   async function refreshUser() {
     try {
-      const { data } = await api.get('/user/me')
-      setUser(data)
+      const { data: res } = await api.get('/user/me')
+      setUser(res.data || res)
     } catch {
       localStorage.removeItem('token')
       setUser(null)
