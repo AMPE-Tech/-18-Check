@@ -31,7 +31,7 @@ export default function LanguageSelector() {
       </button>
 
       {open && (
-        <div className="absolute bottom-full mb-2 right-0 bg-surface/95 backdrop-blur-md border border-surface-border rounded-xl shadow-2xl shadow-black/60 py-1.5 z-[100] max-h-80 overflow-y-auto w-44 scrollbar-phone animate-[fadeIn_150ms_ease-out]">
+        <div className="absolute top-full mt-2 right-0 bg-surface/95 backdrop-blur-md border border-surface-border rounded-xl shadow-2xl shadow-black/60 py-1.5 z-[100] max-h-64 overflow-y-auto w-44 scrollbar-phone animate-[fadeIn_150ms_ease-out]">
           {languages.map((lang) => {
             const isActive = langBase === lang.code
             return (
