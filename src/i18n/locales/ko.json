@@ -180,7 +180,17 @@
     "single_credits": "1회 완전 조사",
     "pro_name": "프로 모니터링",
     "pro_period": "/월",
-    "pro_credits": "무제한 조사"
+    "pro_credits": "무제한 조사",
+    "feature_textual": "텍스트 검색",
+    "feature_social": "소셜 미디어 스캔",
+    "feature_facial": "얼굴 분석",
+    "feature_risk": "상세 위험 점수",
+    "feature_pdf": "완전한 PDF 보고서",
+    "feature_monitoring": "지속적 모니터링",
+    "feature_alerts": "실시간 알림",
+    "feature_api": "API 접근",
+    "feature_support": "우선 지원",
+    "feature_dashboard": "고급 대시보드"
   },
   "search": {
     "title": "새 조사",
@@ -214,6 +224,18 @@
     "next": "다음",
     "no_results": "조사 결과가 없습니다",
     "page": "{{current}} / {{total}} 페이지"
+  },
+  "footer": {
+    "tagline": "인공지능 기반 은밀한 성인 콘텐츠 검색.",
+    "product": "제품",
+    "how_it_works": "이용 방법",
+    "pricing": "가격",
+    "faq": "자주 묻는 질문",
+    "legal": "법적 정보",
+    "terms": "이용약관",
+    "privacy": "개인정보처리방침",
+    "contact": "문의",
+    "rights": "모든 권리 보유."
   },
   "cta": {
     "headline": "의심은 마음을 갉아먹고, 진실은 해방합니다.",

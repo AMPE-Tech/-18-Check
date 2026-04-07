@@ -180,7 +180,17 @@
     "single_credits": "1 investigacion completa",
     "pro_name": "Monitoreo Pro",
     "pro_period": "/mes",
-    "pro_credits": "Investigaciones ilimitadas"
+    "pro_credits": "Investigaciones ilimitadas",
+    "feature_textual": "Busqueda textual",
+    "feature_social": "Escaneo social",
+    "feature_facial": "Analisis facial",
+    "feature_risk": "Puntuacion de riesgo detallada",
+    "feature_pdf": "Informe completo en PDF",
+    "feature_monitoring": "Monitoreo continuo",
+    "feature_alerts": "Alertas en tiempo real",
+    "feature_api": "Acceso via API",
+    "feature_support": "Soporte prioritario",
+    "feature_dashboard": "Dashboard avanzado"
   },
   "search": {
     "title": "Nueva Investigacion",
@@ -214,6 +224,18 @@
     "next": "Siguiente",
     "no_results": "Ninguna investigacion encontrada",
     "page": "Pagina {{current}} de {{total}}"
+  },
+  "footer": {
+    "tagline": "Busqueda discreta de contenido adulto con inteligencia artificial.",
+    "product": "Producto",
+    "how_it_works": "Como Funciona",
+    "pricing": "Precios",
+    "faq": "FAQ",
+    "legal": "Legal",
+    "terms": "Terminos de Uso",
+    "privacy": "Privacidad",
+    "contact": "Contacto",
+    "rights": "Todos los derechos reservados."
   },
   "cta": {
     "headline": "La duda corroe. La verdad libera.",

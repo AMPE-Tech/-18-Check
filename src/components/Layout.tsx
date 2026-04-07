@@ -101,7 +101,7 @@ export default function Layout() {
           </div>
           <button
             onClick={() => { logout(); navigate('/login'); }}
-            className="flex items-center gap-2 text-sm text-gray-500 hover:text-red-400 transition-colors w-full"
+            className="flex items-center gap-2 text-sm text-gray-500 hover:text-gold transition-colors w-full"
           >
             <LogOut className="h-4 w-4" />
             {t('layout.logout')}

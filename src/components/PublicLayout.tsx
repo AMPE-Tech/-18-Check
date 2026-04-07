@@ -44,32 +44,32 @@ export default function PublicLayout() {
                 </span>
               </Link>
               <p className="text-xs text-gray-600 leading-relaxed">
-                Pesquisa discreta de conteudo adulto com inteligencia artificial.
+                {t('footer.tagline')}
               </p>
             </div>
 
             {/* Product */}
             <div>
-              <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Produto</p>
+              <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">{t('footer.product')}</p>
               <ul className="space-y-2">
-                <li><a href="#como-funciona" className="hover:text-white transition-colors">Como Funciona</a></li>
-                <li><a href="#precos" className="hover:text-white transition-colors">Precos</a></li>
-                <li><a href="#faq" className="hover:text-white transition-colors">FAQ</a></li>
+                <li><a href="#como-funciona" className="hover:text-white transition-colors">{t('footer.how_it_works')}</a></li>
+                <li><a href="#precos" className="hover:text-white transition-colors">{t('footer.pricing')}</a></li>
+                <li><a href="#faq" className="hover:text-white transition-colors">{t('footer.faq')}</a></li>
               </ul>
             </div>
 
             {/* Legal */}
             <div>
-              <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Legal</p>
+              <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">{t('footer.legal')}</p>
               <ul className="space-y-2">
-                <li><Link to="/termos" className="hover:text-white transition-colors">Termos de Uso</Link></li>
-                <li><Link to="/privacidade" className="hover:text-white transition-colors">Privacidade</Link></li>
+                <li><Link to="/termos" className="hover:text-white transition-colors">{t('footer.terms')}</Link></li>
+                <li><Link to="/privacidade" className="hover:text-white transition-colors">{t('footer.privacy')}</Link></li>
               </ul>
             </div>
 
             {/* Contact */}
             <div>
-              <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Contato</p>
+              <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">{t('footer.contact')}</p>
               <ul className="space-y-2">
                 <li><a href="mailto:suporte@18check.online" className="hover:text-white transition-colors">suporte@18check.online</a></li>
               </ul>
@@ -77,7 +77,7 @@ export default function PublicLayout() {
           </div>
 
           <div className="border-t border-surface-border pt-6 text-center text-xs text-gray-600">
-            <p>&copy; {new Date().getFullYear()} [18+]Check &mdash; 18check.online. Todos os direitos reservados.</p>
+            <p>&copy; {new Date().getFullYear()} [18+]Check &mdash; 18check.online. {t('footer.rights')}</p>
           </div>
         </div>
       </footer>

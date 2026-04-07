@@ -180,7 +180,17 @@
     "single_credits": "1 पूर्ण जांच",
     "pro_name": "प्रो मॉनिटरिंग",
     "pro_period": "/महीना",
-    "pro_credits": "असीमित जांचें"
+    "pro_credits": "असीमित जांचें",
+    "feature_textual": "टेक्स्ट खोज",
+    "feature_social": "सोशल मीडिया स्कैन",
+    "feature_facial": "चेहरा विश्लेषण",
+    "feature_risk": "विस्तृत रिस्क स्कोर",
+    "feature_pdf": "पूर्ण PDF रिपोर्ट",
+    "feature_monitoring": "निरंतर निगरानी",
+    "feature_alerts": "रीयल-टाइम अलर्ट",
+    "feature_api": "API एक्सेस",
+    "feature_support": "प्राथमिकता सपोर्ट",
+    "feature_dashboard": "उन्नत डैशबोर्ड"
   },
   "search": {
     "title": "नई जांच",
@@ -214,6 +224,18 @@
     "next": "अगला",
     "no_results": "कोई जांच नहीं मिली",
     "page": "पेज {{current}} / {{total}}"
+  },
+  "footer": {
+    "tagline": "कृत्रिम बुद्धिमत्ता द्वारा संचालित गोपनीय एडल्ट कंटेंट खोज।",
+    "product": "उत्पाद",
+    "how_it_works": "कैसे काम करता है",
+    "pricing": "कीमतें",
+    "faq": "अक्सर पूछे जाने वाले सवाल",
+    "legal": "कानूनी",
+    "terms": "उपयोग की शर्तें",
+    "privacy": "गोपनीयता",
+    "contact": "संपर्क",
+    "rights": "सर्वाधिकार सुरक्षित।"
   },
   "cta": {
     "headline": "शक मन को खोखला करता है। सच आज़ाद करता है।",

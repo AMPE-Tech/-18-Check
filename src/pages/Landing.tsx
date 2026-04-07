@@ -506,7 +506,7 @@ export default function Landing() {
           </main>
 
           {/* ===== BOTTOM NAV BAR ===== */}
-          <nav className="fixed bottom-0 left-0 right-0 z-50 bg-surface/95 backdrop-blur-md border-t border-surface-border lg:absolute">
+          <nav className="fixed bottom-0 left-0 right-0 z-50 bg-surface/95 backdrop-blur-md border-t border-surface-border lg:sticky lg:bottom-0">
             <div className="max-w-[480px] mx-auto flex items-center justify-around h-14">
               <Link to="/register" className="flex flex-col items-center gap-0.5 text-gold">
                 <Search className="h-5 w-5" />

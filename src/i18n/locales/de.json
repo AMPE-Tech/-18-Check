@@ -180,7 +180,17 @@
     "single_credits": "1 vollstaendige Untersuchung",
     "pro_name": "Pro-Ueberwachung",
     "pro_period": "/Monat",
-    "pro_credits": "Unbegrenzte Untersuchungen"
+    "pro_credits": "Unbegrenzte Untersuchungen",
+    "feature_textual": "Textsuche",
+    "feature_social": "Social-Media-Scan",
+    "feature_facial": "Gesichtsanalyse",
+    "feature_risk": "Detaillierter Risiko-Score",
+    "feature_pdf": "Vollstaendiger PDF-Bericht",
+    "feature_monitoring": "Kontinuierliche Ueberwachung",
+    "feature_alerts": "Echtzeit-Benachrichtigungen",
+    "feature_api": "API-Zugang",
+    "feature_support": "Prioritaets-Support",
+    "feature_dashboard": "Erweitertes Dashboard"
   },
   "search": {
     "title": "Neue Untersuchung",
@@ -214,6 +224,18 @@
     "next": "Weiter",
     "no_results": "Keine Untersuchungen gefunden",
     "page": "Seite {{current}} von {{total}}"
+  },
+  "footer": {
+    "tagline": "Diskrete Suche nach Erotik-Inhalten mit kuenstlicher Intelligenz.",
+    "product": "Produkt",
+    "how_it_works": "So funktioniert's",
+    "pricing": "Preise",
+    "faq": "FAQ",
+    "legal": "Rechtliches",
+    "terms": "Nutzungsbedingungen",
+    "privacy": "Datenschutz",
+    "contact": "Kontakt",
+    "rights": "Alle Rechte vorbehalten."
   },
   "cta": {
     "headline": "Zweifel zerfressen. Wahrheit befreit.",

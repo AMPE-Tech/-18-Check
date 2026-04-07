@@ -7,50 +7,53 @@ import Button from '../components/ui/Button'
 import { Check, Star, Zap, Crown } from 'lucide-react'
 import { cn } from '../lib/utils'
 
-const plans = [
-  {
-    key: 'single',
-    name: 'Investigação Única',
-    icon: Zap,
-    price: 'R$ 129',
-    period: 'por investigação',
-    credits: '1 investigação completa',
-    features: [
-      'Pesquisa textual',
-      'Varredura social',
-      'Análise facial',
-      'Score de risco detalhado',
-      'Relatório completo em PDF',
-    ],
-    notIncluded: [
-      'Monitoramento contínuo',
-      'Acesso via API',
-      'Suporte prioritário',
-    ],
-    highlight: true,
-  },
-  {
-    key: 'pro',
-    name: 'Monitoramento Pro',
-    icon: Crown,
-    price: 'R$ 479',
-    period: '/mês',
-    credits: 'Investigações ilimitadas',
-    features: [
-      'Pesquisa textual',
-      'Varredura social',
-      'Análise facial',
-      'Score de risco detalhado',
-      'Relatório completo em PDF',
-      'Monitoramento contínuo',
-      'Alertas em tempo real',
-      'Acesso via API',
-      'Suporte prioritário',
-      'Dashboard avançado',
-    ],
-    notIncluded: [],
-  },
-]
+function usePlans() {
+  const { t } = useTranslation()
+  return [
+    {
+      key: 'single',
+      name: t('plans.single_name'),
+      icon: Zap,
+      price: 'R$ 129',
+      period: t('plans.single_period'),
+      credits: t('plans.single_credits'),
+      features: [
+        t('plans.feature_textual'),
+        t('plans.feature_social'),
+        t('plans.feature_facial'),
+        t('plans.feature_risk'),
+        t('plans.feature_pdf'),
+      ],
+      notIncluded: [
+        t('plans.feature_monitoring'),
+        t('plans.feature_api'),
+        t('plans.feature_support'),
+      ],
+      highlight: true,
+    },
+    {
+      key: 'pro',
+      name: t('plans.pro_name'),
+      icon: Crown,
+      price: 'R$ 479',
+      period: t('plans.pro_period'),
+      credits: t('plans.pro_credits'),
+      features: [
+        t('plans.feature_textual'),
+        t('plans.feature_social'),
+        t('plans.feature_facial'),
+        t('plans.feature_risk'),
+        t('plans.feature_pdf'),
+        t('plans.feature_monitoring'),
+        t('plans.feature_alerts'),
+        t('plans.feature_api'),
+        t('plans.feature_support'),
+        t('plans.feature_dashboard'),
+      ],
+      notIncluded: [],
+    },
+  ]
+}
 
 const creditPacks = [
   { amount: 2, price: 'R$ 248', perUnit: 'R$ 124/investigação', planType: 'pack2' },
@@ -63,6 +66,7 @@ const creditPacks = [
 export default function PlansPage() {
   const { user } = useAuth()
   const { t } = useTranslation()
+  const plans = usePlans()
   const [loadingPlan, setLoadingPlan] = useState<string | null>(null)
 
   async function handleCheckout(planType: string) {

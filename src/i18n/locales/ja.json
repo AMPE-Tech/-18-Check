@@ -180,7 +180,17 @@
     "single_credits": "1回の完全調査",
     "pro_name": "プロ監視プラン",
     "pro_period": "/月",
-    "pro_credits": "無制限の調査"
+    "pro_credits": "無制限の調査",
+    "feature_textual": "テキスト検索",
+    "feature_social": "ソーシャルメディアスキャン",
+    "feature_facial": "顔認識分析",
+    "feature_risk": "詳細リスクスコア",
+    "feature_pdf": "完全なPDFレポート",
+    "feature_monitoring": "継続的な監視",
+    "feature_alerts": "リアルタイムアラート",
+    "feature_api": "APIアクセス",
+    "feature_support": "優先サポート",
+    "feature_dashboard": "高度なダッシュボード"
   },
   "search": {
     "title": "新規調査",
@@ -214,6 +224,18 @@
     "next": "次へ",
     "no_results": "調査が見つかりません",
     "page": "{{current}} / {{total}} ページ"
+  },
+  "footer": {
+    "tagline": "AIによるアダルトコンテンツの秘密検索。",
+    "product": "製品",
+    "how_it_works": "仕組み",
+    "pricing": "料金",
+    "faq": "よくある質問",
+    "legal": "法的情報",
+    "terms": "利用規約",
+    "privacy": "プライバシー",
+    "contact": "お問い合わせ",
+    "rights": "全著作権所有。"
   },
   "cta": {
     "headline": "疑いは心を蝕む。真実は解放する。",

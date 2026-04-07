@@ -180,7 +180,17 @@
     "single_credits": "1 tam arastirma",
     "pro_name": "Pro Izleme",
     "pro_period": "/ay",
-    "pro_credits": "Sinirsiz arastirma"
+    "pro_credits": "Sinirsiz arastirma",
+    "feature_textual": "Metin aramasi",
+    "feature_social": "Sosyal medya taramasi",
+    "feature_facial": "Yuz analizi",
+    "feature_risk": "Ayrintili risk puani",
+    "feature_pdf": "Eksiksiz PDF rapor",
+    "feature_monitoring": "Surekli izleme",
+    "feature_alerts": "Anlik uyarilar",
+    "feature_api": "API erisimi",
+    "feature_support": "Oncelikli destek",
+    "feature_dashboard": "Gelismis kontrol paneli"
   },
   "search": {
     "title": "Yeni Arastirma",
@@ -214,6 +224,18 @@
     "next": "Sonraki",
     "no_results": "Hicbir arastirma bulunamadi",
     "page": "Sayfa {{current}} / {{total}}"
+  },
+  "footer": {
+    "tagline": "Yapay zeka ile gizli yetiskin icerik aramasi.",
+    "product": "Urun",
+    "how_it_works": "Nasil Calisir",
+    "pricing": "Fiyatlar",
+    "faq": "SSS",
+    "legal": "Yasal",
+    "terms": "Kullanim Kosullari",
+    "privacy": "Gizlilik",
+    "contact": "Iletisim",
+    "rights": "Tum haklari saklidir."
   },
   "cta": {
     "headline": "Suphe kemirip bitirir. Gercek ozgurlestirir.",

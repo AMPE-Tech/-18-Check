@@ -180,7 +180,17 @@
     "single_credits": "1次完整调查",
     "pro_name": "专业监控",
     "pro_period": "/月",
-    "pro_credits": "无限次调查"
+    "pro_credits": "无限次调查",
+    "feature_textual": "文本搜索",
+    "feature_social": "社交媒体扫描",
+    "feature_facial": "面部分析",
+    "feature_risk": "详细风险评分",
+    "feature_pdf": "完整PDF报告",
+    "feature_monitoring": "持续监控",
+    "feature_alerts": "实时预警",
+    "feature_api": "API访问",
+    "feature_support": "优先客服",
+    "feature_dashboard": "高级控制台"
   },
   "search": {
     "title": "新调查",
@@ -214,6 +224,18 @@
     "next": "下一页",
     "no_results": "未找到调查记录",
     "page": "第 {{current}} 页，共 {{total}} 页"
+  },
+  "footer": {
+    "tagline": "人工智能驱动的隐秘成人内容搜索。",
+    "product": "产品",
+    "how_it_works": "工作原理",
+    "pricing": "价格",
+    "faq": "常见问题",
+    "legal": "法律信息",
+    "terms": "使用条款",
+    "privacy": "隐私政策",
+    "contact": "联系我们",
+    "rights": "版权所有。"
   },
   "cta": {
     "headline": "猜疑侵蚀内心，真相带来自由。",

@@ -5,10 +5,9 @@ import { z } from 'zod'
 import { Link, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useAuth } from '../lib/auth'
-import { ShieldCheck } from 'lucide-react'
+import { ShieldCheck, Lock } from 'lucide-react'
 import Input from '../components/ui/Input'
 import Button from '../components/ui/Button'
-import Card from '../components/ui/Card'
 import LanguageSelector from '../components/LanguageSelector'
 
 const schema = z.object({
@@ -45,62 +44,77 @@ export default function Login() {
 
   return (
     <div className="min-h-[calc(100vh-10rem)] flex items-center justify-center px-6 py-12">
-      <Card className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 mb-4">
-            <ShieldCheck className="h-8 w-8 text-gold" />
-            <span className="font-display font-bold text-xl text-white">
+      <div className="w-full max-w-md animate-fade-in">
+        {/* Glassmorphism card */}
+        <div className="bg-surface/80 backdrop-blur-xl border border-surface-border rounded-2xl p-8 shadow-2xl shadow-black/40">
+          {/* Header */}
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center justify-center h-14 w-14 rounded-2xl bg-gold/10 border border-gold/20 mb-4">
+              <ShieldCheck className="h-7 w-7 text-gold" />
+            </div>
+            <h1 className="font-display font-bold text-2xl text-white mb-1">
               <span className="text-gold">[18+]</span>Check
-            </span>
+            </h1>
+            <p className="text-sm text-gray-500">{t('auth.login_subtitle')}</p>
+            <div className="flex justify-center mt-3">
+              <LanguageSelector />
+            </div>
           </div>
-          <div className="flex justify-center mb-3">
-            <LanguageSelector />
+
+          {/* Error */}
+          {error && (
+            <div className="mb-6 rounded-xl bg-danger/10 border border-danger/20 px-4 py-3 text-sm text-danger animate-fade-in">
+              {error}
+            </div>
+          )}
+
+          {/* Form */}
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+            <Input
+              id="email"
+              label={t('auth.email')}
+              type="email"
+              placeholder={t('auth.email_placeholder')}
+              error={errors.email?.message}
+              {...register('email')}
+            />
+            <Input
+              id="password"
+              label={t('auth.password')}
+              type="password"
+              placeholder={t('auth.password_placeholder')}
+              error={errors.password?.message}
+              {...register('password')}
+            />
+            <Button type="submit" loading={loading} className="w-full">
+              <Lock className="h-4 w-4" />
+              {t('auth.login_button')}
+            </Button>
+          </form>
+
+          {/* Forgot password */}
+          <div className="text-center mt-5">
+            <Link to="/forgot-password" className="text-sm text-gray-400 hover:text-gold transition-colors underline underline-offset-4 decoration-gray-600 hover:decoration-gold">
+              {t('auth.forgot_password')}
+            </Link>
           </div>
-          <h1 className="font-display font-bold text-2xl text-white">{t('auth.login_title')}</h1>
-          <p className="text-sm text-gray-500 mt-1">{t('auth.login_subtitle')}</p>
-        </div>
 
-        {error && (
-          <div className="mb-6 rounded-lg bg-red-500/10 border border-red-500/30 px-4 py-3 text-sm text-red-400">
-            {error}
+          {/* Divider */}
+          <div className="flex items-center gap-3 my-6">
+            <div className="flex-1 h-px bg-surface-border" />
+            <span className="text-[10px] text-gray-600 uppercase tracking-widest">{t('auth.no_account')}</span>
+            <div className="flex-1 h-px bg-surface-border" />
           </div>
-        )}
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-          <Input
-            id="email"
-            label={t('auth.email')}
-            type="email"
-            placeholder={t('auth.email_placeholder')}
-            error={errors.email?.message}
-            {...register('email')}
-          />
-          <Input
-            id="password"
-            label={t('auth.password')}
-            type="password"
-            placeholder={t('auth.password_placeholder')}
-            error={errors.password?.message}
-            {...register('password')}
-          />
-          <Button type="submit" loading={loading} className="w-full">
-            {t('auth.login_button')}
-          </Button>
-        </form>
-
-        <div className="text-center mt-4">
-          <Link to="/forgot-password" className="text-xs text-gray-500 hover:text-gold transition-colors">
-            {t('auth.forgot_password')}
-          </Link>
-        </div>
-
-        <p className="text-center text-sm text-gray-500 mt-4">
-          {t('auth.no_account')}{' '}
-          <Link to="/register" className="text-gold hover:text-gold-light transition-colors">
+          {/* Register link */}
+          <Link
+            to="/register"
+            className="flex items-center justify-center w-full py-2.5 rounded-xl border border-gold/30 text-gold text-sm font-semibold hover:bg-gold/10 transition-all duration-200"
+          >
             {t('auth.create_account')}
           </Link>
-        </p>
-      </Card>
+        </div>
+      </div>
     </div>
   )
 }

@@ -180,7 +180,17 @@
     "single_credits": "1 complete investigation",
     "pro_name": "Pro Monitoring",
     "pro_period": "/month",
-    "pro_credits": "Unlimited investigations"
+    "pro_credits": "Unlimited investigations",
+    "feature_textual": "Text search",
+    "feature_social": "Social media scan",
+    "feature_facial": "Facial analysis",
+    "feature_risk": "Detailed risk score",
+    "feature_pdf": "Full PDF report",
+    "feature_monitoring": "Continuous monitoring",
+    "feature_alerts": "Real-time alerts",
+    "feature_api": "API access",
+    "feature_support": "Priority support",
+    "feature_dashboard": "Advanced dashboard"
   },
   "search": {
     "title": "New Investigation",
@@ -214,6 +224,18 @@
     "next": "Next",
     "no_results": "No investigations found",
     "page": "Page {{current}} of {{total}}"
+  },
+  "footer": {
+    "tagline": "Discreet adult content search powered by artificial intelligence.",
+    "product": "Product",
+    "how_it_works": "How It Works",
+    "pricing": "Pricing",
+    "faq": "FAQ",
+    "legal": "Legal",
+    "terms": "Terms of Use",
+    "privacy": "Privacy",
+    "contact": "Contact",
+    "rights": "All rights reserved."
   },
   "cta": {
     "headline": "Your dignity is priceless.",

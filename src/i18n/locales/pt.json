@@ -180,7 +180,17 @@
     "single_credits": "1 investigação completa",
     "pro_name": "Monitoramento Pro",
     "pro_period": "/mês",
-    "pro_credits": "Investigações ilimitadas"
+    "pro_credits": "Investigações ilimitadas",
+    "feature_textual": "Pesquisa textual",
+    "feature_social": "Varredura social",
+    "feature_facial": "Análise facial",
+    "feature_risk": "Score de risco detalhado",
+    "feature_pdf": "Relatório completo em PDF",
+    "feature_monitoring": "Monitoramento contínuo",
+    "feature_alerts": "Alertas em tempo real",
+    "feature_api": "Acesso via API",
+    "feature_support": "Suporte prioritário",
+    "feature_dashboard": "Dashboard avançado"
   },
   "search": {
     "title": "Nova Investigação",
@@ -214,6 +224,18 @@
     "next": "Próxima",
     "no_results": "Nenhuma investigação encontrada",
     "page": "Página {{current}} de {{total}}"
+  },
+  "footer": {
+    "tagline": "Pesquisa discreta de conteudo adulto com inteligencia artificial.",
+    "product": "Produto",
+    "how_it_works": "Como Funciona",
+    "pricing": "Precos",
+    "faq": "FAQ",
+    "legal": "Legal",
+    "terms": "Termos de Uso",
+    "privacy": "Privacidade",
+    "contact": "Contato",
+    "rights": "Todos os direitos reservados."
   },
   "cta": {
     "headline": "Sua dignidade não tem preço.",

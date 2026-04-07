@@ -7,7 +7,7 @@ import Card, { CardHeader, CardTitle } from '../components/ui/Card'
 import Button from '../components/ui/Button'
 import Badge from '../components/ui/Badge'
 import { formatDate } from '../lib/utils'
-import { Search, CreditCard, History, ArrowRight, AlertTriangle } from 'lucide-react'
+import { Search, CreditCard, History, ArrowRight, AlertTriangle, Shield } from 'lucide-react'
 
 interface SearchItem {
   id: string
@@ -17,6 +17,30 @@ interface SearchItem {
   riskLevel: string
   createdAt: string
   status: string
+}
+
+function SkeletonCard() {
+  return (
+    <Card className="flex items-center gap-4">
+      <div className="h-12 w-12 rounded-lg bg-surface-light animate-pulse" />
+      <div className="flex-1 space-y-2">
+        <div className="h-3 w-24 bg-surface-light rounded animate-pulse" />
+        <div className="h-6 w-16 bg-surface-light rounded animate-pulse" />
+      </div>
+    </Card>
+  )
+}
+
+function SkeletonRow() {
+  return (
+    <div className="flex items-center justify-between py-3 px-3">
+      <div className="space-y-2">
+        <div className="h-4 w-32 bg-surface-light rounded animate-pulse" />
+        <div className="h-3 w-20 bg-surface-light rounded animate-pulse" />
+      </div>
+      <div className="h-5 w-16 bg-surface-light rounded-full animate-pulse" />
+    </div>
+  )
 }
 
 export default function Dashboard() {
@@ -39,7 +63,7 @@ export default function Dashboard() {
   return (
     <div className="space-y-8 max-w-6xl">
       {/* Welcome */}
-      <div>
+      <div className="animate-fade-in">
         <h1 className="font-display font-bold text-2xl text-white">
           {t('dashboard.welcome', { name: user?.name?.split(' ')[0] })}
         </h1>
@@ -47,43 +71,53 @@ export default function Dashboard() {
       </div>
 
       {/* Quick stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <Card className="flex items-center gap-4">
-          <div className="h-12 w-12 rounded-lg bg-gold/10 flex items-center justify-center">
-            <CreditCard className="h-6 w-6 text-gold" />
-          </div>
-          <div>
-            <p className="text-sm text-gray-500">{t('dashboard.credits')}</p>
-            <p className="font-display font-bold text-2xl text-white">{user?.credits ?? 0}</p>
-          </div>
-        </Card>
-        <Card className="flex items-center gap-4">
-          <div className="h-12 w-12 rounded-lg bg-gold/10 flex items-center justify-center">
-            <Search className="h-6 w-6 text-gold" />
-          </div>
-          <div>
-            <p className="text-sm text-gray-500">{t('dashboard.plan')}</p>
-            <p className="font-display font-bold text-lg text-white capitalize">{user?.plan || t('dashboard.no_plan')}</p>
-          </div>
-        </Card>
-        <Card className="flex items-center gap-4">
-          <div className="h-12 w-12 rounded-lg bg-gold/10 flex items-center justify-center">
-            <History className="h-6 w-6 text-gold" />
-          </div>
-          <div>
-            <p className="text-sm text-gray-500">{t('dashboard.recent_count')}</p>
-            <p className="font-display font-bold text-2xl text-white">{recent.length}</p>
-          </div>
-        </Card>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+        {loading ? (
+          <>
+            <SkeletonCard />
+            <SkeletonCard />
+            <SkeletonCard />
+          </>
+        ) : (
+          <>
+            <Card className="flex items-center gap-4 animate-fade-in-1 hover:border-gold/20 transition-all duration-300">
+              <div className="h-12 w-12 rounded-xl bg-gold/10 border border-gold/20 flex items-center justify-center">
+                <CreditCard className="h-5 w-5 text-gold" />
+              </div>
+              <div>
+                <p className="text-xs text-gray-500 uppercase tracking-wider">{t('dashboard.credits')}</p>
+                <p className="font-display font-bold text-2xl text-white">{user?.credits ?? 0}</p>
+              </div>
+            </Card>
+            <Card className="flex items-center gap-4 animate-fade-in-2 hover:border-gold/20 transition-all duration-300">
+              <div className="h-12 w-12 rounded-xl bg-gold/10 border border-gold/20 flex items-center justify-center">
+                <Shield className="h-5 w-5 text-gold" />
+              </div>
+              <div>
+                <p className="text-xs text-gray-500 uppercase tracking-wider">{t('dashboard.plan')}</p>
+                <p className="font-display font-bold text-lg text-white capitalize">{user?.plan || t('dashboard.no_plan')}</p>
+              </div>
+            </Card>
+            <Card className="flex items-center gap-4 animate-fade-in-3 hover:border-gold/20 transition-all duration-300">
+              <div className="h-12 w-12 rounded-xl bg-gold/10 border border-gold/20 flex items-center justify-center">
+                <History className="h-5 w-5 text-gold" />
+              </div>
+              <div>
+                <p className="text-xs text-gray-500 uppercase tracking-wider">{t('dashboard.recent_count')}</p>
+                <p className="font-display font-bold text-2xl text-white">{recent.length}</p>
+              </div>
+            </Card>
+          </>
+        )}
       </div>
 
       {/* Low credits warning */}
       {(user?.credits ?? 0) <= 1 && (
-        <div className="flex items-center gap-3 bg-yellow-500/10 border border-yellow-500/30 rounded-lg px-4 py-3">
-          <AlertTriangle className="h-5 w-5 text-yellow-400 shrink-0" />
-          <p className="text-sm text-yellow-300">
+        <div className="flex items-center gap-3 bg-warning/10 border border-warning/30 rounded-xl px-4 py-3 animate-fade-in">
+          <AlertTriangle className="h-5 w-5 text-warning shrink-0" />
+          <p className="text-sm text-warning">
             {t('dashboard.low_credits')}{' '}
-            <Link to="/app/plans" className="text-gold font-medium underline">
+            <Link to="/app/plans" className="text-gold font-semibold underline underline-offset-2">
               {t('dashboard.upgrade')}
             </Link>
           </p>
@@ -91,33 +125,33 @@ export default function Dashboard() {
       )}
 
       {/* Quick actions */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <Link to="/app/search">
-          <Card className="hover:border-gold/30 transition-colors cursor-pointer group">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <Link to="/app/search" className="animate-fade-in-3">
+          <Card className="hover:border-gold/30 hover:bg-gold/[0.02] transition-all duration-300 cursor-pointer group">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="font-display font-semibold text-white mb-1">{t('dashboard.new_search')}</h3>
+                <h3 className="font-display font-semibold text-white mb-1 group-hover:text-gold transition-colors">{t('dashboard.new_search')}</h3>
                 <p className="text-sm text-gray-500">{t('dashboard.new_search_desc')}</p>
               </div>
-              <ArrowRight className="h-5 w-5 text-gray-600 group-hover:text-gold transition-colors" />
+              <ArrowRight className="h-5 w-5 text-gray-600 group-hover:text-gold group-hover:translate-x-1 transition-all duration-300" />
             </div>
           </Card>
         </Link>
-        <Link to="/app/history">
-          <Card className="hover:border-gold/30 transition-colors cursor-pointer group">
+        <Link to="/app/history" className="animate-fade-in-4">
+          <Card className="hover:border-gold/30 hover:bg-gold/[0.02] transition-all duration-300 cursor-pointer group">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="font-display font-semibold text-white mb-1">{t('dashboard.view_history')}</h3>
+                <h3 className="font-display font-semibold text-white mb-1 group-hover:text-gold transition-colors">{t('dashboard.view_history')}</h3>
                 <p className="text-sm text-gray-500">{t('dashboard.view_history_desc')}</p>
               </div>
-              <ArrowRight className="h-5 w-5 text-gray-600 group-hover:text-gold transition-colors" />
+              <ArrowRight className="h-5 w-5 text-gray-600 group-hover:text-gold group-hover:translate-x-1 transition-all duration-300" />
             </div>
           </Card>
         </Link>
       </div>
 
       {/* Recent searches */}
-      <Card>
+      <Card className="animate-fade-in-5">
         <CardHeader>
           <div className="flex items-center justify-between">
             <CardTitle>{t('dashboard.recent_searches')}</CardTitle>
@@ -127,11 +161,17 @@ export default function Dashboard() {
           </div>
         </CardHeader>
         {loading ? (
-          <div className="text-center py-8 text-gray-500">{t('dashboard.loading')}</div>
+          <div className="space-y-1">
+            <SkeletonRow />
+            <SkeletonRow />
+            <SkeletonRow />
+          </div>
         ) : recent.length === 0 ? (
-          <div className="text-center py-8">
-            <Search className="h-10 w-10 text-gray-700 mx-auto mb-3" />
-            <p className="text-gray-500">{t('dashboard.no_searches')}</p>
+          <div className="text-center py-10">
+            <div className="h-14 w-14 rounded-2xl bg-surface-light flex items-center justify-center mx-auto mb-4">
+              <Search className="h-6 w-6 text-gray-600" />
+            </div>
+            <p className="text-gray-500 mb-1">{t('dashboard.no_searches')}</p>
             <Link to="/app/search">
               <Button variant="outline" size="sm" className="mt-4">
                 {t('dashboard.first_search')}
@@ -139,15 +179,15 @@ export default function Dashboard() {
             </Link>
           </div>
         ) : (
-          <div className="space-y-2">
+          <div className="space-y-1">
             {recent.map((s) => (
               <Link
                 key={s.id}
                 to={`/app/history/${s.id}`}
-                className="flex items-center justify-between py-3 px-3 rounded-lg hover:bg-white/5 transition-colors"
+                className="flex items-center justify-between py-3 px-3 rounded-lg hover:bg-gold/[0.03] transition-all duration-200 group"
               >
                 <div>
-                  <p className="text-sm font-medium text-white">
+                  <p className="text-sm font-medium text-white group-hover:text-gold transition-colors">
                     {s.name || s.phone || s.social || t('dashboard.search_label')}
                   </p>
                   <p className="text-xs text-gray-500">{formatDate(s.createdAt)}</p>

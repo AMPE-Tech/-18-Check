@@ -180,7 +180,17 @@
     "single_credits": "1 enquete complete",
     "pro_name": "Surveillance Pro",
     "pro_period": "/mois",
-    "pro_credits": "Enquetes illimitees"
+    "pro_credits": "Enquetes illimitees",
+    "feature_textual": "Recherche textuelle",
+    "feature_social": "Scan des reseaux sociaux",
+    "feature_facial": "Analyse faciale",
+    "feature_risk": "Score de risque detaille",
+    "feature_pdf": "Rapport complet en PDF",
+    "feature_monitoring": "Surveillance continue",
+    "feature_alerts": "Alertes en temps reel",
+    "feature_api": "Acces via API",
+    "feature_support": "Support prioritaire",
+    "feature_dashboard": "Tableau de bord avance"
   },
   "search": {
     "title": "Nouvelle Enquete",
@@ -214,6 +224,18 @@
     "next": "Suivante",
     "no_results": "Aucune enquete trouvee",
     "page": "Page {{current}} sur {{total}}"
+  },
+  "footer": {
+    "tagline": "Recherche discrete de contenu adulte par intelligence artificielle.",
+    "product": "Produit",
+    "how_it_works": "Comment ca marche",
+    "pricing": "Tarifs",
+    "faq": "FAQ",
+    "legal": "Mentions legales",
+    "terms": "Conditions d'utilisation",
+    "privacy": "Confidentialite",
+    "contact": "Contact",
+    "rights": "Tous droits reserves."
   },
   "cta": {
     "headline": "Le doute ronge. La verite libere.",

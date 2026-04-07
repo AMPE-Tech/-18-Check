@@ -180,7 +180,17 @@
     "single_credits": "1 indagine completa",
     "pro_name": "Monitoraggio Pro",
     "pro_period": "/mese",
-    "pro_credits": "Indagini illimitate"
+    "pro_credits": "Indagini illimitate",
+    "feature_textual": "Ricerca testuale",
+    "feature_social": "Scansione social",
+    "feature_facial": "Analisi facciale",
+    "feature_risk": "Punteggio di rischio dettagliato",
+    "feature_pdf": "Report completo in PDF",
+    "feature_monitoring": "Monitoraggio continuo",
+    "feature_alerts": "Avvisi in tempo reale",
+    "feature_api": "Accesso via API",
+    "feature_support": "Supporto prioritario",
+    "feature_dashboard": "Dashboard avanzata"
   },
   "search": {
     "title": "Nuova Indagine",
@@ -214,6 +224,18 @@
     "next": "Successiva",
     "no_results": "Nessuna indagine trovata",
     "page": "Pagina {{current}} di {{total}}"
+  },
+  "footer": {
+    "tagline": "Ricerca discreta di contenuti per adulti con intelligenza artificiale.",
+    "product": "Prodotto",
+    "how_it_works": "Come Funziona",
+    "pricing": "Prezzi",
+    "faq": "FAQ",
+    "legal": "Note legali",
+    "terms": "Termini di Utilizzo",
+    "privacy": "Privacy",
+    "contact": "Contatti",
+    "rights": "Tutti i diritti riservati."
   },
   "cta": {
     "headline": "Il dubbio corrode. La verita libera.",

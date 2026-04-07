@@ -180,7 +180,17 @@
     "single_credits": "تحقيق كامل واحد",
     "pro_name": "مراقبة احترافية",
     "pro_period": "/شهرياً",
-    "pro_credits": "تحقيقات غير محدودة"
+    "pro_credits": "تحقيقات غير محدودة",
+    "feature_textual": "بحث نصي",
+    "feature_social": "فحص شبكات التواصل",
+    "feature_facial": "تحليل الوجه",
+    "feature_risk": "درجة مخاطر مفصلة",
+    "feature_pdf": "تقرير كامل بصيغة PDF",
+    "feature_monitoring": "مراقبة مستمرة",
+    "feature_alerts": "تنبيهات فورية",
+    "feature_api": "وصول عبر API",
+    "feature_support": "دعم ذو اولوية",
+    "feature_dashboard": "لوحة تحكم متقدمة"
   },
   "search": {
     "title": "تحقيق جديد",
@@ -214,6 +224,18 @@
     "next": "التالي",
     "no_results": "لم يتم العثور على أي تحقيق",
     "page": "صفحة {{current}} من {{total}}"
+  },
+  "footer": {
+    "tagline": "بحث سري عن محتوى البالغين بالذكاء الاصطناعي.",
+    "product": "المنتج",
+    "how_it_works": "كيف يعمل",
+    "pricing": "الاسعار",
+    "faq": "الاسئلة الشائعة",
+    "legal": "قانوني",
+    "terms": "شروط الاستخدام",
+    "privacy": "الخصوصية",
+    "contact": "اتصل بنا",
+    "rights": "جميع الحقوق محفوظة."
   },
   "cta": {
     "headline": "الشك يأكلك. الحقيقة تحررك.",
