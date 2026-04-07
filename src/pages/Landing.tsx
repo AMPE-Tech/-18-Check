@@ -159,7 +159,7 @@ export default function Landing() {
 
               {/* --- PLATFORM LOGOS BANNER (blurred background) --- */}
               <div className="absolute inset-0 pointer-events-none select-none overflow-hidden" aria-hidden="true">
-                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 opacity-[0.07]">
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 opacity-[0.06]">
                   <div className="flex items-center gap-4 whitespace-nowrap animate-[scroll-left_25s_linear_infinite]">
                     {['Tinder', 'OnlyFans', 'Pornhub', 'Bumble', 'Fansly', 'Grindr', 'Hinge', 'Badoo', 'Tinder', 'OnlyFans', 'Pornhub', 'Bumble'].map((name, i) => (
                       <span key={`r1-${i}`} className="text-white font-display font-bold text-2xl blur-[1.5px]">{name}</span>
@@ -176,7 +176,7 @@ export default function Landing() {
                     ))}
                   </div>
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-b from-bg via-bg/60 to-bg" />
+                <div className="absolute inset-0 bg-gradient-to-b from-bg/80 via-transparent to-bg/80" />
               </div>
 
               <FadeInView delay={0}>
