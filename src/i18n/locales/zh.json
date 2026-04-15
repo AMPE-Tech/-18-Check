@@ -42,11 +42,13 @@
     "dating_title": "交友软件用户",
     "dating_desc": "3.9亿人使用Tinder、Bumble和Hinge — 这是杀猪盘骗局的入口。",
     "business_title": "平台和企业",
-    "business_desc": "创作者身份验证、声誉尽职调查和合规审查。"
+    "business_desc": "创作者身份验证、声誉尽职调查和合规审查。",
+    "hr_title": "企业人事",
+    "hr_desc": "在招聘前深入进行合规调查。我们的平台消除了那些在看似稳固的职业背后隐藏真实身份的专业人士的风险。"
   },
   "how_it_works": {
     "title": "简单、快速、100%隐秘",
-    "step1": "上传照片",
+    "step1": "照片、姓名、电话、身份证",
     "step2": "AI搜索",
     "step3": "查看结果"
   },
@@ -77,8 +79,8 @@
     "pro_period": "/月",
     "pro_compare": "调查机构：每月¥8,000起",
     "extra_title": "单次搜索",
-    "extra_price": "¥19.90",
-    "extra_desc": "每次额外搜索",
+    "extra_price": "¥139",
+    "extra_desc": "Pro计划每次额外调查",
     "extra_cta": "购买"
   },
   "faq": {
@@ -224,6 +226,17 @@
     "next": "下一页",
     "no_results": "未找到调查记录",
     "page": "第 {{current}} 页，共 {{total}} 页"
+  },
+  "legal_support": {
+    "title": "专业法律支持",
+    "subtitle": "我们以具体行动保护您的尊严",
+    "service1_title": "形象清理",
+    "service1_desc": "我们要求在所有未经授权发布您内容的平台上立即删除。",
+    "service2_title": "保护措施",
+    "service2_desc": "通过可用的法律机制获得针对侵害者的保护措施的法律指导。",
+    "service3_title": "损害赔偿诉讼",
+    "service3_desc": "针对虐待性犯罪伴侣提起精神损害赔偿和身份欺诈诉讼的法律协助。",
+    "cta": "联系专家"
   },
   "footer": {
     "tagline": "人工智能驱动的隐秘成人内容搜索。",

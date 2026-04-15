@@ -42,11 +42,13 @@
     "dating_title": "Usuarios de apps de citas",
     "dating_desc": "390 millones usan Tinder, Bumble y Hinge — la puerta de entrada a estafas sentimentales.",
     "business_title": "Plataformas y empresas",
-    "business_desc": "Verificacion de creadores, due diligence reputacional y cumplimiento normativo."
+    "business_desc": "Verificacion de creadores, due diligence reputacional y cumplimiento normativo.",
+    "hr_title": "RRHH Empresarial",
+    "hr_desc": "Profundice su investigación de Compliance antes de contratar. Nuestra plataforma elimina el riesgo de profesionales que ocultan su verdadera identidad tras carreras aparentemente sólidas."
   },
   "how_it_works": {
     "title": "Simple, rapido y 100% discreto",
-    "step1": "Sube una foto",
+    "step1": "Foto, nombre, teléfono, DNI o pasaporte",
     "step2": "La IA busca",
     "step3": "Resultado"
   },
@@ -77,8 +79,8 @@
     "pro_period": "/mes",
     "pro_compare": "Agencia de investigacion: R$ 6.000+/mes",
     "extra_title": "Busqueda individual",
-    "extra_price": "R$ 24,90",
-    "extra_desc": "por busqueda adicional",
+    "extra_price": "€17.90",
+    "extra_desc": "por búsqueda adicional en plan Pro",
     "extra_cta": "Comprar"
   },
   "faq": {
@@ -224,6 +226,17 @@
     "next": "Siguiente",
     "no_results": "Ninguna investigacion encontrada",
     "page": "Pagina {{current}} de {{total}}"
+  },
+  "legal_support": {
+    "title": "Soporte Jurídico Especializado",
+    "subtitle": "Protegemos tu dignidad con acciones concretas",
+    "service1_title": "Limpieza de Imagen",
+    "service1_desc": "Exigimos la eliminación inmediata de tu contenido en todas las plataformas donde fue publicado sin autorización.",
+    "service2_title": "Medidas de Protección",
+    "service2_desc": "Orientación jurídica para obtener medidas de protección contra el agresor a través de los mecanismos legales disponibles.",
+    "service3_title": "Demanda por Daños",
+    "service3_desc": "Asesoría para demanda judicial por daños morales y suplantación de identidad contra la pareja abusadora y criminal.",
+    "cta": "Hablar con un Especialista"
   },
   "footer": {
     "tagline": "Busqueda discreta de contenido adulto con inteligencia artificial.",

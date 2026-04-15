@@ -42,11 +42,13 @@
     "dating_title": "Dating app users",
     "dating_desc": "Avoid fake lovers on dating platforms. +396 million profiles tracked worldwide.",
     "business_title": "Image & reputation protection",
-    "business_desc": "Prevent your image from being used for blackmail, fraud and exposure to family."
+    "business_desc": "Prevent your image from being used for blackmail, fraud and exposure to family.",
+    "hr_title": "Corporate HR",
+    "hr_desc": "Deepen your Compliance research before hiring. Our platform eliminates the risk of professionals who hide their true identity behind seemingly solid careers."
   },
   "how_it_works": {
     "title": "Simple, fast and 100% discreet",
-    "step1": "Upload photo",
+    "step1": "Photo, name, phone, ID or SSN",
     "step2": "AI searches",
     "step3": "Result"
   },
@@ -77,8 +79,8 @@
     "pro_period": "/month",
     "pro_compare": "Investigation agency: $1,200+/month",
     "extra_title": "Single search",
-    "extra_price": "$4.90",
-    "extra_desc": "per additional search",
+    "extra_price": "$19.90",
+    "extra_desc": "per additional search on Pro plan",
     "extra_cta": "Buy"
   },
   "faq": {
@@ -224,6 +226,17 @@
     "next": "Next",
     "no_results": "No investigations found",
     "page": "Page {{current}} of {{total}}"
+  },
+  "legal_support": {
+    "title": "Specialized Legal Support",
+    "subtitle": "We protect your dignity with concrete actions",
+    "service1_title": "Image Cleanup",
+    "service1_desc": "We demand the immediate removal of your content from all platforms where it was published without authorization.",
+    "service2_title": "Protective Measures",
+    "service2_desc": "Legal guidance to obtain protective measures against the aggressor through available legal mechanisms.",
+    "service3_title": "Damages Lawsuit",
+    "service3_desc": "Legal assistance for a lawsuit for moral damages and identity fraud against the abusive and criminal partner.",
+    "cta": "Talk to a Specialist"
   },
   "footer": {
     "tagline": "Discreet adult content search powered by artificial intelligence.",

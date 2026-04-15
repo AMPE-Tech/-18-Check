@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useAuth } from '../lib/auth'
 import { useTranslation } from 'react-i18next'
 import api from '../lib/api'
+import { toast } from '../components/ui/Toast'
 import Card from '../components/ui/Card'
 import Button from '../components/ui/Button'
 import { Check, Star, Zap, Crown } from 'lucide-react'
@@ -79,7 +80,7 @@ export default function PlansPage() {
       }
     } catch (err: unknown) {
       const msg = (err as { response?: { data?: { message?: string } } })?.response?.data?.message
-      alert(msg || 'Erro ao iniciar pagamento. Tente novamente.')
+      toast('error', msg || 'Erro ao iniciar pagamento. Tente novamente.')
     } finally {
       setLoadingPlan(null)
     }

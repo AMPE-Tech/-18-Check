@@ -42,11 +42,13 @@
     "dating_title": "Arkadaslik uygulamasi kullanicilari",
     "dating_desc": "390 milyon kisi Tinder, Bumble ve Hinge kullaniyor — romantik dolandiriciligina acilan kapi.",
     "business_title": "Platformlar ve isletmeler",
-    "business_desc": "Icerik ureticisi dogrulamasi, itibar arastirmasi ve uyumluluk."
+    "business_desc": "Icerik ureticisi dogrulamasi, itibar arastirmasi ve uyumluluk.",
+    "hr_title": "Kurumsal İK",
+    "hr_desc": "İşe almadan önce Uyumluluk araştırmanızı derinleştirin. Platformumuz, görünüşte sağlam kariyerlerin arkasına gerçek kimliklerini gizleyen profesyonellerin riskini ortadan kaldırır."
   },
   "how_it_works": {
     "title": "Basit, hizli ve %100 gizli",
-    "step1": "Fotograf yukle",
+    "step1": "Fotoğraf, ad, telefon, kimlik",
     "step2": "Yapay zeka arar",
     "step3": "Sonuc"
   },
@@ -77,8 +79,8 @@
     "pro_period": "/ay",
     "pro_compare": "Arastirma ajansi: 12.000 TL+/ay",
     "extra_title": "Tekli arama",
-    "extra_price": "99,90 TL",
-    "extra_desc": "ek arama basina",
+    "extra_price": "₺599",
+    "extra_desc": "Pro planında ek araştırma başına",
     "extra_cta": "Satin Al"
   },
   "faq": {
@@ -224,6 +226,17 @@
     "next": "Sonraki",
     "no_results": "Hicbir arastirma bulunamadi",
     "page": "Sayfa {{current}} / {{total}}"
+  },
+  "legal_support": {
+    "title": "Uzman Hukuki Destek",
+    "subtitle": "Onurunuzu somut eylemlerle koruyoruz",
+    "service1_title": "İmaj Temizliği",
+    "service1_desc": "İzinsiz yayınlanan içeriğinizin tüm platformlardan derhal kaldırılmasını talep ediyoruz.",
+    "service2_title": "Koruyucu Tedbirler",
+    "service2_desc": "Mevcut yasal mekanizmalar aracılığıyla saldırgana karşı koruyucu tedbirler almak için hukuki rehberlik.",
+    "service3_title": "Tazminat Davası",
+    "service3_desc": "İstismarcı ve suçlu partnere karşı manevi tazminat ve kimlik sahtekarlığı davası için hukuki destek.",
+    "cta": "Uzmanla Konuşun"
   },
   "footer": {
     "tagline": "Yapay zeka ile gizli yetiskin icerik aramasi.",

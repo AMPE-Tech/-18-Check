@@ -23,6 +23,8 @@ import ShimmerButton from '../components/effects/ShimmerButton'
 import FadeInView from '../components/effects/FadeInView'
 import LanguageSelector from '../components/LanguageSelector'
 import ScamCasesPanel from '../components/ScamCasesPanel'
+import ExtortionCasesPanel from '../components/ExtortionCasesPanel'
+import ProfileCarousel from '../components/ProfileCarousel'
 
 /* ------------------------------------------------------------------ */
 /*  Data                                                               */
@@ -112,6 +114,7 @@ export default function Landing() {
     { key: 'partners', icon: Heart },
     { key: 'dating', icon: Smartphone },
     { key: 'business', icon: Users },
+    { key: 'hr', icon: Settings },
   ]
 
   const faqKeys = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6']
@@ -153,54 +156,10 @@ export default function Landing() {
 
           {/* ===== MAIN CONTENT ===== */}
           <main className="pb-20">
-            {/* --- HERO (emocional) --- */}
-            <section className="px-5 pt-8 pb-2 relative overflow-hidden">
-              <div className="absolute inset-x-0 top-14 h-48 bg-gradient-to-b from-gold/5 to-transparent pointer-events-none" />
-
-              {/* --- PLATFORM LOGOS BANNER (blurred background) --- */}
-              <div className="absolute inset-0 pointer-events-none select-none overflow-hidden" aria-hidden="true">
-                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 opacity-[0.06]">
-                  <div className="flex items-center gap-4 whitespace-nowrap animate-[scroll-left_25s_linear_infinite]">
-                    {['Tinder', 'OnlyFans', 'Pornhub', 'Bumble', 'Fansly', 'Grindr', 'Hinge', 'Badoo', 'Tinder', 'OnlyFans', 'Pornhub', 'Bumble'].map((name, i) => (
-                      <span key={`r1-${i}`} className="text-white font-display font-bold text-2xl blur-[1.5px]">{name}</span>
-                    ))}
-                  </div>
-                  <div className="flex items-center gap-4 whitespace-nowrap animate-[scroll-right_30s_linear_infinite]">
-                    {['XVideos', 'Chaturbate', 'Ashley Madison', 'Stripchat', 'ManyVids', 'Happn', 'XVideos', 'Chaturbate', 'Ashley Madison', 'Stripchat'].map((name, i) => (
-                      <span key={`r2-${i}`} className="text-white font-display font-bold text-xl blur-[1.5px]">{name}</span>
-                    ))}
-                  </div>
-                  <div className="flex items-center gap-4 whitespace-nowrap animate-[scroll-left_20s_linear_infinite]">
-                    {['LiveJasmin', 'Seeking', 'AdultFriendFinder', 'Cam4', 'Privacy', 'Fetlife', 'LiveJasmin', 'Seeking', 'AdultFriendFinder', 'Cam4'].map((name, i) => (
-                      <span key={`r3-${i}`} className="text-white font-display font-bold text-lg blur-[1.5px]">{name}</span>
-                    ))}
-                  </div>
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-b from-bg/80 via-transparent to-bg/80" />
-              </div>
-
+            {/* --- HERO: PROFILE CAROUSEL --- */}
+            <section className="px-5 pt-6 pb-2">
               <FadeInView delay={0}>
-                <h1 className="text-center font-display font-bold text-[1.6rem] leading-tight text-white mb-2">
-                  {t('hero.headline')}{' '}
-                  <span className="text-gold">{t('hero.headline_highlight')}</span>?
-                </h1>
-              </FadeInView>
-
-              <FadeInView delay={0.05}>
-                <p
-                  className="text-center text-gray-400 text-sm mb-1 font-body leading-relaxed"
-                  dangerouslySetInnerHTML={{
-                    __html: t('hero.subtitle') + '<br/>' + t('hero.subtitle2'),
-                  }}
-                />
-              </FadeInView>
-
-              <FadeInView delay={0.1}>
-                <div className="flex justify-center mt-2 mb-4">
-                  <span className="text-[10px] bg-gold/10 text-gold border border-gold/20 rounded-full px-3 py-1 font-medium">
-                    {t('hero.badge')}
-                  </span>
-                </div>
+                <ProfileCarousel />
               </FadeInView>
             </section>
 
@@ -220,6 +179,34 @@ export default function Landing() {
                   </button>
                 </div>
               </FadeInView>
+            </section>
+
+            {/* --- PLATFORM SCREENSHOTS BANNER --- */}
+            <section className="py-2 overflow-hidden" aria-hidden="true">
+              <div className="flex items-center gap-2 animate-[scroll-left_50s_linear_infinite] w-max">
+                {[
+                  { src: '/platforms/tinder.jpg', adult: false },
+                  { src: '/platforms/xvideos.jpg', adult: true },
+                  { src: '/platforms/dating.jpg', adult: false },
+                  { src: '/platforms/pornhub.jpg', adult: true },
+                  { src: '/platforms/xhamster.jpg', adult: true },
+                  { src: '/platforms/xnxx.jpg', adult: true },
+                  { src: '/platforms/tinder.jpg', adult: false },
+                  { src: '/platforms/xvideos.jpg', adult: true },
+                  { src: '/platforms/dating.jpg', adult: false },
+                  { src: '/platforms/pornhub.jpg', adult: true },
+                  { src: '/platforms/xhamster.jpg', adult: true },
+                  { src: '/platforms/xnxx.jpg', adult: true },
+                ].map((img, i) => (
+                  <img
+                    key={i}
+                    src={img.src}
+                    alt=""
+                    className={`h-16 w-28 object-cover rounded-md shrink-0 ${img.adult ? 'blur-[0.6px]' : ''}`}
+                    loading="lazy"
+                  />
+                ))}
+              </div>
             </section>
 
             {/* --- GLOBAL NUMBERS --- */}
@@ -446,6 +433,58 @@ export default function Landing() {
               </FadeInView>
             </section>
 
+            {/* --- LEGAL SUPPORT --- */}
+            <section className="px-5 py-6 border-t border-surface-border">
+              <FadeInView delay={0.1}>
+                <div className="bg-gold/5 border border-gold/20 rounded-2xl p-5">
+                  <div className="flex items-center gap-2 mb-1">
+                    <Shield className="h-5 w-5 text-gold" />
+                    <p className="text-[11px] text-gold uppercase tracking-widest font-semibold">
+                      {t('legal_support.title')}
+                    </p>
+                  </div>
+                  <p className="text-[10px] text-gray-400 mb-4">{t('legal_support.subtitle')}</p>
+
+                  <div className="space-y-3">
+                    <div className="flex items-start gap-3">
+                      <div className="h-8 w-8 rounded-lg bg-gold/10 border border-gold/20 flex items-center justify-center shrink-0">
+                        <span className="text-gold font-bold text-xs">1</span>
+                      </div>
+                      <div>
+                        <p className="text-white text-xs font-semibold">{t('legal_support.service1_title')}</p>
+                        <p className="text-[10px] text-gray-400 mt-0.5">{t('legal_support.service1_desc')}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="h-8 w-8 rounded-lg bg-gold/10 border border-gold/20 flex items-center justify-center shrink-0">
+                        <span className="text-gold font-bold text-xs">2</span>
+                      </div>
+                      <div>
+                        <p className="text-white text-xs font-semibold">{t('legal_support.service2_title')}</p>
+                        <p className="text-[10px] text-gray-400 mt-0.5">{t('legal_support.service2_desc')}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="h-8 w-8 rounded-lg bg-gold/10 border border-gold/20 flex items-center justify-center shrink-0">
+                        <span className="text-gold font-bold text-xs">3</span>
+                      </div>
+                      <div>
+                        <p className="text-white text-xs font-semibold">{t('legal_support.service3_title')}</p>
+                        <p className="text-[10px] text-gray-400 mt-0.5">{t('legal_support.service3_desc')}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <Link
+                    to="/register"
+                    className="flex items-center justify-center w-full mt-4 py-2.5 rounded-xl bg-gold text-black text-xs font-semibold hover:bg-gold-light transition-colors"
+                  >
+                    {t('legal_support.cta')}
+                  </Link>
+                </div>
+              </FadeInView>
+            </section>
+
             {/* --- FAQ --- */}
             <section className="px-5 py-6 border-t border-surface-border">
               <FadeInView delay={0.1}>
@@ -465,6 +504,9 @@ export default function Landing() {
 
             {/* --- SCAM CASES PANEL --- */}
             <ScamCasesPanel />
+
+            {/* --- EXTORTION CASES PANEL --- */}
+            <ExtortionCasesPanel />
 
             {/* --- TRUST BADGES --- */}
             <section className="px-5 py-4 border-t border-surface-border">

@@ -10,6 +10,7 @@ import Dashboard from './pages/Dashboard'
 import SearchPage from './pages/Search'
 import HistoryPage from './pages/History'
 import PlansPage from './pages/Plans'
+import ToastContainer from './components/ui/Toast'
 import type { ReactNode } from 'react'
 
 function PrivateRoute({ children }: { children: ReactNode }) {
@@ -40,6 +41,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
+        <ToastContainer />
         <Routes>
           {/* Landing — standalone, no PublicLayout wrapper */}
           <Route index element={<Landing />} />

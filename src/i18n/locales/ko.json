@@ -42,11 +42,13 @@
     "dating_title": "데이팅 앱 사용자",
     "dating_desc": "3억 9천만 명이 Tinder, Bumble, Hinge를 사용합니다 — 로맨스 사기의 관문입니다.",
     "business_title": "플랫폼 및 기업",
-    "business_desc": "크리에이터 인증, 평판 실사 및 컴플라이언스."
+    "business_desc": "크리에이터 인증, 평판 실사 및 컴플라이언스.",
+    "hr_title": "기업 인사",
+    "hr_desc": "채용 전 컴플라이언스 조사를 심화하세요. 저희 플랫폼은 겉보기에 탄탄한 경력 뒤에 진정한 정체를 숨기는 전문가의 위험을 제거합니다."
   },
   "how_it_works": {
     "title": "간단하고 빠르며 100% 은밀합니다",
-    "step1": "사진 업로드",
+    "step1": "사진, 이름, 전화번호, 신분증",
     "step2": "AI 검색",
     "step3": "결과 확인"
   },
@@ -77,8 +79,8 @@
     "pro_period": "/월",
     "pro_compare": "조사 기관: 월 ₩1,200,000 이상",
     "extra_title": "추가 검색",
-    "extra_price": "₩4,900",
-    "extra_desc": "추가 검색 1회당",
+    "extra_price": "₩26,000",
+    "extra_desc": "Pro 플랜 추가 조사당",
     "extra_cta": "구매"
   },
   "faq": {
@@ -224,6 +226,17 @@
     "next": "다음",
     "no_results": "조사 결과가 없습니다",
     "page": "{{current}} / {{total}} 페이지"
+  },
+  "legal_support": {
+    "title": "전문 법률 지원",
+    "subtitle": "구체적인 조치로 당신의 존엄성을 보호합니다",
+    "service1_title": "이미지 정화",
+    "service1_desc": "무단으로 게시된 모든 플랫폼에서 귀하의 콘텐츠를 즉시 삭제하도록 요구합니다.",
+    "service2_title": "보호 조치",
+    "service2_desc": "이용 가능한 법적 수단을 통해 가해자에 대한 보호 조치를 얻기 위한 법률 안내.",
+    "service3_title": "손해배상 소송",
+    "service3_desc": "학대적이고 범죄적인 파트너에 대한 정신적 손해배상 및 신원 사기 소송을 위한 법률 지원.",
+    "cta": "전문가와 상담하기"
   },
   "footer": {
     "tagline": "인공지능 기반 은밀한 성인 콘텐츠 검색.",

@@ -42,11 +42,13 @@
     "dating_title": "Usuários de apps de encontros",
     "dating_desc": "Evite falsos amantes em plataformas de relacionamento. +396 milhões de cadastros nestas plataformas.",
     "business_title": "Proteção de imagem e reputação",
-    "business_desc": "Evite que sua imagem seja usada para chantagem, enriquecimento ilícito e exposição para familiares."
+    "business_desc": "Evite que sua imagem seja usada para chantagem, enriquecimento ilícito e exposição para familiares.",
+    "hr_title": "RH de Empresa",
+    "hr_desc": "Aprofunde sua pesquisa de Compliance antes de contratar. Nossa plataforma elimina o risco de profissionais que camuflam sua verdadeira identidade por trás de carreiras aparentemente sólidas."
   },
   "how_it_works": {
     "title": "Simples, rápido e 100% sigiloso",
-    "step1": "Upload foto",
+    "step1": "Foto, nome, telefone, RG ou CPF",
     "step2": "IA pesquisa",
     "step3": "Resultado"
   },
@@ -77,8 +79,8 @@
     "pro_period": "/mês",
     "pro_compare": "Agência de investigação: R$ 5.000+/mês",
     "extra_title": "Pesquisa avulsa",
-    "extra_price": "R$ 19",
-    "extra_desc": "por pesquisa adicional",
+    "extra_price": "R$ 99",
+    "extra_desc": "por pesquisa adicional no plano Pro",
     "extra_cta": "Comprar"
   },
   "faq": {
@@ -224,6 +226,17 @@
     "next": "Próxima",
     "no_results": "Nenhuma investigação encontrada",
     "page": "Página {{current}} de {{total}}"
+  },
+  "legal_support": {
+    "title": "Suporte Jurídico Especializado",
+    "subtitle": "Protegemos sua dignidade com ações concretas",
+    "service1_title": "Limpeza de Imagem",
+    "service1_desc": "Exigimos a exclusão imediata do seu conteúdo em todas as plataformas onde foi publicado sem autorização.",
+    "service2_title": "Medidas Protetivas",
+    "service2_desc": "Orientação jurídica para obter medidas protetivas contra o agressor através dos mecanismos legais disponíveis.",
+    "service3_title": "Processo por Danos",
+    "service3_desc": "Assessoria para ação judicial por danos morais e falsidade ideológica contra o parceiro abusador e criminoso.",
+    "cta": "Falar com Especialista"
   },
   "footer": {
     "tagline": "Pesquisa discreta de conteudo adulto com inteligencia artificial.",

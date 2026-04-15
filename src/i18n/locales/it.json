@@ -42,11 +42,13 @@
     "dating_title": "Utenti di app di incontri",
     "dating_desc": "390 milioni usano Tinder, Bumble e Hinge — la porta d'ingresso per le truffe sentimentali.",
     "business_title": "Piattaforme e aziende",
-    "business_desc": "Verifica dei creator, due diligence reputazionale e conformita normativa."
+    "business_desc": "Verifica dei creator, due diligence reputazionale e conformita normativa.",
+    "hr_title": "HR Aziendale",
+    "hr_desc": "Approfondisci la tua ricerca di Compliance prima di assumere. La nostra piattaforma elimina il rischio di professionisti che nascondono la loro vera identità dietro carriere apparentemente solide."
   },
   "how_it_works": {
     "title": "Semplice, veloce e 100% discreto",
-    "step1": "Carica una foto",
+    "step1": "Foto, nome, telefono, documento",
     "step2": "L'IA cerca",
     "step3": "Risultato"
   },
@@ -77,8 +79,8 @@
     "pro_period": "/mese",
     "pro_compare": "Agenzia investigativa: da 1.200 €/mese",
     "extra_title": "Ricerca singola",
-    "extra_price": "4,90 €",
-    "extra_desc": "per ricerca aggiuntiva",
+    "extra_price": "€17.90",
+    "extra_desc": "per ricerca aggiuntiva nel piano Pro",
     "extra_cta": "Acquista"
   },
   "faq": {
@@ -224,6 +226,17 @@
     "next": "Successiva",
     "no_results": "Nessuna indagine trovata",
     "page": "Pagina {{current}} di {{total}}"
+  },
+  "legal_support": {
+    "title": "Supporto Legale Specializzato",
+    "subtitle": "Proteggiamo la tua dignità con azioni concrete",
+    "service1_title": "Pulizia dell'Immagine",
+    "service1_desc": "Richiediamo la rimozione immediata dei tuoi contenuti da tutte le piattaforme dove sono stati pubblicati senza autorizzazione.",
+    "service2_title": "Misure Protettive",
+    "service2_desc": "Orientamento legale per ottenere misure protettive contro l'aggressore attraverso i meccanismi legali disponibili.",
+    "service3_title": "Causa per Danni",
+    "service3_desc": "Assistenza legale per un'azione giudiziaria per danni morali e furto d'identità contro il partner abusivo e criminale.",
+    "cta": "Parla con uno Specialista"
   },
   "footer": {
     "tagline": "Ricerca discreta di contenuti per adulti con intelligenza artificiale.",

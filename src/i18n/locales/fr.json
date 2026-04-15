@@ -42,11 +42,13 @@
     "dating_title": "Utilisateurs d'apps de rencontre",
     "dating_desc": "390 millions utilisent Tinder, Bumble et Hinge — la porte d'entree vers les arnaques sentimentales.",
     "business_title": "Plateformes et entreprises",
-    "business_desc": "Verification de createurs, due diligence reputationnelle et conformite."
+    "business_desc": "Verification de createurs, due diligence reputationnelle et conformite.",
+    "hr_title": "RH d'Entreprise",
+    "hr_desc": "Approfondissez votre recherche de Conformité avant d'embaucher. Notre plateforme élimine le risque de professionnels qui cachent leur véritable identité derrière des carrières apparemment solides."
   },
   "how_it_works": {
     "title": "Simple, rapide et 100% discret",
-    "step1": "Envoyer une photo",
+    "step1": "Photo, nom, téléphone, pièce d'identité",
     "step2": "L'IA recherche",
     "step3": "Resultat"
   },
@@ -77,8 +79,8 @@
     "pro_period": "/mois",
     "pro_compare": "Agence de detective : 1 200 €+/mois",
     "extra_title": "Recherche a l'unite",
-    "extra_price": "4,90 €",
-    "extra_desc": "par recherche supplementaire",
+    "extra_price": "€17.90",
+    "extra_desc": "par recherche supplémentaire sur le plan Pro",
     "extra_cta": "Acheter"
   },
   "faq": {
@@ -224,6 +226,17 @@
     "next": "Suivante",
     "no_results": "Aucune enquete trouvee",
     "page": "Page {{current}} sur {{total}}"
+  },
+  "legal_support": {
+    "title": "Accompagnement Juridique Spécialisé",
+    "subtitle": "Nous protégeons votre dignité avec des actions concrètes",
+    "service1_title": "Nettoyage d'Image",
+    "service1_desc": "Nous exigeons la suppression immédiate de votre contenu de toutes les plateformes où il a été publié sans autorisation.",
+    "service2_title": "Mesures de Protection",
+    "service2_desc": "Orientation juridique pour obtenir des mesures de protection contre l'agresseur par les mécanismes légaux disponibles.",
+    "service3_title": "Action en Dommages",
+    "service3_desc": "Assistance juridique pour une action en dommages moraux et usurpation d'identité contre le partenaire abusif et criminel.",
+    "cta": "Parler à un Spécialiste"
   },
   "footer": {
     "tagline": "Recherche discrete de contenu adulte par intelligence artificielle.",

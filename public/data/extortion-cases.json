@@ -1,0 +1,116 @@
+{
+  "lastUpdated": "2026-04-07",
+  "nextUpdate": "2026-04-14",
+  "stats": {
+    "totalCases": 8,
+    "totalExtorted": "R$ 330 mil+",
+    "totalArrests": "18+",
+    "states": 7
+  },
+  "cases": [
+    {
+      "id": "rj-001",
+      "title": "Turista norueguês extorquido em Copacabana",
+      "location": "Rio de Janeiro/RJ",
+      "amount": "R$ 35 mil (tentativa de R$ 80 mil)",
+      "status": "Presas em flagrante (2)",
+      "statusColor": "red",
+      "year": 2025,
+      "month": "abr/2025",
+      "crime": "Duas mulheres trans filmaram vídeos íntimos sem consentimento e chantagearam turista norueguês de 55 anos por semanas. Suspeita já tinha antecedentes por extorsão.",
+      "source": "https://www.cnnbrasil.com.br/nacional/sudeste/rj/mulheres-trans-sao-presas-por-extorsao-a-turista-noruegues-no-rio/",
+      "sourceLabel": "CNN Brasil"
+    },
+    {
+      "id": "sp-002",
+      "title": "Cárcere privado e extorsão em Campinas",
+      "location": "Campinas/SP",
+      "amount": "R$ 30 mil",
+      "status": "Presas (2)",
+      "statusColor": "red",
+      "year": 2025,
+      "month": "fev/2025",
+      "crime": "Empresário de 43 anos mantido em cárcere, forçado a ficar nu e gravado em posições constrangedoras. Extorsão via maquininhas de débito/crédito.",
+      "source": "https://thmais.com.br/",
+      "sourceLabel": "THMais / Correio Popular"
+    },
+    {
+      "id": "ce-001",
+      "title": "Extorsão com casos falsos em Fortaleza",
+      "location": "Fortaleza/CE",
+      "amount": "R$ 7.800+",
+      "status": "Presa em flagrante",
+      "statusColor": "red",
+      "year": 2024,
+      "month": "nov/2024",
+      "crime": "Ameaçava criar histórias falsas sobre empresários e divulgar na internet. Vítima pagou parcelas mesmo sem envolvimento real. Presa por policial disfarçado em hotel.",
+      "source": "https://gcmais.com.br/noticias/2024/11/05/presa-por-extorsao-travesti-ameacava-divulgar-casos-falsos-com-empresarios-e-expo-los-na-internet/",
+      "sourceLabel": "GCMAIS"
+    },
+    {
+      "id": "ce-002",
+      "title": "Segunda prisão consecutiva em Cascavel",
+      "location": "Cascavel/CE",
+      "amount": "Não divulgado",
+      "status": "Presa em flagrante",
+      "statusColor": "red",
+      "year": 2024,
+      "month": "nov/2024",
+      "crime": "Fotos íntimas usadas para extorsão com valores crescentes. Capturada no momento de receber o pagamento.",
+      "source": "https://gcmais.com.br/",
+      "sourceLabel": "GCMAIS"
+    },
+    {
+      "id": "sp-001",
+      "title": "Empresário extorquido por 40 dias em Perdizes",
+      "location": "São Paulo/SP",
+      "amount": "R$ 150 mil",
+      "status": "Presa",
+      "statusColor": "red",
+      "year": 2019,
+      "month": "dez/2019",
+      "crime": "Filmava relações com vítimas e usava vídeos para chantagear familiares, ameaçando expor nas redes sociais. Empresário de 30 anos extorquido por 40 dias.",
+      "source": "https://www.facebook.com/montanhezafm/posts/",
+      "sourceLabel": "Rádio Montanheza / Balanço Geral"
+    },
+    {
+      "id": "df-001",
+      "title": "Operação Cilada — Quadrilha desarticulada",
+      "location": "DF / GO / SP",
+      "amount": "R$ 22 mil+ por vítima",
+      "status": "8 mandados — 5 presos",
+      "statusColor": "red",
+      "year": 2019,
+      "month": "jun-jul/2019",
+      "crime": "Encontros via Grindr, filmagem oculta e chantagem. Vítimas incluíam médicos. R$ 10-15 mil por vítima. STF negou habeas corpus.",
+      "source": "https://www.metropoles.com/distrito-federal/pcdf-prende-travestis-acusados-de-extorquir-clientes-apos-encontros",
+      "sourceLabel": "Metrópoles"
+    },
+    {
+      "id": "ms-001",
+      "title": "Idoso extorquido por 6 meses em Brasilândia",
+      "location": "Brasilândia/MS",
+      "amount": "R$ 100/semana por 6 meses",
+      "status": "Presa (preventiva)",
+      "statusColor": "red",
+      "year": 2024,
+      "month": "2024",
+      "crime": "Gravou vídeo íntimo com idoso de 73 anos durante programa e extorquiu semanalmente por 6 meses. Presa, solta e presa novamente.",
+      "source": "https://www.campograndenews.com.br/cidades/interior/travesti-e-presa-por-extorquir-idoso-por-6-meses-para-nao-divulgar-video-intimo",
+      "sourceLabel": "Campo Grande News"
+    },
+    {
+      "id": "sp-003",
+      "title": "Golpe do amor em Cubatão",
+      "location": "Cubatão/SP",
+      "amount": "R$ 7 mil+",
+      "status": "Presa",
+      "statusColor": "red",
+      "year": 2026,
+      "month": "mar/2026",
+      "crime": "Descobriu que cliente era casado após programa e passou a exigir dinheiro para não revelar o caso à esposa. Integrava quadrilha especializada.",
+      "source": "https://noticias-do-brasil.news/crime/crime-justica/travestis-presas-por-suspeita-de-integrar-quadrilha-do-golpe-do-amor.html",
+      "sourceLabel": "Notícias do Brasil"
+    }
+  ]
+}

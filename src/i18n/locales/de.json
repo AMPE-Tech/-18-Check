@@ -42,11 +42,13 @@
     "dating_title": "Dating-App-Nutzer",
     "dating_desc": "390 Millionen nutzen Tinder, Bumble und Hinge — das Einfallstor fuer Liebesbetrug.",
     "business_title": "Plattformen und Unternehmen",
-    "business_desc": "Creator-Verifizierung, Reputations-Due-Diligence und Compliance."
+    "business_desc": "Creator-Verifizierung, Reputations-Due-Diligence und Compliance.",
+    "hr_title": "Unternehmens-HR",
+    "hr_desc": "Vertiefen Sie Ihre Compliance-Recherche vor der Einstellung. Unsere Plattform eliminiert das Risiko von Fachkräften, die ihre wahre Identität hinter scheinbar soliden Karrieren verbergen."
   },
   "how_it_works": {
     "title": "Einfach, schnell und 100% diskret",
-    "step1": "Foto hochladen",
+    "step1": "Foto, Name, Telefon, Ausweis",
     "step2": "KI durchsucht",
     "step3": "Ergebnis"
   },
@@ -77,8 +79,8 @@
     "pro_period": "/Monat",
     "pro_compare": "Detektei: ab 1.200 €/Monat",
     "extra_title": "Einzelsuche",
-    "extra_price": "4,90 €",
-    "extra_desc": "pro zusaetzliche Suche",
+    "extra_price": "€17.90",
+    "extra_desc": "pro zusätzliche Suche im Pro-Plan",
     "extra_cta": "Kaufen"
   },
   "faq": {
@@ -224,6 +226,17 @@
     "next": "Weiter",
     "no_results": "Keine Untersuchungen gefunden",
     "page": "Seite {{current}} von {{total}}"
+  },
+  "legal_support": {
+    "title": "Spezialisierte Rechtsberatung",
+    "subtitle": "Wir schützen Ihre Würde mit konkreten Maßnahmen",
+    "service1_title": "Image-Bereinigung",
+    "service1_desc": "Wir fordern die sofortige Entfernung Ihrer Inhalte von allen Plattformen, auf denen sie ohne Genehmigung veröffentlicht wurden.",
+    "service2_title": "Schutzmaßnahmen",
+    "service2_desc": "Rechtliche Beratung zur Erlangung von Schutzmaßnahmen gegen den Angreifer durch verfügbare rechtliche Mechanismen.",
+    "service3_title": "Schadensersatzklage",
+    "service3_desc": "Rechtsbeistand für eine Klage wegen immaterieller Schäden und Identitätsbetrug gegen den missbräuchlichen und kriminellen Partner.",
+    "cta": "Mit einem Spezialisten sprechen"
   },
   "footer": {
     "tagline": "Diskrete Suche nach Erotik-Inhalten mit kuenstlicher Intelligenz.",

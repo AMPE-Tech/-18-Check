@@ -54,6 +54,7 @@ export default function Layout() {
           <button
             className="ml-auto lg:hidden text-gray-400 hover:text-white"
             onClick={() => setSidebarOpen(false)}
+            aria-label="Fechar menu"
           >
             <X className="h-5 w-5" />
           </button>
@@ -115,6 +116,7 @@ export default function Layout() {
           <button
             className="lg:hidden mr-4 text-gray-400 hover:text-white"
             onClick={() => setSidebarOpen(true)}
+            aria-label="Abrir menu"
           >
             <Menu className="h-5 w-5" />
           </button>
