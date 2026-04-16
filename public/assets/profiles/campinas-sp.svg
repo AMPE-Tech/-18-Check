@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="mugBg" x1="0" y1="0" x2="0.2" y2="1">
+      <stop offset="0%" stop-color="#262020"/>
+      <stop offset="50%" stop-color="#1a1614"/>
+      <stop offset="100%" stop-color="#0e0c0a"/>
+    </linearGradient>
+    <linearGradient id="skin" x1="0.3" y1="0" x2="0.7" y2="1">
+      <stop offset="0%" stop-color="#A07050"/>
+      <stop offset="50%" stop-color="#8C6040"/>
+      <stop offset="100%" stop-color="#7A5438"/>
+    </linearGradient>
+    <linearGradient id="light" x1="0.7" y1="0" x2="0.2" y2="0.8">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0.18"/>
+    </linearGradient>
+    <linearGradient id="hair" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#1a0e06"/>
+      <stop offset="100%" stop-color="#0e0604"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.88" numOctaves="4" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feBlend in="SourceGraphic" mode="multiply"/>
+    </filter>
+    <clipPath id="frame"><rect width="200" height="200" rx="10"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#frame)">
+    <rect width="200" height="200" fill="url(#mugBg)"/>
+    <rect width="200" height="200" fill="url(#light)"/>
+
+    <!-- Height lines -->
+    <g stroke="#555" stroke-opacity="0.35" stroke-width="0.6">
+      <line x1="0" y1="20" x2="200" y2="20"/>
+      <line x1="0" y1="40" x2="200" y2="40"/>
+      <line x1="0" y1="60" x2="200" y2="60"/>
+      <line x1="0" y1="80" x2="200" y2="80"/>
+      <line x1="0" y1="100" x2="200" y2="100"/>
+      <line x1="0" y1="120" x2="200" y2="120"/>
+    </g>
+    <g font-family="'Courier New',monospace" font-size="7" fill="#666" fill-opacity="0.45">
+      <text x="4" y="18">5'8</text>
+      <text x="4" y="38">5'6</text>
+      <text x="4" y="58">5'4</text>
+      <text x="4" y="78">5'2</text>
+      <text x="4" y="98">5'0</text>
+    </g>
+    <line x1="28" y1="15" x2="28" y2="125" stroke="#555" stroke-opacity="0.25" stroke-width="0.5"/>
+
+    <!-- Neck — slender -->
+    <rect x="88" y="106" width="24" height="22" rx="4" fill="url(#skin)"/>
+
+    <!-- Body / tank top -->
+    <ellipse cx="100" cy="158" rx="52" ry="34" fill="#1a1018"/>
+    <rect x="48" y="144" width="104" height="56" fill="#1a1018"/>
+    <!-- Thin straps -->
+    <line x1="82" y1="128" x2="78" y2="145" stroke="#2a1828" stroke-width="2.5"/>
+    <line x1="118" y1="128" x2="122" y2="145" stroke="#2a1828" stroke-width="2.5"/>
+    <!-- Neckline -->
+    <path d="M78 145 Q100 155 122 145" fill="none" stroke="#2a1828" stroke-width="1"/>
+
+    <!-- Head — softer, feminine jaw -->
+    <ellipse cx="100" cy="65" rx="32" ry="42" fill="url(#skin)"/>
+
+    <!-- Long hair — past shoulders -->
+    <path d="M62 50 Q60 18 100 14 Q140 18 138 50" fill="url(#hair)"/>
+    <!-- Hair flowing down sides -->
+    <path d="M62 50 Q58 70 55 100 Q54 115 58 130" fill="url(#hair)"/>
+    <path d="M138 50 Q142 70 145 100 Q146 115 142 130" fill="url(#hair)"/>
+    <!-- Hair volume on top -->
+    <path d="M64 45 Q70 12 100 8 Q130 12 136 45" fill="#1a0e06"/>
+    <!-- Hair strands -->
+    <path d="M70 40 Q68 60 62 90" fill="none" stroke="#0e0604" stroke-width="0.8" opacity="0.4"/>
+    <path d="M130 40 Q132 60 138 90" fill="none" stroke="#0e0604" stroke-width="0.8" opacity="0.4"/>
+
+    <!-- Ears (partially hidden by hair) -->
+    <ellipse cx="67" cy="68" rx="4" ry="7" fill="#7A5438" opacity="0.6"/>
+    <ellipse cx="133" cy="68" rx="4" ry="7" fill="#7A5438" opacity="0.6"/>
+    <!-- Earrings -->
+    <circle cx="67" cy="78" r="2" fill="#C4A050" opacity="0.6"/>
+    <circle cx="133" cy="78" r="2" fill="#C4A050" opacity="0.6"/>
+
+    <!-- Thinner brows — shaped -->
+    <path d="M78 54 Q88 51 96 53" fill="#5a3a25" opacity="0.4" stroke="#5a3a25" stroke-width="0.3"/>
+    <path d="M104 53 Q112 51 122 54" fill="#5a3a25" opacity="0.4" stroke="#5a3a25" stroke-width="0.3"/>
+
+    <!-- Nose — smaller, refined -->
+    <path d="M98 65 L97 78 Q100 82 103 78 L102 65" fill="#7A5438" opacity="0.15"/>
+    <ellipse cx="100" cy="79" rx="5.5" ry="3.5" fill="#7A5438" opacity="0.25"/>
+
+    <!-- Fuller lips — lipstick hint -->
+    <path d="M89 92 Q94 89 100 90 Q106 89 111 92" fill="#8a3030" opacity="0.5"/>
+    <path d="M90 93 Q100 98 110 93" fill="#7a2828" opacity="0.35"/>
+    <path d="M91 93 Q100 97 109 93" fill="none" stroke="#5a2020" stroke-width="0.6"/>
+
+    <!-- Cheekbone highlights -->
+    <ellipse cx="78" cy="78" rx="8" ry="4" fill="#B08060" opacity="0.1" transform="rotate(-15,78,78)"/>
+    <ellipse cx="122" cy="78" rx="8" ry="4" fill="#B08060" opacity="0.1" transform="rotate(15,122,78)"/>
+
+    <!-- Chin — pointed -->
+    <ellipse cx="100" cy="105" rx="10" ry="4" fill="#7A5438" opacity="0.1"/>
+
+    <ellipse cx="100" cy="110" rx="18" ry="4" fill="#000" opacity="0.1"/>
+
+    <!-- BLACK BAR -->
+    <rect x="62" y="55" width="76" height="18" rx="1" fill="#000" opacity="0.92"/>
+
+    <rect width="200" height="200" filter="url(#grain)" opacity="0.07"/>
+
+    <!-- Booking plate -->
+    <rect x="0" y="148" width="200" height="52" fill="#0a0908" opacity="0.85"/>
+    <text x="100" y="164" text-anchor="middle" font-family="'Courier New',monospace" font-size="11" font-weight="bold" fill="#999" letter-spacing="3">SP-250214</text>
+    <text x="100" y="180" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" fill="#ccc" font-weight="bold" letter-spacing="2">CAMPINAS / SP</text>
+    <text x="100" y="194" text-anchor="middle" font-family="'Courier New',monospace" font-size="7" fill="#666" letter-spacing="1">2025-02-14 · PCSP</text>
+  </g>
+</svg>

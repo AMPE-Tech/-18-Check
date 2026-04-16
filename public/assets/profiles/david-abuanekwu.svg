@@ -1,47 +1,110 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#1a1a1a"/>
-      <stop offset="100%" stop-color="#111"/>
+    <linearGradient id="mugBg3" x1="0.1" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#28231e"/>
+      <stop offset="50%" stop-color="#1c1812"/>
+      <stop offset="100%" stop-color="#0c0a08"/>
     </linearGradient>
-    <linearGradient id="skin" x1="0.5" y1="0" x2="0.5" y2="1">
-      <stop offset="0%" stop-color="#5E3A1E"/>
-      <stop offset="100%" stop-color="#4C2F18"/>
+    <linearGradient id="skin3" x1="0.3" y1="0" x2="0.6" y2="1">
+      <stop offset="0%" stop-color="#6E4A2C"/>
+      <stop offset="50%" stop-color="#5E3E24"/>
+      <stop offset="100%" stop-color="#4C321C"/>
     </linearGradient>
+    <linearGradient id="light3" x1="0.3" y1="0" x2="0.9" y2="1">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0.18"/>
+    </linearGradient>
+    <filter id="grain3">
+      <feTurbulence type="fractalNoise" baseFrequency="0.95" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feBlend in="SourceGraphic" mode="multiply"/>
+    </filter>
+    <clipPath id="frame3"><rect width="200" height="200" rx="10"/></clipPath>
   </defs>
 
-  <rect width="200" height="200" fill="url(#bg)" rx="12"/>
+  <g clip-path="url(#frame3)">
+    <rect width="200" height="200" fill="url(#mugBg3)"/>
+    <rect width="200" height="200" fill="url(#light3)"/>
 
-  <!-- Neck - thicker -->
-  <rect x="83" y="108" width="34" height="24" rx="5" fill="url(#skin)"/>
+    <g stroke="#555" stroke-opacity="0.35" stroke-width="0.6">
+      <line x1="0" y1="20" x2="200" y2="20"/>
+      <line x1="0" y1="40" x2="200" y2="40"/>
+      <line x1="0" y1="60" x2="200" y2="60"/>
+      <line x1="0" y1="80" x2="200" y2="80"/>
+      <line x1="0" y1="100" x2="200" y2="100"/>
+      <line x1="0" y1="120" x2="200" y2="120"/>
+    </g>
+    <g font-family="'Courier New',monospace" font-size="7" fill="#666" fill-opacity="0.45">
+      <text x="4" y="18">5'11</text>
+      <text x="4" y="38">5'9</text>
+      <text x="4" y="58">5'7</text>
+      <text x="4" y="78">5'5</text>
+      <text x="4" y="98">5'3</text>
+    </g>
+    <line x1="30" y1="15" x2="30" y2="125" stroke="#555" stroke-opacity="0.25" stroke-width="0.5"/>
 
-  <!-- Shoulders / polo shirt -->
-  <ellipse cx="100" cy="158" rx="56" ry="32" fill="#1a3a1a"/>
-  <rect x="44" y="148" width="112" height="52" rx="2" fill="#1a3a1a"/>
-  <!-- Collar -->
-  <path d="M90 130 L90 138" fill="none" stroke="#2a4a2a" stroke-width="1.5"/>
-  <path d="M110 130 L110 138" fill="none" stroke="#2a4a2a" stroke-width="1.5"/>
+    <!-- Muscular neck -->
+    <rect x="82" y="104" width="36" height="30" rx="6" fill="url(#skin3)"/>
+    <!-- Neck tendons -->
+    <line x1="90" y1="108" x2="88" y2="125" stroke="#4C321C" stroke-width="0.6" opacity="0.3"/>
+    <line x1="110" y1="108" x2="112" y2="125" stroke="#4C321C" stroke-width="0.6" opacity="0.3"/>
 
-  <!-- Head - angular -->
-  <ellipse cx="100" cy="70" rx="33" ry="40" fill="url(#skin)"/>
+    <!-- Body / polo collar -->
+    <ellipse cx="100" cy="162" rx="60" ry="38" fill="#1a2818"/>
+    <rect x="40" y="148" width="120" height="52" fill="#1a2818"/>
+    <!-- Collar -->
+    <path d="M82 128 L82 136 Q100 142 118 136 L118 128" fill="#1e2e1c" stroke="#253522" stroke-width="0.8"/>
+    <!-- Buttons -->
+    <circle cx="100" cy="140" r="1.5" fill="#253522"/>
+    <circle cx="100" cy="148" r="1.5" fill="#253522"/>
 
-  <!-- Hair - very short buzz -->
-  <ellipse cx="100" cy="38" rx="30" ry="12" fill="#0d0806"/>
-  <rect x="70" y="30" width="60" height="15" rx="8" fill="#0d0806"/>
+    <!-- Head — angular, strong jaw -->
+    <path d="M68 55 Q66 30 100 26 Q134 30 132 55 L130 85 Q128 108 100 112 Q72 108 70 85 Z" fill="url(#skin3)"/>
 
-  <!-- Ears -->
-  <ellipse cx="66" cy="72" rx="5.5" ry="9" fill="#4C2F18"/>
-  <ellipse cx="134" cy="72" rx="5.5" ry="9" fill="#4C2F18"/>
+    <!-- Hair — very close cut / buzz -->
+    <path d="M70 48 Q68 24 100 20 Q132 24 130 48" fill="#0c0705"/>
+    <!-- Hairline texture -->
+    <g fill="#1a0f0a" opacity="0.3">
+      <circle cx="80" cy="30" r="1"/><circle cx="90" cy="26" r="1"/>
+      <circle cx="100" cy="24" r="1"/><circle cx="110" cy="26" r="1"/>
+      <circle cx="120" cy="30" r="1"/>
+    </g>
 
-  <!-- Nose -->
-  <ellipse cx="100" cy="82" rx="7.5" ry="5.5" fill="#4C2F18" opacity="0.45"/>
+    <!-- Ears — slightly protruding -->
+    <ellipse cx="64" cy="68" rx="6.5" ry="10" fill="#4C321C"/>
+    <ellipse cx="64" cy="68" rx="3.5" ry="6.5" fill="#3e2818" opacity="0.4"/>
+    <ellipse cx="136" cy="68" rx="6.5" ry="10" fill="#4C321C"/>
+    <ellipse cx="136" cy="68" rx="3.5" ry="6.5" fill="#3e2818" opacity="0.4"/>
 
-  <!-- Mouth -->
-  <path d="M89 96 Q100 101 111 96" fill="none" stroke="#361f10" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- Strong brow -->
+    <path d="M74 54 Q87 49 100 52 Q113 49 126 54" fill="#4C321C" opacity="0.5"/>
 
-  <!-- Goatee -->
-  <ellipse cx="100" cy="102" rx="10" ry="6" fill="#1a0f08" opacity="0.35"/>
+    <!-- Angular nose -->
+    <path d="M97 68 L95 82 Q100 86 105 82 L103 68" fill="#4C321C" opacity="0.25"/>
+    <ellipse cx="100" cy="83" rx="8" ry="4" fill="#4C321C" opacity="0.3"/>
 
-  <!-- BLACK BAR over eyes -->
-  <rect x="62" y="61" width="76" height="18" rx="1" fill="#000"/>
+    <!-- Goatee -->
+    <ellipse cx="100" cy="100" rx="12" ry="8" fill="#0e0806" opacity="0.35"/>
+    <path d="M92 95 Q100 90 108 95" fill="#1a0e08" opacity="0.2"/>
+
+    <!-- Lips -->
+    <path d="M90 94 Q96 96 100 95 Q104 96 110 94" fill="#3e2015" opacity="0.6"/>
+    <path d="M91 95 Q100 99 109 95" fill="none" stroke="#2a1408" stroke-width="0.8"/>
+
+    <!-- Jaw shadow -->
+    <path d="M70 90 Q72 110 100 114 Q128 110 130 90" fill="#3a2818" opacity="0.1"/>
+
+    <ellipse cx="100" cy="112" rx="22" ry="5" fill="#000" opacity="0.12"/>
+
+    <!-- BLACK BAR -->
+    <rect x="58" y="55" width="84" height="20" rx="1" fill="#000" opacity="0.92"/>
+
+    <rect width="200" height="200" filter="url(#grain3)" opacity="0.07"/>
+
+    <!-- Booking plate -->
+    <rect x="0" y="148" width="200" height="52" fill="#0a0908" opacity="0.85"/>
+    <text x="100" y="164" text-anchor="middle" font-family="'Courier New',monospace" font-size="11" font-weight="bold" fill="#999" letter-spacing="3">OH-240618</text>
+    <text x="100" y="180" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" fill="#ccc" font-weight="bold" letter-spacing="2">DAVID ABUANEKWU</text>
+    <text x="100" y="194" text-anchor="middle" font-family="'Courier New',monospace" font-size="7" fill="#666" letter-spacing="1">2024-06-18 · FBI / DOJ</text>
+  </g>
 </svg>

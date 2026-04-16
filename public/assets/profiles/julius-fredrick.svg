@@ -1,46 +1,103 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#1a1a1a"/>
-      <stop offset="100%" stop-color="#111"/>
+    <linearGradient id="mugBg5" x1="0" y1="0" x2="0.1" y2="1">
+      <stop offset="0%" stop-color="#252018"/>
+      <stop offset="50%" stop-color="#1a1610"/>
+      <stop offset="100%" stop-color="#0c0a07"/>
     </linearGradient>
-    <linearGradient id="skin" x1="0.5" y1="0" x2="0.5" y2="1">
-      <stop offset="0%" stop-color="#694530"/>
-      <stop offset="100%" stop-color="#523826"/>
+    <linearGradient id="skin5" x1="0.3" y1="0" x2="0.7" y2="1">
+      <stop offset="0%" stop-color="#7B5035"/>
+      <stop offset="50%" stop-color="#6A442C"/>
+      <stop offset="100%" stop-color="#553822"/>
     </linearGradient>
+    <linearGradient id="light5" x1="0.4" y1="0" x2="0.7" y2="1">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0.2"/>
+    </linearGradient>
+    <filter id="grain5">
+      <feTurbulence type="fractalNoise" baseFrequency="0.92" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feBlend in="SourceGraphic" mode="multiply"/>
+    </filter>
+    <clipPath id="frame5"><rect width="200" height="200" rx="10"/></clipPath>
   </defs>
 
-  <rect width="200" height="200" fill="url(#bg)" rx="12"/>
+  <g clip-path="url(#frame5)">
+    <rect width="200" height="200" fill="url(#mugBg5)"/>
+    <rect width="200" height="200" fill="url(#light5)"/>
 
-  <!-- Neck -->
-  <rect x="84" y="108" width="32" height="24" rx="5" fill="url(#skin)"/>
+    <g stroke="#555" stroke-opacity="0.35" stroke-width="0.6">
+      <line x1="0" y1="20" x2="200" y2="20"/>
+      <line x1="0" y1="40" x2="200" y2="40"/>
+      <line x1="0" y1="60" x2="200" y2="60"/>
+      <line x1="0" y1="80" x2="200" y2="80"/>
+      <line x1="0" y1="100" x2="200" y2="100"/>
+      <line x1="0" y1="120" x2="200" y2="120"/>
+    </g>
+    <g font-family="'Courier New',monospace" font-size="7" fill="#666" fill-opacity="0.45">
+      <text x="4" y="18">6'1</text>
+      <text x="4" y="38">5'11</text>
+      <text x="4" y="58">5'9</text>
+      <text x="4" y="78">5'7</text>
+      <text x="4" y="98">5'5</text>
+    </g>
+    <line x1="30" y1="15" x2="30" y2="125" stroke="#555" stroke-opacity="0.25" stroke-width="0.5"/>
 
-  <!-- Shoulders / t-shirt -->
-  <ellipse cx="100" cy="156" rx="55" ry="33" fill="#1a1a2e"/>
-  <rect x="45" y="146" width="110" height="54" rx="2" fill="#1a1a2e"/>
-  <!-- Round neck -->
-  <path d="M82 132 Q100 140 118 132" fill="none" stroke="#252540" stroke-width="1.5"/>
+    <!-- Thick neck -->
+    <rect x="80" y="104" width="40" height="30" rx="7" fill="url(#skin5)"/>
 
-  <!-- Head - wide jaw -->
-  <path d="M66 60 Q66 30 100 28 Q134 30 134 60 L132 90 Q130 112 100 114 Q70 112 68 90 Z" fill="url(#skin)"/>
+    <!-- Body / dark crew tee -->
+    <ellipse cx="100" cy="162" rx="62" ry="40" fill="#18161a"/>
+    <rect x="38" y="148" width="124" height="52" fill="#18161a"/>
+    <path d="M76 128 Q100 140 124 128" fill="none" stroke="#222028" stroke-width="1.2"/>
 
-  <!-- Hair - short top -->
-  <path d="M68 50 Q68 25 100 22 Q132 25 132 50" fill="#0e0906"/>
-  <rect x="70" y="26" width="60" height="14" rx="6" fill="#0e0906"/>
+    <!-- Head — wide, strong jaw, squared -->
+    <path d="M64 56 Q62 28 100 24 Q138 28 136 56 L134 82 Q132 110 100 114 Q68 110 66 82 Z" fill="url(#skin5)"/>
 
-  <!-- Ears -->
-  <ellipse cx="65" cy="70" rx="6" ry="9.5" fill="#523826"/>
-  <ellipse cx="135" cy="70" rx="6" ry="9.5" fill="#523826"/>
+    <!-- Hair — short with widows peak -->
+    <path d="M66 48 Q66 22 100 18 Q134 22 134 48" fill="#0c0806"/>
+    <path d="M90 22 L100 30 L110 22" fill="#0c0806"/>
 
-  <!-- Nose -->
-  <ellipse cx="100" cy="84" rx="8" ry="5.5" fill="#523826" opacity="0.4"/>
+    <!-- Ears -->
+    <ellipse cx="60" cy="68" rx="6" ry="10" fill="#553822"/>
+    <ellipse cx="60" cy="68" rx="3.5" ry="7" fill="#4a3018" opacity="0.3"/>
+    <ellipse cx="140" cy="68" rx="6" ry="10" fill="#553822"/>
+    <ellipse cx="140" cy="68" rx="3.5" ry="7" fill="#4a3018" opacity="0.3"/>
 
-  <!-- Mouth -->
-  <path d="M87 98 Q100 104 113 98" fill="none" stroke="#3a2418" stroke-width="1.6" stroke-linecap="round"/>
+    <!-- Heavy brow -->
+    <path d="M72 53 Q86 48 100 50 Q114 48 128 53" fill="#4a3420" opacity="0.6"/>
 
-  <!-- Full beard -->
-  <path d="M72 85 Q72 115 100 118 Q128 115 128 85" fill="#1a0e06" opacity="0.3"/>
+    <!-- Broad nose -->
+    <path d="M96 65 L94 80 Q100 86 106 80 L104 65" fill="#553822" opacity="0.2"/>
+    <ellipse cx="100" cy="82" rx="9" ry="5" fill="#553822" opacity="0.35"/>
 
-  <!-- BLACK BAR over eyes -->
-  <rect x="60" y="60" width="80" height="18" rx="1" fill="#000"/>
+    <!-- Full thick beard -->
+    <path d="M68 76 Q68 115 100 120 Q132 115 132 76" fill="#0e0906" opacity="0.4"/>
+    <!-- Beard texture -->
+    <g fill="#1a0e08" opacity="0.2">
+      <circle cx="80" cy="95" r="1.5"/><circle cx="90" cy="100" r="1.5"/>
+      <circle cx="100" cy="105" r="1.5"/><circle cx="110" cy="100" r="1.5"/>
+      <circle cx="120" cy="95" r="1.5"/><circle cx="85" cy="105" r="1"/>
+      <circle cx="115" cy="105" r="1"/><circle cx="75" cy="88" r="1"/>
+      <circle cx="125" cy="88" r="1"/>
+    </g>
+
+    <!-- Lips visible through beard -->
+    <path d="M90 92 Q100 96 110 92" fill="#3a1c10" opacity="0.5"/>
+
+    <!-- Jaw definition through beard -->
+    <path d="M68 82 Q68 112 100 116 Q132 112 132 82" fill="none" stroke="#1a0e06" stroke-width="0.6" opacity="0.2"/>
+
+    <ellipse cx="100" cy="114" rx="24" ry="5" fill="#000" opacity="0.1"/>
+
+    <!-- BLACK BAR -->
+    <rect x="54" y="53" width="92" height="20" rx="1" fill="#000" opacity="0.92"/>
+
+    <rect width="200" height="200" filter="url(#grain5)" opacity="0.07"/>
+
+    <rect x="0" y="148" width="200" height="52" fill="#0a0908" opacity="0.85"/>
+    <text x="100" y="164" text-anchor="middle" font-family="'Courier New',monospace" font-size="11" font-weight="bold" fill="#999" letter-spacing="3">UT-230916</text>
+    <text x="100" y="180" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" fill="#ccc" font-weight="bold" letter-spacing="2">JULIUS FREDRICK</text>
+    <text x="100" y="194" text-anchor="middle" font-family="'Courier New',monospace" font-size="7" fill="#666" letter-spacing="1">2023-09-16 · FBI / DOJ</text>
+  </g>
 </svg>
