@@ -43,6 +43,123 @@ function Divider() {
 }
 
 /* ------------------------------------------------------------------ */
+/*  Contact Form                                                       */
+/* ------------------------------------------------------------------ */
+
+function ContactForm() {
+  const [form, setForm] = useState({ name: '', email: '', phone: '', country: '', message: '' })
+  const [sent, setSent] = useState(false)
+  const [sending, setSending] = useState(false)
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    setSending(true)
+
+    const to = atob('MThjaGVjay5vbmxpbmVAZ21haWwuY29t')
+    const subject = encodeURIComponent(`[18+]Check — Contato de ${form.name}`)
+    const body = encodeURIComponent(
+      `Nome: ${form.name}\nEmail: ${form.email}\nTelefone: ${form.phone}\nPaís: ${form.country}\n\nRelato:\n${form.message}`
+    )
+
+    window.location.href = `mailto:${to}?subject=${subject}&body=${body}`
+
+    setTimeout(() => {
+      setSent(true)
+      setSending(false)
+    }, 1000)
+  }
+
+  if (sent) {
+    return (
+      <div className="bg-surface/50 rounded-2xl border border-gold/20 p-8 text-center max-w-[500px] mx-auto">
+        <div className="h-14 w-14 rounded-full bg-gold/10 border border-gold/20 flex items-center justify-center mx-auto mb-4">
+          <Check className="h-6 w-6 text-gold" />
+        </div>
+        <p className="font-display font-bold text-lg text-white mb-2">Mensagem preparada</p>
+        <p className="text-xs text-gray-400 leading-relaxed">
+          Seu aplicativo de email foi aberto com os dados preenchidos. Envie a mensagem para concluir. Respondemos em até 24h com total sigilo.
+        </p>
+      </div>
+    )
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="bg-surface/50 rounded-2xl border border-white/5 p-6 md:p-8 max-w-[500px] mx-auto space-y-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label className="text-[10px] text-gray-500 uppercase tracking-wider font-semibold mb-1.5 block">Nome</label>
+          <input
+            type="text"
+            required
+            value={form.name}
+            onChange={(e) => setForm({ ...form, name: e.target.value })}
+            placeholder="Seu nome"
+            className="w-full bg-bg border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:border-gold/40 focus:outline-none transition-colors"
+          />
+        </div>
+        <div>
+          <label className="text-[10px] text-gray-500 uppercase tracking-wider font-semibold mb-1.5 block">Email</label>
+          <input
+            type="email"
+            required
+            value={form.email}
+            onChange={(e) => setForm({ ...form, email: e.target.value })}
+            placeholder="seu@email.com"
+            className="w-full bg-bg border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:border-gold/40 focus:outline-none transition-colors"
+          />
+        </div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label className="text-[10px] text-gray-500 uppercase tracking-wider font-semibold mb-1.5 block">Telefone</label>
+          <input
+            type="tel"
+            value={form.phone}
+            onChange={(e) => setForm({ ...form, phone: e.target.value })}
+            placeholder="+55 (11) 99999-9999"
+            className="w-full bg-bg border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:border-gold/40 focus:outline-none transition-colors"
+          />
+        </div>
+        <div>
+          <label className="text-[10px] text-gray-500 uppercase tracking-wider font-semibold mb-1.5 block">País</label>
+          <input
+            type="text"
+            required
+            value={form.country}
+            onChange={(e) => setForm({ ...form, country: e.target.value })}
+            placeholder="Brasil"
+            className="w-full bg-bg border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:border-gold/40 focus:outline-none transition-colors"
+          />
+        </div>
+      </div>
+      <div>
+        <label className="text-[10px] text-gray-500 uppercase tracking-wider font-semibold mb-1.5 block">Relate seu caso</label>
+        <textarea
+          required
+          rows={5}
+          maxLength={500}
+          value={form.message}
+          onChange={(e) => setForm({ ...form, message: e.target.value })}
+          placeholder="Descreva brevemente o que aconteceu. Suas informações são 100% sigilosas."
+          className="w-full bg-bg border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:border-gold/40 focus:outline-none transition-colors resize-none"
+        />
+        <p className="text-[9px] text-gray-600 mt-1 text-right">{form.message.length}/500</p>
+      </div>
+      <button
+        type="submit"
+        disabled={sending}
+        className="w-full bg-gold text-black font-body font-bold py-3.5 rounded-xl text-sm hover:bg-gold-light transition-all hover:shadow-lg hover:shadow-gold/20 disabled:opacity-50"
+      >
+        {sending ? 'Preparando...' : 'Enviar com sigilo'}
+      </button>
+      <p className="text-[9px] text-gray-600 text-center">
+        Suas informações são protegidas por criptografia. Nunca compartilhamos dados com terceiros.
+      </p>
+    </form>
+  )
+}
+
+/* ------------------------------------------------------------------ */
 /*  FAQ Accordion Item                                                 */
 /* ------------------------------------------------------------------ */
 
@@ -692,6 +809,26 @@ export default function Landing() {
                 </div>
               </FadeInView>
             </section>
+
+            {/* ============================================================ */}
+            {/*  CONTACT FORM                                                */}
+            {/* ============================================================ */}
+            <section className="px-6 md:px-10 py-12 md:py-16">
+              <FadeInView delay={0.1}>
+                <p className="text-xs text-gray-500 uppercase tracking-[3px] font-semibold mb-2 text-center">
+                  Precisa de ajuda?
+                </p>
+                <p className="text-sm text-gold/50 text-center mb-8 md:mb-10 font-body">
+                  Relate seu caso com sigilo total. Nossa equipe responde em até 24h.
+                </p>
+              </FadeInView>
+
+              <FadeInView delay={0.15}>
+                <ContactForm />
+              </FadeInView>
+            </section>
+
+            <Divider />
 
             {/* --- FOOTER --- */}
             <footer className="px-6 md:px-10 py-8 border-t border-white/5">
