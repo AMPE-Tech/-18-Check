@@ -125,6 +125,14 @@ export default function Layout() {
             <LanguageSelector />
             <span className="text-gray-500">{t('dashboard.credits')}:</span>
             <span className="font-mono font-medium text-gold">{user?.credits ?? 0}</span>
+            <button
+              onClick={() => { logout(); navigate('/login'); }}
+              className="flex items-center gap-1.5 text-gray-500 hover:text-red-400 transition-colors ml-2"
+              title={t('layout.logout')}
+            >
+              <LogOut className="h-4 w-4" />
+              <span className="hidden md:inline text-xs">{t('layout.logout')}</span>
+            </button>
           </div>
         </header>
         <main className="flex-1 p-6 lg:p-8">
