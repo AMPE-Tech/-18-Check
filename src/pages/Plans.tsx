@@ -100,7 +100,7 @@ export default function PlansPage() {
       {/* Plans */}
       <div className="grid md:grid-cols-2 gap-6 max-w-3xl">
         {plans.map((plan) => {
-          const isCurrent = (user?.plan || 'free').toLowerCase() === plan.key
+          const isCurrent = (user?.plan || '').toLowerCase() === plan.key
           return (
             <Card
               key={plan.key}

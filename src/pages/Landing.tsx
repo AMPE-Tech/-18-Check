@@ -370,9 +370,36 @@ export default function Landing() {
               </FadeInView>
             </section>
 
-            {/* --- PRICING --- */}
-            <section className="px-5 py-6 border-t border-surface-border">
+            {/* --- PROMO FLASH BANNER --- */}
+            <section className="px-5 pt-6 pb-2 border-t border-surface-border">
               <FadeInView delay={0.1}>
+                <div className="relative bg-gradient-to-r from-red-600/20 via-red-500/10 to-red-600/20 border border-red-500/40 rounded-xl p-4 text-center overflow-hidden">
+                  <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-red-500 to-transparent animate-pulse" />
+                  <p className="text-[10px] text-red-400 uppercase tracking-[3px] font-bold mb-1">Promoção Relâmpago</p>
+                  <p className="font-display font-extrabold text-lg text-white leading-tight">
+                    Até <span className="text-red-400">75% OFF</span> em todos os planos
+                  </p>
+                  <p className="text-[10px] text-gray-400 mt-1">Oferta por tempo limitado — vagas preenchendo rápido</p>
+                  <div className="flex items-center justify-center gap-4 mt-3">
+                    <div className="text-center">
+                      <p className="text-[8px] text-gray-500 uppercase">Única</p>
+                      <p className="font-display font-bold text-sm text-gold">R$ 51</p>
+                      <p className="text-[8px] text-red-400 font-bold">60% OFF</p>
+                    </div>
+                    <div className="w-px h-8 bg-red-500/30" />
+                    <div className="text-center">
+                      <p className="text-[8px] text-gray-500 uppercase">Pro/mês</p>
+                      <p className="font-display font-bold text-sm text-gold">R$ 119</p>
+                      <p className="text-[8px] text-red-400 font-bold">75% OFF</p>
+                    </div>
+                  </div>
+                </div>
+              </FadeInView>
+            </section>
+
+            {/* --- PRICING --- */}
+            <section className="px-5 py-4">
+              <FadeInView delay={0.15}>
                 <p className="text-[11px] text-gray-500 uppercase tracking-widest font-semibold mb-1 text-center">
                   {t('pricing.title')}
                 </p>
@@ -381,22 +408,27 @@ export default function Landing() {
                 </p>
               </FadeInView>
 
-              {/* Single Investigation */}
-              <FadeInView delay={0.15}>
-                <div className="relative rounded-xl border border-gold/40 shadow-md shadow-gold/5 bg-bg p-4 mb-3">
-                  <div className="absolute -top-2.5 left-4 bg-gold text-black text-[9px] font-bold px-2 py-0.5 rounded-full flex items-center gap-0.5 z-10">
+              {/* Single Investigation — 60% OFF */}
+              <FadeInView delay={0.18}>
+                <div className="relative rounded-xl border-2 border-gold/50 shadow-lg shadow-gold/10 bg-bg p-4 mb-3">
+                  <div className="absolute -top-2.5 left-4 bg-red-500 text-white text-[9px] font-bold px-2.5 py-0.5 rounded-full flex items-center gap-1 z-10 animate-pulse">
+                    60% OFF
+                  </div>
+                  <div className="absolute -top-2.5 right-4 bg-gold text-black text-[9px] font-bold px-2 py-0.5 rounded-full flex items-center gap-0.5 z-10">
                     <Star className="h-2.5 w-2.5" /> {t('pricing.popular')}
                   </div>
-                  <div className="flex items-start justify-between">
+                  <div className="flex items-start justify-between mt-1">
                     <div>
                       <h3 className="font-display font-bold text-sm text-white">{t('pricing.single_name')}</h3>
-                      <div className="mt-1">
-                        <span className="font-display font-extrabold text-2xl text-white">{t('pricing.single_price', { defaultValue: 'R$ 129' })}</span>
+                      <p className="text-[10px] text-gold font-medium">{t('pricing.single_credits')}</p>
+                      <div className="mt-1 flex items-baseline gap-2">
+                        <span className="text-gray-500 line-through text-sm">R$ 129</span>
+                        <span className="font-display font-extrabold text-2xl text-gold">R$ 51</span>
                       </div>
-                      <p className="text-[10px] text-gold font-medium mt-0.5">{t('pricing.single_credits')}</p>
+                      <p className="text-[9px] text-red-400 font-semibold mt-0.5">Economia de R$ 78</p>
                     </div>
-                    <Link to="/register" className="text-center text-[11px] font-semibold px-3 py-2 rounded-lg bg-gold text-black hover:bg-gold-light transition-colors shrink-0 mt-1">
-                      {t('pricing.single_cta')}
+                    <Link to="/register" className="text-center text-[11px] font-bold px-3 py-2.5 rounded-lg bg-gold text-black hover:bg-gold-light transition-colors shrink-0 mt-2">
+                      Quero 60% OFF
                     </Link>
                   </div>
                   <ul className="mt-3 grid grid-cols-1 gap-1.5">
@@ -411,20 +443,25 @@ export default function Landing() {
                 </div>
               </FadeInView>
 
-              {/* Pro Monitoring */}
-              <FadeInView delay={0.2}>
-                <div className="rounded-xl border border-surface-border bg-bg p-4 mb-3">
-                  <div className="flex items-start justify-between">
+              {/* Pro Monitoring — 75% OFF */}
+              <FadeInView delay={0.22}>
+                <div className="relative rounded-xl border-2 border-red-500/50 shadow-lg shadow-red-500/10 bg-bg p-4 mb-3">
+                  <div className="absolute -top-2.5 left-4 bg-red-500 text-white text-[9px] font-bold px-2.5 py-0.5 rounded-full flex items-center gap-1 z-10 animate-pulse">
+                    75% OFF
+                  </div>
+                  <div className="flex items-start justify-between mt-1">
                     <div>
                       <h3 className="font-display font-bold text-sm text-white">{t('pricing.pro_name')}</h3>
-                      <div className="mt-1">
-                        <span className="font-display font-extrabold text-2xl text-white">{t('pricing.pro_price', { defaultValue: 'R$ 479' })}</span>
-                        <span className="text-gray-500 text-[10px] ml-0.5">{t('pricing.pro_period', { defaultValue: '/mês' })}</span>
+                      <p className="text-[10px] text-gold font-medium">{t('pricing.pro_credits')}</p>
+                      <div className="mt-1 flex items-baseline gap-2">
+                        <span className="text-gray-500 line-through text-sm">R$ 479/mês</span>
+                        <span className="font-display font-extrabold text-2xl text-gold">R$ 119</span>
+                        <span className="text-gold/70 text-[10px]">/mês</span>
                       </div>
-                      <p className="text-[10px] text-gold font-medium mt-0.5">{t('pricing.pro_credits')}</p>
+                      <p className="text-[9px] text-red-400 font-semibold mt-0.5">Economia de R$ 360/mês</p>
                     </div>
-                    <Link to="/register" className="text-center text-[11px] font-semibold px-3 py-2 rounded-lg border border-gold/40 text-gold hover:bg-gold/10 transition-colors shrink-0 mt-1">
-                      {t('pricing.pro_cta')}
+                    <Link to="/register" className="text-center text-[11px] font-bold px-3 py-2.5 rounded-lg bg-red-500 text-white hover:bg-red-400 transition-colors shrink-0 mt-2">
+                      Quero 75% OFF
                     </Link>
                   </div>
                   <ul className="mt-3 grid grid-cols-1 gap-1.5">
