@@ -156,27 +156,44 @@ export default function Landing() {
 
           {/* ===== MAIN CONTENT ===== */}
           <main className="pb-20">
-            {/* --- HERO: PROFILE CAROUSEL --- */}
-            <section className="px-5 pt-6 pb-2">
+            {/* --- HERO SLOGAN --- */}
+            <section className="px-5 pt-8 pb-3 text-center">
               <FadeInView delay={0}>
+                <h1 className="font-display font-bold text-xl leading-tight text-white mb-2">
+                  Você conhece mesmo quem<br />
+                  <span className="text-gold">dorme ao seu lado?</span>
+                </h1>
+                <p className="text-[12px] text-gray-400 font-body leading-relaxed max-w-[320px] mx-auto">
+                  Investigamos 50+ plataformas adultas e de encontros.<br />
+                  <span className="text-gray-300 font-medium">Discreto. Rápido. Definitivo.</span>
+                </p>
+              </FadeInView>
+            </section>
+
+            {/* --- HERO: PROFILE CAROUSEL --- */}
+            <section className="px-5 pt-2 pb-2">
+              <FadeInView delay={0.1}>
                 <ProfileCarousel />
               </FadeInView>
             </section>
 
-            {/* --- SEARCH BAR --- */}
+            {/* --- CTA BUTTON --- */}
             <section className="px-5 pb-4">
-              <FadeInView delay={0.15}>
+              <FadeInView delay={0.2}>
+                <button
+                  onClick={() => navigate('/register')}
+                  className="w-full bg-gold text-black font-display font-bold py-3.5 rounded-xl text-sm hover:bg-gold-light transition-colors"
+                >
+                  Será que é do Job? Descubra agora
+                </button>
                 <div
-                  className="flex items-center gap-2 cursor-pointer"
+                  className="flex items-center gap-2 cursor-pointer mt-3"
                   onClick={() => navigate('/register')}
                 >
                   <div className="flex-1 bg-surface rounded-xl border border-surface-border px-4 py-3 flex items-center gap-3 hover:border-gold/30 transition-colors">
                     <Search className="h-4 w-4 text-gray-500 shrink-0" />
                     <span className="text-sm text-gray-500 font-body">{t('hero.search_placeholder')}</span>
                   </div>
-                  <button className="bg-gold text-black font-semibold px-4 py-3 rounded-xl text-sm shrink-0 hover:bg-gold-light transition-colors">
-                    {t('hero.search_button')}
-                  </button>
                 </div>
               </FadeInView>
             </section>
