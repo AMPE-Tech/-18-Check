@@ -1,41 +1,46 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#0a0a0f"/>
-      <stop offset="100%" stop-color="#12121a"/>
+      <stop offset="0%" stop-color="#1a1a1a"/>
+      <stop offset="100%" stop-color="#111"/>
+    </linearGradient>
+    <linearGradient id="skin" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#694530"/>
+      <stop offset="100%" stop-color="#523826"/>
     </linearGradient>
   </defs>
 
-  <rect width="200" height="200" fill="url(#bg)" rx="16"/>
+  <rect width="200" height="200" fill="url(#bg)" rx="12"/>
 
-  <line x1="20" y1="30" x2="20" y2="110" stroke="#333" stroke-width="0.5"/>
-  <line x1="16" y1="40" x2="24" y2="40" stroke="#444" stroke-width="0.5"/>
-  <line x1="16" y1="55" x2="24" y2="55" stroke="#444" stroke-width="0.5"/>
-  <line x1="16" y1="70" x2="24" y2="70" stroke="#444" stroke-width="0.5"/>
-  <line x1="16" y1="85" x2="24" y2="85" stroke="#444" stroke-width="0.5"/>
-  <line x1="16" y1="100" x2="24" y2="100" stroke="#444" stroke-width="0.5"/>
+  <!-- Neck -->
+  <rect x="84" y="108" width="32" height="24" rx="5" fill="url(#skin)"/>
 
-  <circle cx="100" cy="52" r="22" fill="#1a1a25"/>
-  <ellipse cx="100" cy="100" rx="38" ry="22" fill="#1a1a25"/>
-  <rect x="62" y="95" width="76" height="20" fill="#1a1a25"/>
+  <!-- Shoulders / t-shirt -->
+  <ellipse cx="100" cy="156" rx="55" ry="33" fill="#1a1a2e"/>
+  <rect x="45" y="146" width="110" height="54" rx="2" fill="#1a1a2e"/>
+  <!-- Round neck -->
+  <path d="M82 132 Q100 140 118 132" fill="none" stroke="#252540" stroke-width="1.5"/>
 
-  <circle cx="100" cy="70" r="50" fill="none" stroke="#ef4444" stroke-opacity="0.06" stroke-width="30"/>
+  <!-- Head - wide jaw -->
+  <path d="M66 60 Q66 30 100 28 Q134 30 134 60 L132 90 Q130 112 100 114 Q70 112 68 90 Z" fill="url(#skin)"/>
 
-  <path d="M10 28 L10 10 L28 10" fill="none" stroke="#ef4444" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round"/>
-  <path d="M172 10 L190 10 L190 28" fill="none" stroke="#ef4444" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round"/>
-  <path d="M10 172 L10 190 L28 190" fill="none" stroke="#ef4444" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round"/>
-  <path d="M172 190 L190 190 L190 172" fill="none" stroke="#ef4444" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round"/>
+  <!-- Hair - short top -->
+  <path d="M68 50 Q68 25 100 22 Q132 25 132 50" fill="#0e0906"/>
+  <rect x="70" y="26" width="60" height="14" rx="6" fill="#0e0906"/>
 
-  <g transform="translate(100,75) rotate(-25)">
-    <rect x="-52" y="-14" width="104" height="28" rx="3" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-opacity="0.8"/>
-    <text x="0" y="6" text-anchor="middle" font-family="Arial Black,Arial,sans-serif" font-size="18" font-weight="900" fill="#ef4444" fill-opacity="0.85" letter-spacing="4">FICHADO</text>
-  </g>
+  <!-- Ears -->
+  <ellipse cx="65" cy="70" rx="6" ry="9.5" fill="#523826"/>
+  <ellipse cx="135" cy="70" rx="6" ry="9.5" fill="#523826"/>
 
-  <rect x="22" y="130" width="156" height="28" rx="4" fill="#111118" stroke="#333" stroke-width="0.8"/>
-  <text x="100" y="148" text-anchor="middle" font-family="Courier New,monospace" font-size="12" font-weight="bold" fill="white" fill-opacity="0.95">JULIUS FREDRICK</text>
+  <!-- Nose -->
+  <ellipse cx="100" cy="84" rx="8" ry="5.5" fill="#523826" opacity="0.4"/>
 
-  <text x="100" y="172" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#888" letter-spacing="2">NIGÉRIA</text>
+  <!-- Mouth -->
+  <path d="M87 98 Q100 104 113 98" fill="none" stroke="#3a2418" stroke-width="1.6" stroke-linecap="round"/>
 
-  <rect x="55" y="178" width="90" height="16" rx="8" fill="#ef4444" fill-opacity="0.15" stroke="#ef4444" stroke-opacity="0.5" stroke-width="0.8"/>
-  <text x="100" y="190" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" font-weight="bold" fill="#ef4444" letter-spacing="1.5">CONDENADO</text>
+  <!-- Full beard -->
+  <path d="M72 85 Q72 115 100 118 Q128 115 128 85" fill="#1a0e06" opacity="0.3"/>
+
+  <!-- BLACK BAR over eyes -->
+  <rect x="60" y="60" width="80" height="18" rx="1" fill="#000"/>
 </svg>

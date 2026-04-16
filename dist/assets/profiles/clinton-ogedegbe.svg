@@ -1,45 +1,46 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#0a0a0f"/>
-      <stop offset="100%" stop-color="#12121a"/>
+      <stop offset="0%" stop-color="#1a1a1a"/>
+      <stop offset="100%" stop-color="#111"/>
+    </linearGradient>
+    <linearGradient id="skin" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#6B4226"/>
+      <stop offset="100%" stop-color="#553620"/>
     </linearGradient>
   </defs>
 
-  <rect width="200" height="200" fill="url(#bg)" rx="16"/>
+  <rect width="200" height="200" fill="url(#bg)" rx="12"/>
 
-  <!-- Mugshot height lines -->
-  <line x1="20" y1="30" x2="20" y2="110" stroke="#333" stroke-width="0.5"/>
-  <line x1="16" y1="40" x2="24" y2="40" stroke="#444" stroke-width="0.5"/>
-  <line x1="16" y1="55" x2="24" y2="55" stroke="#444" stroke-width="0.5"/>
-  <line x1="16" y1="70" x2="24" y2="70" stroke="#444" stroke-width="0.5"/>
-  <line x1="16" y1="85" x2="24" y2="85" stroke="#444" stroke-width="0.5"/>
-  <line x1="16" y1="100" x2="24" y2="100" stroke="#444" stroke-width="0.5"/>
+  <!-- Neck -->
+  <rect x="86" y="110" width="28" height="20" rx="4" fill="url(#skin)"/>
 
-  <circle cx="100" cy="52" r="22" fill="#1a1a25"/>
-  <ellipse cx="100" cy="100" rx="38" ry="22" fill="#1a1a25"/>
-  <rect x="62" y="95" width="76" height="20" fill="#1a1a25"/>
+  <!-- Shoulders / hoodie -->
+  <ellipse cx="100" cy="155" rx="54" ry="32" fill="#333"/>
+  <rect x="46" y="145" width="108" height="55" rx="2" fill="#333"/>
+  <!-- Hood line -->
+  <path d="M75 135 Q100 128 125 135" fill="none" stroke="#444" stroke-width="1.2"/>
 
-  <circle cx="100" cy="70" r="50" fill="none" stroke="#f59e0b" stroke-opacity="0.06" stroke-width="30"/>
+  <!-- Head - rounder face -->
+  <ellipse cx="100" cy="72" rx="36" ry="42" fill="url(#skin)"/>
 
-  <!-- Corner brackets -->
-  <path d="M10 28 L10 10 L28 10" fill="none" stroke="#f59e0b" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round"/>
-  <path d="M172 10 L190 10 L190 28" fill="none" stroke="#f59e0b" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round"/>
-  <path d="M10 172 L10 190 L28 190" fill="none" stroke="#f59e0b" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round"/>
-  <path d="M172 190 L190 190 L190 172" fill="none" stroke="#f59e0b" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round"/>
+  <!-- Hair - fade cut -->
+  <path d="M66 55 Q66 28 100 26 Q134 28 134 55" fill="#0f0a08"/>
+  <rect x="68" y="30" width="64" height="12" rx="6" fill="#0f0a08"/>
 
-  <!-- FICHADO diagonal stamp -->
-  <g transform="translate(100,75) rotate(-25)">
-    <rect x="-52" y="-14" width="104" height="28" rx="3" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-opacity="0.8"/>
-    <text x="0" y="6" text-anchor="middle" font-family="Arial Black,Arial,sans-serif" font-size="18" font-weight="900" fill="#f59e0b" fill-opacity="0.85" letter-spacing="4">FICHADO</text>
-  </g>
+  <!-- Ears -->
+  <ellipse cx="63" cy="74" rx="5" ry="8" fill="#553620"/>
+  <ellipse cx="137" cy="74" rx="5" ry="8" fill="#553620"/>
 
-  <!-- Name plate -->
-  <rect x="15" y="130" width="170" height="28" rx="4" fill="#111118" stroke="#333" stroke-width="0.8"/>
-  <text x="100" y="148" text-anchor="middle" font-family="Courier New,monospace" font-size="10" font-weight="bold" fill="white" fill-opacity="0.95">CLINTON OGEDEGBE</text>
+  <!-- Nose - wider -->
+  <ellipse cx="100" cy="84" rx="8" ry="5" fill="#553620" opacity="0.4"/>
 
-  <text x="100" y="172" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#888" letter-spacing="2">NIGÉRIA</text>
+  <!-- Mouth -->
+  <path d="M88 97 Q100 103 112 97" fill="none" stroke="#3a2518" stroke-width="1.8" stroke-linecap="round"/>
 
-  <rect x="58" y="178" width="84" height="16" rx="8" fill="#f59e0b" fill-opacity="0.15" stroke="#f59e0b" stroke-opacity="0.5" stroke-width="0.8"/>
-  <text x="100" y="190" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" font-weight="bold" fill="#f59e0b" letter-spacing="1.5">INDICIADO</text>
+  <!-- Beard shadow -->
+  <ellipse cx="100" cy="100" rx="22" ry="12" fill="#2a1a10" opacity="0.2"/>
+
+  <!-- BLACK BAR over eyes -->
+  <rect x="58" y="63" width="84" height="18" rx="1" fill="#000"/>
 </svg>
