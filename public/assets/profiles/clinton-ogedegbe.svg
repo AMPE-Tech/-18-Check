@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg-clinton-ogedegbe" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0C0C0E"/>
+      <stop offset="100%" stop-color="#1C1C22"/>
+    </linearGradient>
+    <linearGradient id="silhouette-clinton-ogedegbe" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#2a2a33"/>
+      <stop offset="100%" stop-color="#18181f"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="200" height="200" fill="url(#bg-clinton-ogedegbe)" rx="16"/>
+  
+  <!-- Border -->
+  <rect x="1" y="1" width="198" height="198" rx="15" fill="none" stroke="#f59e0b" stroke-opacity="0.3" stroke-width="1.5"/>
+  
+  <!-- Silhouette circle -->
+  <circle cx="100" cy="72" r="32" fill="url(#silhouette-clinton-ogedegbe)" stroke="#f59e0b" stroke-opacity="0.2" stroke-width="1"/>
+  
+  <!-- Head silhouette -->
+  <circle cx="100" cy="62" r="16" fill="#2a2a35"/>
+  
+  <!-- Shoulders silhouette -->
+  <path d="M68 95 Q68 78 100 78 Q132 78 132 95" fill="#2a2a35"/>
+  
+  <!-- Crosshair lines -->
+  <line x1="70" y1="72" x2="80" y2="72" stroke="#f59e0b" stroke-opacity="0.4" stroke-width="0.8"/>
+  <line x1="120" y1="72" x2="130" y2="72" stroke="#f59e0b" stroke-opacity="0.4" stroke-width="0.8"/>
+  <line x1="100" y1="42" x2="100" y2="52" stroke="#f59e0b" stroke-opacity="0.4" stroke-width="0.8"/>
+  <line x1="100" y1="92" x2="100" y2="102" stroke="#f59e0b" stroke-opacity="0.4" stroke-width="0.8"/>
+  
+  <!-- Crosshair circle -->
+  <circle cx="100" cy="72" r="22" fill="none" stroke="#f59e0b" stroke-opacity="0.15" stroke-width="0.8"/>
+  
+  <!-- Name -->
+  <text x="100" y="128" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="white" fill-opacity="0.9">C. OGEDEGBE</text>
+  
+  <!-- Country -->
+  <text x="100" y="145" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="white" fill-opacity="0.4">NG</text>
+  
+  <!-- Status badge -->
+  <rect x="64" y="155" width="72" height="20" rx="10" fill="#f59e0b" fill-opacity="0.15" stroke="#f59e0b" stroke-opacity="0.4" stroke-width="0.8"/>
+  <text x="100" y="169" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="bold" fill="#f59e0b" letter-spacing="1">INDICIADO</text>
+  
+  <!-- Corner scan lines -->
+  <path d="M12 30 L12 12 L30 12" fill="none" stroke="#f59e0b" stroke-opacity="0.3" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M170 12 L188 12 L188 30" fill="none" stroke="#f59e0b" stroke-opacity="0.3" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M12 170 L12 188 L30 188" fill="none" stroke="#f59e0b" stroke-opacity="0.3" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M170 188 L188 188 L188 170" fill="none" stroke="#f59e0b" stroke-opacity="0.3" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

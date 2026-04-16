@@ -71,8 +71,15 @@ export default function ProfileCarousel() {
                 }`}
                 onError={(e) => {
                   const el = e.currentTarget
-                  el.style.display = 'none'
-                  if (el.nextElementSibling) (el.nextElementSibling as HTMLElement).style.display = 'flex'
+                  const src = el.src
+                  if (src.endsWith('.jpg')) {
+                    el.src = `/assets/profiles/${c.slug}.png`
+                  } else if (src.endsWith('.png')) {
+                    el.src = `/assets/profiles/${c.slug}.svg`
+                  } else {
+                    el.style.display = 'none'
+                    if (el.nextElementSibling) (el.nextElementSibling as HTMLElement).style.display = 'flex'
+                  }
                 }}
               />
               <div className="hidden w-16 h-16 rounded-xl bg-red-500/10 border-2 border-red-500/30 items-center justify-center" style={{ display: 'none' }}>
