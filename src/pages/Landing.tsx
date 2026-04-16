@@ -80,6 +80,7 @@ export default function Landing() {
   const exampleResults = [
     {
       initials: 'MS',
+      slug: 'maria-s',
       name: 'Maria S.',
       score: t('results.score_high'),
       scoreKey: 'HIGH',
@@ -90,6 +91,7 @@ export default function Landing() {
     },
     {
       initials: 'CR',
+      slug: 'carlos-r',
       name: 'Carlos R.',
       score: t('results.score_none'),
       scoreKey: 'NONE',
@@ -100,6 +102,7 @@ export default function Landing() {
     },
     {
       initials: 'AP',
+      slug: 'ana-p',
       name: 'Ana P.',
       score: t('results.score_moderate'),
       scoreKey: 'MODERATE',
@@ -279,9 +282,11 @@ export default function Landing() {
                   <FadeInView key={r.name} delay={0.3 + i * 0.08}>
                     <div className="bg-surface rounded-xl border border-surface-border p-4">
                       <div className="flex items-center gap-3">
-                        <div className={`h-11 w-11 rounded-full ${r.bgColor} flex items-center justify-center shrink-0`}>
-                          <span className={`text-sm font-bold ${r.textColor}`}>{r.initials}</span>
-                        </div>
+                        <img
+                          src={`/assets/profiles/${r.slug}.svg`}
+                          alt=""
+                          className="h-11 w-11 rounded-full object-cover shrink-0 border border-surface-border"
+                        />
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between gap-2">
                             <span className="text-white font-semibold text-sm">{r.name}</span>
