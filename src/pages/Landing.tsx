@@ -194,42 +194,34 @@ export default function Landing() {
             {/* ============================================================ */}
             {/*  HERO — Cinematográfico                                      */}
             {/* ============================================================ */}
-            <section className="relative px-6 md:px-10 pt-14 md:pt-20 pb-10 md:pb-14 text-center overflow-hidden">
-              {/* Background glow */}
-              <div className="absolute inset-0 bg-gradient-to-b from-red-950/20 via-bg to-bg pointer-events-none" />
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-red-500/5 rounded-full blur-[100px] pointer-events-none" />
+            <section className="relative px-6 md:px-10 pt-16 md:pt-24 pb-14 md:pb-20 text-center overflow-hidden">
+              {/* Subtle background glow */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[250px] bg-red-500/4 rounded-full blur-[120px] pointer-events-none" />
 
+              {/* Layer 1 — Headline (max impact, minimal words) */}
               <FadeInView delay={0}>
-                <h1 className="relative font-display font-extrabold text-2xl md:text-[2.75rem] md:leading-[1.15] leading-tight text-white mb-4 md:mb-5">
-                  Seus vídeos íntimos<br />
-                  <span className="text-red-400" style={{ textShadow: '0 0 40px rgba(239,68,68,0.3)' }}>vazaram na web?</span>
+                <h1 className="relative font-display font-bold text-[2rem] md:text-[3.5rem] leading-[1.1] tracking-tight text-white">
+                  Seus vídeos <span className="italic text-red-400">vazaram?</span>
                 </h1>
-                <p className="relative text-sm md:text-base text-gray-300 font-body leading-relaxed max-w-[480px] md:max-w-[560px] mx-auto">
-                  Saiba se você foi exposta em plataformas adultas. Investigamos <span className="text-gold font-semibold">+50 plataformas</span> com acesso a <span className="text-gold font-semibold">396 milhões de perfis</span> — um pode ser o seu.
-                </p>
-                <p className="relative text-xs md:text-sm text-white/70 font-medium mt-3 md:mt-4 max-w-[440px] md:max-w-[500px] mx-auto leading-relaxed">
-                  O <span className="text-gold font-bold">[18+]Check</span> identifica onde seus vídeos estão sendo comercializados sem sua autorização.
+              </FadeInView>
+
+              {/* Layer 2 — Subheadline (one line, data-driven) */}
+              <FadeInView delay={0.1}>
+                <p className="relative text-sm md:text-lg text-gray-400 font-body mt-4 md:mt-6">
+                  Varredura facial em <span className="text-gold">+50 plataformas</span> adultas. <span className="text-gold">396 milhões</span> de perfis.
                 </p>
               </FadeInView>
 
-              {/* CTA */}
-              <FadeInView delay={0.15}>
-                <div className="relative mt-8 md:mt-10 max-w-[400px] mx-auto">
+              {/* Layer 3 — CTA */}
+              <FadeInView delay={0.2}>
+                <div className="relative mt-8 md:mt-10 max-w-[380px] mx-auto">
                   <button
                     onClick={() => navigate('/register')}
-                    className="w-full bg-gold text-black font-display font-bold py-4 rounded-xl text-base hover:bg-gold-light transition-all hover:shadow-lg hover:shadow-gold/20"
+                    className="w-full bg-gold text-black font-body font-bold py-4 rounded-xl text-sm md:text-base tracking-wide hover:bg-gold-light transition-all hover:shadow-lg hover:shadow-gold/20"
                   >
-                    Será que é do Job? Descubra agora
+                    Descubra agora — 75% OFF
                   </button>
-                  <div
-                    className="flex items-center gap-2 cursor-pointer mt-4"
-                    onClick={() => navigate('/register')}
-                  >
-                    <div className="flex-1 bg-surface/50 rounded-xl border border-white/5 px-4 py-3.5 flex items-center gap-3 hover:border-gold/20 transition-colors">
-                      <Search className="h-4 w-4 text-gray-500 shrink-0" />
-                      <span className="text-sm text-gray-500 font-body">{t('hero.search_placeholder')}</span>
-                    </div>
-                  </div>
+                  <p className="text-[11px] text-gray-600 mt-3">Sigiloso. Resultado em minutos.</p>
                 </div>
               </FadeInView>
             </section>
