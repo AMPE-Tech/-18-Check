@@ -348,7 +348,7 @@ export default function Landing() {
                 </p>
               </FadeInView>
 
-              <div className="space-y-3">
+              <div className="space-y-3 md:grid md:grid-cols-2 md:gap-3 md:space-y-0">
                 {personas.map((p, i) => {
                   const Icon = p.icon
                   return (
@@ -366,6 +366,31 @@ export default function Landing() {
                   )
                 })}
               </div>
+
+              {/* --- ALERTA: GOLPE DE VÍDEOS ÍNTIMOS --- */}
+              <FadeInView delay={0.4}>
+                <div className="mt-5 bg-red-500/5 border border-red-500/20 rounded-xl p-4 md:p-5">
+                  <div className="flex items-start gap-3">
+                    <div className="h-9 w-9 rounded-lg bg-red-500/15 border border-red-500/25 flex items-center justify-center shrink-0">
+                      <Camera className="h-4 w-4 text-red-400" />
+                    </div>
+                    <div>
+                      <p className="text-red-400 text-sm font-display font-bold mb-1.5">
+                        Você tem certeza que seus vídeos íntimos não estão sendo vendidos?
+                      </p>
+                      <p className="text-gray-300 text-xs leading-relaxed mb-2">
+                        Um golpe crescente no mundo todo: parceiros gravam vídeos íntimos — às vezes com seu consentimento, às vezes escondido — e depois vendem em plataformas adultas internacionais, fora do seu país de origem, onde você jamais descobriria sozinha.
+                      </p>
+                      <p className="text-gray-300 text-xs leading-relaxed mb-2">
+                        Eles dizem que filmam "por prazer", "para nós dois". Mas o destino real são sites como OnlyFans, XVideos, Pornhub e dezenas de plataformas menores. Milhares de vítimas só descobrem quando já é tarde demais.
+                      </p>
+                      <p className="text-white text-xs font-semibold leading-relaxed">
+                        O [18+]Check usa reconhecimento facial para varrer 50+ plataformas e descobrir se sua imagem aparece em algum lugar que você não autorizou. Proteja sua dignidade.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </FadeInView>
             </section>
 
             {/* --- HOW IT WORKS --- */}
