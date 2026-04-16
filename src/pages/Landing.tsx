@@ -629,10 +629,10 @@ export default function Landing() {
                       <h3 className="font-display font-bold text-base text-white">{t('pricing.single_name')}</h3>
                       <p className="text-xs text-gold font-medium mt-1">{t('pricing.single_credits')}</p>
                       <div className="mt-3 flex items-baseline gap-3">
-                        <span className="text-gray-500 line-through text-base">R$ 129</span>
-                        <span className="font-display font-extrabold text-3xl text-gold">R$ 51</span>
+                        <span className="text-gray-500 line-through text-base">$29</span>
+                        <span className="font-display font-extrabold text-3xl text-gold">$9.90</span>
                       </div>
-                      <p className="text-[10px] text-red-400 font-semibold mt-1">Economia de R$ 78</p>
+                      <p className="text-[10px] text-red-400 font-semibold mt-1">Save $19.10</p>
                     </div>
                     <ul className="mt-5 grid grid-cols-1 gap-2">
                       {['single_f1', 'single_f2', 'single_f3', 'single_f4', 'single_f5'].map((k) => (
@@ -659,11 +659,11 @@ export default function Landing() {
                       <h3 className="font-display font-bold text-base text-white">{t('pricing.pro_name')}</h3>
                       <p className="text-xs text-gold font-medium mt-1">{t('pricing.pro_credits')}</p>
                       <div className="mt-3 flex items-baseline gap-3">
-                        <span className="text-gray-500 line-through text-base">R$ 479/mês</span>
-                        <span className="font-display font-extrabold text-3xl text-gold">R$ 119</span>
+                        <span className="text-gray-500 line-through text-base">$99/mo</span>
+                        <span className="font-display font-extrabold text-3xl text-gold">$24.90</span>
                         <span className="text-gold/60 text-sm">/mês</span>
                       </div>
-                      <p className="text-[10px] text-red-400 font-semibold mt-1">Economia de R$ 360/mês</p>
+                      <p className="text-[10px] text-red-400 font-semibold mt-1">Save $74.10/mo</p>
                     </div>
                     <ul className="mt-5 grid grid-cols-1 gap-2">
                       {['pro_f1', 'pro_f2', 'pro_f3', 'pro_f4', 'pro_f5', 'pro_f6'].map((k) => (
@@ -683,15 +683,19 @@ export default function Landing() {
 
               {/* Extra credits */}
               <FadeInView delay={0.25}>
-                <div className="rounded-2xl border border-white/5 bg-surface/40 p-4 md:p-5 flex items-center justify-between gap-4 mt-5">
+                <div className="relative rounded-2xl border border-white/5 bg-surface/40 p-4 md:p-5 flex items-center justify-between gap-4 mt-5">
+                  <div className="absolute -top-2.5 left-5 bg-red-500 text-white text-[9px] font-bold px-2.5 py-0.5 rounded-full animate-pulse">
+                    50% OFF
+                  </div>
                   <div>
                     <p className="text-sm text-white font-medium">{t('pricing.extra_title')}</p>
                     <p className="text-xs text-gray-400 mt-0.5">
-                      <span className="text-gold font-bold">{t('pricing.extra_price')}</span> {t('pricing.extra_desc')}
+                      <span className="text-gray-500 line-through text-[10px]">$19.90</span>{' '}
+                      <span className="text-gold font-bold">$9.90</span> per extra search
                     </p>
                   </div>
                   <Link to="/register" className="text-xs text-gold border border-gold/30 px-4 py-2 rounded-lg font-semibold hover:bg-gold/10 transition-colors shrink-0">
-                    {t('pricing.extra_cta')}
+                    Get 50% OFF
                   </Link>
                 </div>
               </FadeInView>

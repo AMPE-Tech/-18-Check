@@ -15,7 +15,7 @@ function usePlans() {
       key: 'single',
       name: t('plans.single_name'),
       icon: Zap,
-      price: 'R$ 129',
+      price: '$29',
       period: t('plans.single_period'),
       credits: t('plans.single_credits'),
       features: [
@@ -36,7 +36,7 @@ function usePlans() {
       key: 'pro',
       name: t('plans.pro_name'),
       icon: Crown,
-      price: 'R$ 479',
+      price: '$99',
       period: t('plans.pro_period'),
       credits: t('plans.pro_credits'),
       features: [
@@ -57,11 +57,10 @@ function usePlans() {
 }
 
 const creditPacks = [
-  { amount: 2, price: 'R$ 248', perUnit: 'R$ 124/investigação', planType: 'pack2' },
-  { amount: 3, price: 'R$ 340', perUnit: 'R$ 113/investigação', planType: 'pack3' },
-  { amount: 4, price: 'R$ 443', perUnit: 'R$ 110/investigação', planType: 'pack4' },
-  { amount: 5, price: 'R$ 541', perUnit: 'R$ 108/investigação', planType: 'pack5' },
-  { amount: 10, price: 'R$ 1.057', perUnit: 'R$ 105/investigação', planType: 'pack10' },
+  { amount: 2, price: '$54', perUnit: '$27/search', planType: 'pack2' },
+  { amount: 3, price: '$75', perUnit: '$25/search', planType: 'pack3' },
+  { amount: 5, price: '$115', perUnit: '$23/search', planType: 'pack5' },
+  { amount: 10, price: '$199', perUnit: '$19.90/search', planType: 'pack10' },
 ]
 
 export default function PlansPage() {
