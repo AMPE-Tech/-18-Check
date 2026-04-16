@@ -122,12 +122,14 @@ export default function Landing() {
             <section className="px-5 md:px-8pt-8 pb-3 text-center">
               <FadeInView delay={0}>
                 <h1 className="font-display font-bold text-xl md:text-3xl leading-tight text-white mb-2 md:mb-3">
-                  Você conhece mesmo quem<br />
-                  <span className="text-gold">dorme ao seu lado?</span>
+                  Seus vídeos íntimos<br />
+                  <span className="text-red-400">vazaram na web?</span>
                 </h1>
-                <p className="text-[12px] md:text-sm text-gray-400 font-body leading-relaxed max-w-[320px] md:max-w-[460px] mx-auto">
-                  Investigamos 50+ plataformas adultas e de encontros.<br />
-                  <span className="text-gray-300 font-medium">Discreto. Rápido. Definitivo.</span>
+                <p className="text-[12px] md:text-sm text-gray-300 font-body leading-relaxed max-w-[340px] md:max-w-[520px] mx-auto">
+                  Saiba se você foi exposta em plataformas adultas. Investigamos <span className="text-gold font-semibold">+50 plataformas</span> com acesso a <span className="text-gold font-semibold">396 milhões de perfis</span> — um pode ser o seu.
+                </p>
+                <p className="text-[11px] md:text-xs text-white/80 font-medium mt-2 max-w-[340px] md:max-w-[480px] mx-auto leading-relaxed">
+                  O <span className="text-gold">[18+]Check</span> identifica onde seus vídeos estão sendo comercializados sem sua autorização.
                 </p>
               </FadeInView>
             </section>
