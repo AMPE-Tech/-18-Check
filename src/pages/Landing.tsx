@@ -95,17 +95,12 @@ export default function Landing() {
 
   return (
     <div className="min-h-screen bg-bg flex flex-col">
-      {/* ===== PHONE FRAME WRAPPER (desktop) ===== */}
-      <div className="w-full lg:flex lg:items-center lg:justify-center lg:min-h-screen lg:py-8">
-        <div className="w-full max-w-[480px] mx-auto lg:border lg:border-surface-border lg:rounded-[2.5rem] lg:shadow-2xl lg:shadow-black/50 lg:overflow-hidden lg:max-h-[90vh] lg:overflow-y-auto lg:relative scrollbar-phone">
-          {/* Phone notch (desktop only) */}
-          <div className="hidden lg:flex justify-center pt-2 pb-0 bg-bg sticky top-0 z-50">
-            <div className="w-28 h-6 bg-surface rounded-full" />
-          </div>
+      <div className="w-full">
+        <div className="w-full max-w-[720px] mx-auto">
 
           {/* ===== TOP BAR ===== */}
-          <header className="sticky top-0 lg:top-8 z-40 bg-bg/90 backdrop-blur-md border-b border-surface-border">
-            <div className="px-5 h-14 flex items-center justify-between">
+          <header className="sticky top-0 z-40 bg-bg/90 backdrop-blur-md border-b border-surface-border">
+            <div className="px-5 md:px-8md:px-8 h-14 flex items-center justify-between">
               <Link to="/" className="flex items-center gap-2">
                 <ShieldCheck className="h-5 w-5 text-gold" />
                 <span className="font-display font-bold text-base text-white">
@@ -124,13 +119,13 @@ export default function Landing() {
           {/* ===== MAIN CONTENT ===== */}
           <main className="pb-20">
             {/* --- HERO SLOGAN --- */}
-            <section className="px-5 pt-8 pb-3 text-center">
+            <section className="px-5 md:px-8pt-8 pb-3 text-center">
               <FadeInView delay={0}>
-                <h1 className="font-display font-bold text-xl leading-tight text-white mb-2">
+                <h1 className="font-display font-bold text-xl md:text-3xl leading-tight text-white mb-2 md:mb-3">
                   Você conhece mesmo quem<br />
                   <span className="text-gold">dorme ao seu lado?</span>
                 </h1>
-                <p className="text-[12px] text-gray-400 font-body leading-relaxed max-w-[320px] mx-auto">
+                <p className="text-[12px] md:text-sm text-gray-400 font-body leading-relaxed max-w-[320px] md:max-w-[460px] mx-auto">
                   Investigamos 50+ plataformas adultas e de encontros.<br />
                   <span className="text-gray-300 font-medium">Discreto. Rápido. Definitivo.</span>
                 </p>
@@ -138,14 +133,14 @@ export default function Landing() {
             </section>
 
             {/* --- HERO: PROFILE CAROUSEL --- */}
-            <section className="px-5 pt-2 pb-2">
+            <section className="px-5 md:px-8pt-2 pb-2">
               <FadeInView delay={0.1}>
                 <ProfileCarousel />
               </FadeInView>
             </section>
 
             {/* --- CTA BUTTON --- */}
-            <section className="px-5 pb-4">
+            <section className="px-5 md:px-8pb-4">
               <FadeInView delay={0.2}>
                 <button
                   onClick={() => navigate('/register')}
@@ -194,7 +189,7 @@ export default function Landing() {
             </section>
 
             {/* --- GLOBAL NUMBERS --- */}
-            <section className="px-5 py-5 border-t border-surface-border">
+            <section className="px-5 md:px-8py-5 border-t border-surface-border">
               <FadeInView delay={0.2}>
                 <div className="grid grid-cols-3 gap-2 text-center">
                   <div className="bg-surface rounded-xl border border-surface-border p-3">
@@ -217,7 +212,7 @@ export default function Landing() {
             </section>
 
             {/* --- AWARENESS BANNER --- */}
-            <section className="px-5 pb-4">
+            <section className="px-5 md:px-8pb-4">
               <FadeInView delay={0.25}>
                 <div className="bg-gold/5 border border-gold/15 rounded-xl p-3.5">
                   <div className="flex items-start gap-2.5">
@@ -234,7 +229,7 @@ export default function Landing() {
             </section>
 
             {/* --- TESTIMONIALS --- */}
-            <section className="px-5 pb-6">
+            <section className="px-5 md:px-8pb-6">
               <FadeInView delay={0.25}>
                 <p className="text-[11px] text-gray-500 uppercase tracking-widest font-semibold mb-1 text-center">
                   Veja o que nossos usuários descobriram
@@ -244,7 +239,7 @@ export default function Landing() {
                 </p>
               </FadeInView>
 
-              <div className="space-y-3">
+              <div className="space-y-3 md:grid md:grid-cols-2 md:gap-3 md:space-y-0">
                 {[
                   {
                     slug: 'user-01', flag: '🇺🇸', name: 'Sarah M.', location: 'Texas, EUA',
@@ -346,7 +341,7 @@ export default function Landing() {
             </section>
 
             {/* --- PARA QUEM --- */}
-            <section className="px-5 py-6 border-t border-surface-border">
+            <section className="px-5 md:px-8py-6 border-t border-surface-border">
               <FadeInView delay={0.1}>
                 <p className="text-[11px] text-gray-500 uppercase tracking-widest font-semibold mb-4 text-center">
                   {t('personas.title')}
@@ -374,7 +369,7 @@ export default function Landing() {
             </section>
 
             {/* --- HOW IT WORKS --- */}
-            <section className="px-5 py-6 border-t border-surface-border">
+            <section className="px-5 md:px-8py-6 border-t border-surface-border">
               <FadeInView delay={0.1}>
                 <p className="text-[11px] text-gray-500 uppercase tracking-widest font-semibold mb-4 text-center">
                   {t('how_it_works.title')}
@@ -404,7 +399,7 @@ export default function Landing() {
             </section>
 
             {/* --- PROMO FLASH BANNER --- */}
-            <section className="px-5 pt-6 pb-2 border-t border-surface-border">
+            <section className="px-5 md:px-8pt-6 pb-2 border-t border-surface-border">
               <FadeInView delay={0.1}>
                 <div className="relative bg-gradient-to-r from-red-600/20 via-red-500/10 to-red-600/20 border border-red-500/40 rounded-xl p-4 text-center overflow-hidden">
                   <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-red-500 to-transparent animate-pulse" />
@@ -431,7 +426,7 @@ export default function Landing() {
             </section>
 
             {/* --- PRICING --- */}
-            <section className="px-5 py-4">
+            <section className="px-5 md:px-8py-4">
               <FadeInView delay={0.15}>
                 <p className="text-[11px] text-gray-500 uppercase tracking-widest font-semibold mb-1 text-center">
                   {t('pricing.title')}
@@ -441,6 +436,7 @@ export default function Landing() {
                 </p>
               </FadeInView>
 
+              <div className="md:grid md:grid-cols-2 md:gap-4">
               {/* Single Investigation — 60% OFF */}
               <FadeInView delay={0.18}>
                 <div className="relative rounded-xl border-2 border-gold/50 shadow-lg shadow-gold/10 bg-bg p-4 mb-3">
@@ -508,6 +504,7 @@ export default function Landing() {
                   <p className="mt-2 text-[9px] text-gray-600 line-through text-center">{t('pricing.pro_compare')}</p>
                 </div>
               </FadeInView>
+              </div>
 
               {/* Extra credits */}
               <FadeInView delay={0.3}>
@@ -526,7 +523,7 @@ export default function Landing() {
             </section>
 
             {/* --- LEGAL SUPPORT --- */}
-            <section className="px-5 py-6 border-t border-surface-border">
+            <section className="px-5 md:px-8py-6 border-t border-surface-border">
               <FadeInView delay={0.1}>
                 <div className="bg-gold/5 border border-gold/20 rounded-2xl p-5">
                   <div className="flex items-center gap-2 mb-1">
@@ -578,7 +575,7 @@ export default function Landing() {
             </section>
 
             {/* --- FAQ --- */}
-            <section className="px-5 py-6 border-t border-surface-border">
+            <section className="px-5 md:px-8py-6 border-t border-surface-border">
               <FadeInView delay={0.1}>
                 <p className="text-[11px] text-gray-500 uppercase tracking-widest font-semibold mb-4 text-center">
                   {t('faq.title')}
@@ -601,7 +598,7 @@ export default function Landing() {
             <ExtortionCasesPanel />
 
             {/* --- TRUST BADGES --- */}
-            <section className="px-5 py-4 border-t border-surface-border">
+            <section className="px-5 md:px-8py-4 border-t border-surface-border">
               <FadeInView delay={0.1}>
                 <div className="flex items-center justify-center gap-2 flex-wrap">
                   {trustBadges.map((badge) => (
@@ -615,7 +612,7 @@ export default function Landing() {
             </section>
 
             {/* --- FINAL CTA --- */}
-            <section className="px-5 py-8 border-t border-surface-border text-center">
+            <section className="px-5 md:px-8py-8 border-t border-surface-border text-center">
               <FadeInView delay={0.1}>
                 <p className="text-white font-display font-bold text-lg mb-1">
                   {t('cta.headline')}
