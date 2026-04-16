@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e1a18"/><stop offset="100%" stop-color="#0a0908"/>
+    </linearGradient>
+    <linearGradient id="sk" x1=".3" y1="0" x2=".7" y2="1">
+      <stop offset="0%" stop-color="#5E3D28"/><stop offset="100%" stop-color="#4A3020"/>
+    </linearGradient>
+    <filter id="gr"><feTurbulence type="fractalNoise" baseFrequency=".92" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feBlend in="SourceGraphic" mode="multiply"/></filter>
+    <clipPath id="f"><rect width="200" height="200" rx="10"/></clipPath>
+  </defs>
+  <g clip-path="url(#f)">
+    <rect width="200" height="200" fill="url(#bg)"/>
+    <g stroke="#555" stroke-opacity=".35" stroke-width=".6">
+      <line x1="0" y1="20" x2="200" y2="20"/><line x1="0" y1="40" x2="200" y2="40"/>
+      <line x1="0" y1="60" x2="200" y2="60"/><line x1="0" y1="80" x2="200" y2="80"/>
+      <line x1="0" y1="100" x2="200" y2="100"/><line x1="0" y1="120" x2="200" y2="120"/>
+    </g>
+    <g font-family="'Courier New',monospace" font-size="7" fill="#666" fill-opacity=".45">
+      <text x="4" y="18">5'10</text><text x="4" y="38">5'8</text>
+      <text x="4" y="58">5'6</text><text x="4" y="78">5'4</text>
+    </g>
+    <line x1="28" y1="15" x2="28" y2="125" stroke="#555" stroke-opacity=".25" stroke-width=".5"/>
+    <!-- Neck -->
+    <rect x="85" y="106" width="30" height="24" rx="5" fill="url(#sk)"/>
+    <!-- Body - orange jumpsuit -->
+    <ellipse cx="100" cy="160" rx="56" ry="36" fill="#8B4500"/>
+    <rect x="44" y="148" width="112" height="52" fill="#8B4500"/>
+    <path d="M84 130 Q100 138 116 130" fill="none" stroke="#9a5510" stroke-width="1"/>
+    <!-- DOC number on chest -->
+    <text x="100" y="146" text-anchor="middle" font-family="'Courier New',monospace" font-size="5" fill="#000" opacity=".4">DOC 2024-0917</text>
+    <!-- Head - young -->
+    <ellipse cx="100" cy="66" rx="33" ry="40" fill="url(#sk)"/>
+    <!-- Hair - short afro -->
+    <ellipse cx="100" cy="34" rx="32" ry="16" fill="#0c0704"/>
+    <rect x="68" y="26" width="64" height="16" rx="10" fill="#0c0704"/>
+    <!-- Afro texture -->
+    <g fill="#1a0e08" opacity=".3">
+      <circle cx="78" cy="30" r="2"/><circle cx="88" cy="27" r="2"/>
+      <circle cx="98" cy="26" r="2"/><circle cx="108" cy="27" r="2"/>
+      <circle cx="118" cy="30" r="2"/><circle cx="83" cy="35" r="1.5"/>
+      <circle cx="93" cy="32" r="1.5"/><circle cx="103" cy="32" r="1.5"/>
+      <circle cx="113" cy="35" r="1.5"/>
+    </g>
+    <!-- Ears -->
+    <ellipse cx="66" cy="68" rx="5.5" ry="9" fill="#4A3020"/>
+    <ellipse cx="134" cy="68" rx="5.5" ry="9" fill="#4A3020"/>
+    <!-- Brow -->
+    <path d="M74 56 Q87 52 100 54 Q113 52 126 56" fill="#4A3020" opacity=".45"/>
+    <!-- Nose -->
+    <ellipse cx="100" cy="80" rx="8" ry="5" fill="#4A3020" opacity=".3"/>
+    <!-- Mouth young -->
+    <path d="M89 93 Q100 98 111 93" fill="#3a2015" opacity=".55"/>
+    <!-- BLACK BAR -->
+    <rect x="60" y="56" width="80" height="20" rx="1" fill="#000" opacity=".92"/>
+    <rect width="200" height="200" filter="url(#gr)" opacity=".07"/>
+    <rect x="0" y="148" width="200" height="52" fill="#0a0908" opacity=".85"/>
+    <text x="100" y="164" text-anchor="middle" font-family="'Courier New',monospace" font-size="11" font-weight="bold" fill="#999" letter-spacing="3">MI-240917</text>
+    <text x="100" y="180" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" fill="#ccc" font-weight="bold" letter-spacing="2">SAMUEL OGOSHI</text>
+    <text x="100" y="194" text-anchor="middle" font-family="'Courier New',monospace" font-size="7" fill="#666" letter-spacing="1">2024-09-17 · FBI</text>
+  </g>
+</svg>

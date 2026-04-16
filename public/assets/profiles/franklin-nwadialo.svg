@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#262018"/><stop offset="100%" stop-color="#0c0a08"/>
+    </linearGradient>
+    <linearGradient id="sk" x1=".3" y1="0" x2=".7" y2="1">
+      <stop offset="0%" stop-color="#6B4A35"/><stop offset="100%" stop-color="#4A3025"/>
+    </linearGradient>
+    <filter id="gr"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="4" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feBlend in="SourceGraphic" mode="multiply"/></filter>
+    <clipPath id="f"><rect width="200" height="200" rx="10"/></clipPath>
+  </defs>
+  <g clip-path="url(#f)">
+    <rect width="200" height="200" fill="url(#bg)"/>
+    <g stroke="#555" stroke-opacity=".35" stroke-width=".6">
+      <line x1="0" y1="20" x2="200" y2="20"/><line x1="0" y1="40" x2="200" y2="40"/>
+      <line x1="0" y1="60" x2="200" y2="60"/><line x1="0" y1="80" x2="200" y2="80"/>
+      <line x1="0" y1="100" x2="200" y2="100"/><line x1="0" y1="120" x2="200" y2="120"/>
+    </g>
+    <g font-family="'Courier New',monospace" font-size="7" fill="#666" fill-opacity=".45">
+      <text x="4" y="18">6'0</text><text x="4" y="38">5'10</text>
+      <text x="4" y="58">5'8</text><text x="4" y="78">5'6</text>
+    </g>
+    <line x1="28" y1="15" x2="28" y2="125" stroke="#555" stroke-opacity=".25" stroke-width=".5"/>
+    <!-- Neck -->
+    <rect x="84" y="106" width="32" height="26" rx="5" fill="url(#sk)"/>
+    <!-- Body - military jacket -->
+    <ellipse cx="100" cy="160" rx="58" ry="38" fill="#2a3020"/>
+    <rect x="42" y="148" width="116" height="52" fill="#2a3020"/>
+    <line x1="100" y1="130" x2="100" y2="170" stroke="#3a4030" stroke-width="1.5"/>
+    <circle cx="96" cy="140" r="1.5" fill="#4a5040"/><circle cx="96" cy="148" r="1.5" fill="#4a5040"/>
+    <!-- Head -->
+    <ellipse cx="100" cy="68" rx="34" ry="42" fill="url(#sk)"/>
+    <!-- Hair - military cut -->
+    <path d="M68 48 Q68 22 100 18 Q132 22 132 48" fill="#0e0906"/>
+    <rect x="70" y="24" width="60" height="12" rx="6" fill="#0e0906"/>
+    <!-- Ears -->
+    <ellipse cx="65" cy="70" rx="6" ry="9" fill="#4A3025"/>
+    <ellipse cx="135" cy="70" rx="6" ry="9" fill="#4A3025"/>
+    <!-- Brow -->
+    <path d="M74 56 Q87 52 100 54 Q113 52 126 56" fill="#4A3025" opacity=".5"/>
+    <!-- Nose -->
+    <ellipse cx="100" cy="82" rx="8" ry="5" fill="#4A3025" opacity=".35"/>
+    <circle cx="95" cy="82" r="2.5" fill="#3d2820" opacity=".2"/>
+    <circle cx="105" cy="82" r="2.5" fill="#3d2820" opacity=".2"/>
+    <!-- Mouth -->
+    <path d="M89 94 Q100 99 111 94" fill="#3a2218" opacity=".6"/>
+    <!-- Chin -->
+    <ellipse cx="100" cy="106" rx="16" ry="5" fill="#4A3025" opacity=".12"/>
+    <!-- BLACK BAR -->
+    <rect x="58" y="57" width="84" height="20" rx="1" fill="#000" opacity=".92"/>
+    <rect width="200" height="200" filter="url(#gr)" opacity=".07"/>
+    <!-- Plate -->
+    <rect x="0" y="148" width="200" height="52" fill="#0a0908" opacity=".85"/>
+    <text x="100" y="164" text-anchor="middle" font-family="'Courier New',monospace" font-size="11" font-weight="bold" fill="#999" letter-spacing="3">WA-241105</text>
+    <text x="100" y="180" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" fill="#ccc" font-weight="bold" letter-spacing="2">FRANKLIN NWADIALO</text>
+    <text x="100" y="194" text-anchor="middle" font-family="'Courier New',monospace" font-size="7" fill="#666" letter-spacing="1">2024-11-05 · FBI / DOJ</text>
+  </g>
+</svg>

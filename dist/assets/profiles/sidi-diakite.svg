@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#201a18"/><stop offset="100%" stop-color="#0a0808"/>
+    </linearGradient>
+    <linearGradient id="sk" x1=".3" y1="0" x2=".7" y2="1">
+      <stop offset="0%" stop-color="#5A3C28"/><stop offset="100%" stop-color="#442E1E"/>
+    </linearGradient>
+    <filter id="gr"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feBlend in="SourceGraphic" mode="multiply"/></filter>
+    <clipPath id="f"><rect width="200" height="200" rx="10"/></clipPath>
+  </defs>
+  <g clip-path="url(#f)">
+    <rect width="200" height="200" fill="url(#bg)"/>
+    <g stroke="#555" stroke-opacity=".35" stroke-width=".6">
+      <line x1="0" y1="20" x2="200" y2="20"/><line x1="0" y1="40" x2="200" y2="40"/>
+      <line x1="0" y1="60" x2="200" y2="60"/><line x1="0" y1="80" x2="200" y2="80"/>
+      <line x1="0" y1="100" x2="200" y2="100"/><line x1="0" y1="120" x2="200" y2="120"/>
+    </g>
+    <g font-family="'Courier New',monospace" font-size="7" fill="#666" fill-opacity=".45">
+      <text x="4" y="18">6'1</text><text x="4" y="38">5'11</text>
+      <text x="4" y="58">5'9</text><text x="4" y="78">5'7</text>
+    </g>
+    <line x1="28" y1="15" x2="28" y2="125" stroke="#555" stroke-opacity=".25" stroke-width=".5"/>
+    <!-- Neck thin -->
+    <rect x="86" y="106" width="28" height="24" rx="4" fill="url(#sk)"/>
+    <!-- Body - traditional clothing hint -->
+    <ellipse cx="100" cy="160" rx="56" ry="36" fill="#2a2218"/>
+    <rect x="44" y="148" width="112" height="52" fill="#2a2218"/>
+    <!-- Collar detail - dashiki style -->
+    <path d="M76 130 Q88 138 100 136 Q112 138 124 130" fill="#302818" stroke="#3a3020" stroke-width=".8"/>
+    <path d="M84 132 Q100 140 116 132" fill="none" stroke="#C4A050" stroke-width=".5" opacity=".3"/>
+    <!-- Head - lean -->
+    <ellipse cx="100" cy="66" rx="32" ry="42" fill="url(#sk)"/>
+    <!-- Hair - very short, receding -->
+    <path d="M70 46 Q70 22 100 18 Q130 22 130 46" fill="#0a0604"/>
+    <path d="M76 40 Q88 28 100 26 Q112 28 124 40" fill="url(#sk)"/>
+    <!-- Ears -->
+    <ellipse cx="67" cy="68" rx="5.5" ry="9" fill="#442E1E"/>
+    <ellipse cx="133" cy="68" rx="5.5" ry="9" fill="#442E1E"/>
+    <!-- Brow heavy -->
+    <path d="M74 55 Q87 50 100 52 Q113 50 126 55" fill="#442E1E" opacity=".5"/>
+    <!-- Nose -->
+    <ellipse cx="100" cy="80" rx="8.5" ry="5" fill="#442E1E" opacity=".35"/>
+    <circle cx="95" cy="80" r="2.5" fill="#3a2418" opacity=".2"/>
+    <circle cx="105" cy="80" r="2.5" fill="#3a2418" opacity=".2"/>
+    <!-- Thin mustache -->
+    <path d="M88 88 Q100 91 112 88" fill="#1a0e06" opacity=".35"/>
+    <!-- Mouth -->
+    <path d="M90 94 Q100 98 110 94" fill="#3a2015" opacity=".5"/>
+    <!-- Chin - pointed -->
+    <ellipse cx="100" cy="106" rx="12" ry="4" fill="#442E1E" opacity=".12"/>
+    <!-- BLACK BAR -->
+    <rect x="60" y="56" width="80" height="20" rx="1" fill="#000" opacity=".92"/>
+    <rect width="200" height="200" filter="url(#gr)" opacity=".07"/>
+    <rect x="0" y="148" width="200" height="52" fill="#0a0908" opacity=".85"/>
+    <text x="100" y="164" text-anchor="middle" font-family="'Courier New',monospace" font-size="11" font-weight="bold" fill="#999" letter-spacing="3">DE-240920</text>
+    <text x="100" y="180" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#ccc" font-weight="bold" letter-spacing="2">SIDI DIAKITE</text>
+    <text x="100" y="194" text-anchor="middle" font-family="'Courier New',monospace" font-size="7" fill="#666" letter-spacing="1">2024-09-20 · FBI / DOJ</text>
+  </g>
+</svg>
