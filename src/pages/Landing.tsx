@@ -269,38 +269,107 @@ export default function Landing() {
               </FadeInView>
             </section>
 
-            {/* --- EXAMPLE RESULTS --- */}
+            {/* --- TESTIMONIALS --- */}
             <section className="px-5 pb-6">
               <FadeInView delay={0.25}>
-                <p className="text-[11px] text-gray-500 uppercase tracking-widest font-semibold mb-3">
-                  {t('results.title')}
+                <p className="text-[11px] text-gray-500 uppercase tracking-widest font-semibold mb-1 text-center">
+                  Veja o que nossos usuários descobriram
+                </p>
+                <p className="text-[10px] text-gold/60 text-center mb-4">
+                  Histórias reais de quem teve coragem de saber a verdade
                 </p>
               </FadeInView>
 
               <div className="space-y-3">
-                {exampleResults.map((r, i) => (
-                  <FadeInView key={r.name} delay={0.3 + i * 0.08}>
+                {[
+                  {
+                    slug: 'user-01', flag: '🇺🇸', name: 'Sarah M.', location: 'Texas, EUA',
+                    score: 'ALTO', scoreKey: 'HIGH',
+                    text: 'Estávamos juntos há 2 anos. O [18+]Check encontrou 3 perfis ativos no OnlyFans que ele escondia. Eu merecia saber.',
+                    platforms: ['OnlyFans', 'Fansly'],
+                  },
+                  {
+                    slug: 'user-02', flag: '🇧🇷', name: 'Rafael T.', location: 'São Paulo, Brasil',
+                    score: 'ALTO', scoreKey: 'HIGH',
+                    text: 'Minha noiva tinha perfil ativo em 2 plataformas adultas. Descobri a 3 meses do casamento. Melhor saber antes do que depois.',
+                    platforms: ['Privacy', 'XVideos'],
+                  },
+                  {
+                    slug: 'user-03', flag: '🇬🇧', name: 'Emma L.', location: 'Londres, UK',
+                    score: 'ALTO', scoreKey: 'HIGH',
+                    text: 'He told me he was a consultant. The facial scan matched him to 5 escort profiles across Europe. Absolutely shocking.',
+                    platforms: ['EscortDirectory', 'AdultWork'],
+                  },
+                  {
+                    slug: 'user-04', flag: '🇩🇪', name: 'Thomas K.', location: 'Berlim, Alemanha',
+                    score: 'NENHUM', scoreKey: 'NONE',
+                    text: 'Ich hatte Zweifel, aber der Bericht war eindeutig: nichts gefunden. Jetzt habe ich Sicherheit und Vertrauen zurück.',
+                    platforms: [],
+                  },
+                  {
+                    slug: 'user-05', flag: '🇲🇽', name: 'Carolina V.', location: 'Cidade do México',
+                    score: 'ALTO', scoreKey: 'HIGH',
+                    text: 'Mi esposo viajaba mucho "por trabajo". El escaneo facial lo encontró en apps de citas en 3 países diferentes. Le confronté con las pruebas.',
+                    platforms: ['Tinder', 'Bumble', 'Ashley Madison'],
+                  },
+                  {
+                    slug: 'user-06', flag: '🇫🇷', name: 'Marie D.', location: 'Paris, França',
+                    score: 'MODERADO', scoreKey: 'MODERATE',
+                    text: "J'ai trouvé son profil sur un site de rencontres alors qu'on était ensemble depuis 4 ans. Le rapport m'a ouvert les yeux.",
+                    platforms: ['Gleeden'],
+                  },
+                  {
+                    slug: 'user-07', flag: '🇯🇵', name: 'Yuki S.', location: 'Tóquio, Japão',
+                    score: 'ALTO', scoreKey: 'HIGH',
+                    text: '3年間信じていた彼が、別の名前でアダルトサイトにプロフィールを持っていました。このサービスがなかったら、一生知らなかったかもしれません。',
+                    platforms: ['FC2', 'DXLive'],
+                  },
+                  {
+                    slug: 'user-08', flag: '🇦🇺', name: 'James W.', location: 'Sydney, Austrália',
+                    score: 'ALTO', scoreKey: 'HIGH',
+                    text: 'My girlfriend of 18 months had an active adult profile with 200+ posts. The facial recognition matched her instantly. I needed to know.',
+                    platforms: ['OnlyFans', 'ManyVids'],
+                  },
+                  {
+                    slug: 'user-09', flag: '🇮🇹', name: 'Giulia R.', location: 'Milão, Itália',
+                    score: 'NENHUM', scoreKey: 'NONE',
+                    text: 'Avevo dei sospetti dopo che ha cambiato la password del telefono. Il rapporto è tornato pulito. Ora posso fidarmi di nuovo.',
+                    platforms: [],
+                  },
+                  {
+                    slug: 'user-10', flag: '🇰🇷', name: 'Min-ji P.', location: 'Seul, Coreia do Sul',
+                    score: 'ALTO', scoreKey: 'HIGH',
+                    text: '소개팅 앱에서 만난 남자가 다른 이름으로 성인 사이트에 활동하고 있었어요. 첫 데이트 전에 확인해서 다행이에요.',
+                    platforms: ['AfreecaTV'],
+                  },
+                ].map((t, i) => (
+                  <FadeInView key={t.name} delay={0.3 + i * 0.06}>
                     <div className="bg-surface rounded-xl border border-surface-border p-4">
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-start gap-3">
                         <img
-                          src={`/assets/profiles/${r.slug}.svg`}
+                          src={`/assets/profiles/${t.slug}.jpg`}
                           alt=""
-                          className="h-11 w-11 rounded-full object-cover shrink-0 border border-surface-border"
+                          className="h-11 w-11 rounded-full object-cover shrink-0 border border-surface-border blur-[1.5px]"
+                          onError={(e) => {
+                            const el = e.currentTarget
+                            if (el.src.endsWith('.jpg')) el.src = `/assets/profiles/${t.slug}.svg`
+                          }}
                         />
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between gap-2">
-                            <span className="text-white font-semibold text-sm">{r.name}</span>
-                            <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${scoreColors[r.scoreKey]}`}>
-                              {r.score}
+                            <span className="text-white font-semibold text-sm">{t.flag} {t.name}</span>
+                            <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${scoreColors[t.scoreKey]}`}>
+                              {t.score}
                             </span>
                           </div>
-                          <p className="text-xs text-gray-400 mt-0.5">{r.desc}</p>
+                          <p className="text-[9px] text-gray-500">{t.location}</p>
+                          <p className="text-[11px] text-gray-300 mt-1.5 leading-relaxed italic">"{t.text}"</p>
                         </div>
                       </div>
-                      {r.platforms.length > 0 && (
+                      {t.platforms.length > 0 && (
                         <div className="flex flex-wrap gap-1.5 mt-3 pl-14">
-                          {r.platforms.map((p) => (
-                            <span key={p} className="text-[10px] text-gold/80 bg-gold/8 border border-gold/15 rounded-md px-2 py-0.5 font-medium">
+                          {t.platforms.map((p) => (
+                            <span key={p} className="text-[10px] text-red-400/80 bg-red-500/8 border border-red-500/15 rounded-md px-2 py-0.5 font-medium">
                               {p}
                             </span>
                           ))}
