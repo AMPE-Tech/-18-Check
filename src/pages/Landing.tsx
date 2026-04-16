@@ -77,42 +77,6 @@ export default function Landing() {
   const navigate = useNavigate()
   const { t } = useTranslation()
 
-  const exampleResults = [
-    {
-      initials: 'MS',
-      slug: 'maria-s',
-      name: 'Maria S.',
-      score: t('results.score_high'),
-      scoreKey: 'HIGH',
-      desc: t('results.found_in', { count: 3 }),
-      platforms: ['OnlyFans', 'Privacy', 'Instagram'],
-      bgColor: 'bg-pink-500/15',
-      textColor: 'text-pink-300',
-    },
-    {
-      initials: 'CR',
-      slug: 'carlos-r',
-      name: 'Carlos R.',
-      score: t('results.score_none'),
-      scoreKey: 'NONE',
-      desc: t('results.none_found'),
-      platforms: [],
-      bgColor: 'bg-blue-500/15',
-      textColor: 'text-blue-300',
-    },
-    {
-      initials: 'AP',
-      slug: 'ana-p',
-      name: 'Ana P.',
-      score: t('results.score_moderate'),
-      scoreKey: 'MODERATE',
-      desc: t('results.suspect', { count: 1 }),
-      platforms: ['Fansly'],
-      bgColor: 'bg-purple-500/15',
-      textColor: 'text-purple-300',
-    },
-  ]
-
   const personas = [
     { key: 'partners', icon: Heart },
     { key: 'dating', icon: Smartphone },
