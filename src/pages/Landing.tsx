@@ -514,25 +514,49 @@ export default function Landing() {
 
               {/* --- ALERTA: GOLPE DE VÍDEOS ÍNTIMOS --- */}
               <FadeInView delay={0.4}>
-                <div className="mt-8 bg-gradient-to-br from-red-950/30 via-red-900/10 to-bg rounded-2xl border-l-4 border-red-500/60 p-6 md:p-8">
-                  <div className="flex items-start gap-4">
-                    <div className="h-12 w-12 rounded-xl bg-red-500/15 border border-red-500/25 flex items-center justify-center shrink-0">
+                <div className="mt-10 relative overflow-hidden rounded-2xl border border-red-500/20">
+                  {/* Red gradient background */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-red-950/40 via-red-950/15 to-bg pointer-events-none" />
+                  <div className="absolute top-0 left-0 w-1 h-full bg-red-500/60" />
+
+                  <div className="relative p-6 md:p-8">
+                    <div className="flex items-center gap-3 mb-5">
                       <Camera className="h-5 w-5 text-red-400" />
+                      <p className="text-[10px] text-red-400 uppercase tracking-[3px] font-bold">Alerta de segurança</p>
                     </div>
-                    <div>
-                      <p className="text-red-400 text-base md:text-lg font-display font-bold mb-3">
-                        Você tem certeza que seus vídeos íntimos não estão sendo vendidos?
-                      </p>
-                      <p className="text-gray-300 text-xs md:text-sm leading-relaxed mb-3">
-                        Um golpe crescente no mundo todo: parceiros gravam vídeos íntimos — às vezes com seu consentimento, às vezes escondido — e depois vendem em plataformas adultas internacionais, fora do seu país de origem, onde você jamais descobriria sozinha.
-                      </p>
-                      <p className="text-gray-300 text-xs md:text-sm leading-relaxed mb-3">
-                        Eles dizem que filmam "por prazer", "para nós dois". Mas o destino real são sites como OnlyFans, XVideos, Pornhub e dezenas de plataformas menores. Milhares de vítimas só descobrem quando já é tarde demais.
-                      </p>
-                      <p className="text-white text-sm font-semibold leading-relaxed">
-                        O [18+]Check usa reconhecimento facial para varrer 50+ plataformas e descobrir se sua imagem aparece em algum lugar que você não autorizou. <span className="text-gold">Proteja sua dignidade.</span>
-                      </p>
+
+                    <p className="font-display font-bold text-lg md:text-xl text-white leading-snug mb-5">
+                      Seus vídeos "a dois" podem estar<br />
+                      <span className="text-red-400 italic">sendo vendidos agora.</span>
+                    </p>
+
+                    <div className="space-y-3 mb-6">
+                      <div className="flex items-start gap-3">
+                        <span className="text-red-400 text-sm mt-0.5">01</span>
+                        <p className="text-gray-300 text-xs md:text-sm leading-relaxed">
+                          Parceiros gravam vídeos — com ou sem consentimento — e vendem em plataformas adultas <span className="text-white font-medium">fora do seu país</span>, onde você jamais descobriria.
+                        </p>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <span className="text-red-400 text-sm mt-0.5">02</span>
+                        <p className="text-gray-300 text-xs md:text-sm leading-relaxed">
+                          Dizem que filmam <span className="text-white font-medium">"por prazer"</span>. Destino real: OnlyFans, XVideos, Pornhub e dezenas de plataformas menores.
+                        </p>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <span className="text-red-400 text-sm mt-0.5">03</span>
+                        <p className="text-gray-300 text-xs md:text-sm leading-relaxed">
+                          Nosso <span className="text-gold font-semibold">reconhecimento facial</span> varre 50+ plataformas e identifica se sua imagem aparece sem autorização.
+                        </p>
+                      </div>
                     </div>
+
+                    <button
+                      onClick={() => navigate('/register')}
+                      className="bg-red-500/15 border border-red-500/30 text-red-400 font-body font-bold text-xs px-5 py-3 rounded-xl hover:bg-red-500/25 transition-colors"
+                    >
+                      Verificar minha imagem agora
+                    </button>
                   </div>
                 </div>
               </FadeInView>
@@ -575,45 +599,20 @@ export default function Landing() {
             <Divider />
 
             {/* ============================================================ */}
-            {/*  PROMO FLASH BANNER                                          */}
-            {/* ============================================================ */}
-            <section className="px-6 md:px-10 py-12 md:py-16">
-              <FadeInView delay={0.1}>
-                <div className="relative bg-gradient-to-br from-red-950/40 via-red-900/15 to-bg border border-red-500/30 rounded-2xl p-6 md:p-8 text-center overflow-hidden">
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent animate-pulse" />
-                  <p className="text-[11px] text-red-400 uppercase tracking-[4px] font-bold mb-2">Promoção Relâmpago</p>
-                  <p className="font-display font-extrabold text-xl md:text-2xl text-white leading-tight">
-                    Até <span className="text-red-400">75% OFF</span> em todos os planos
-                  </p>
-                  <p className="text-xs text-gray-400 mt-2">Oferta por tempo limitado — vagas preenchendo rápido</p>
-                  <div className="flex items-center justify-center gap-6 md:gap-10 mt-5">
-                    <div className="text-center">
-                      <p className="text-[9px] text-gray-500 uppercase tracking-wide">Investigação Única</p>
-                      <p className="font-display font-bold text-lg text-gold mt-1">R$ 51</p>
-                      <p className="text-[10px] text-red-400 font-bold">60% OFF</p>
-                    </div>
-                    <div className="w-px h-12 bg-red-500/20" />
-                    <div className="text-center">
-                      <p className="text-[9px] text-gray-500 uppercase tracking-wide">Pro / mês</p>
-                      <p className="font-display font-bold text-lg text-gold mt-1">R$ 119</p>
-                      <p className="text-[10px] text-red-400 font-bold">75% OFF</p>
-                    </div>
-                  </div>
-                </div>
-              </FadeInView>
-            </section>
-
-            {/* ============================================================ */}
             {/*  PRICING                                                     */}
             {/* ============================================================ */}
-            <section className="px-6 md:px-10 pb-12 md:pb-16">
+            <section className="px-6 md:px-10 py-12 md:py-16">
+              {/* Promo header */}
               <FadeInView delay={0.1}>
-                <p className="text-xs text-gray-500 uppercase tracking-[3px] font-semibold mb-2 text-center">
-                  {t('pricing.title')}
-                </p>
-                <p className="text-sm text-gold/50 text-center mb-8 md:mb-10">
-                  {t('pricing.subtitle')}
-                </p>
+                <div className="relative text-center mb-10 md:mb-12">
+                  <div className="inline-block bg-red-500/15 border border-red-500/30 rounded-full px-4 py-1.5 mb-4">
+                    <span className="text-[10px] text-red-400 uppercase tracking-[3px] font-bold animate-pulse">Promoção Relâmpago</span>
+                  </div>
+                  <p className="font-display font-bold text-xl md:text-2xl text-white leading-tight">
+                    Até <span className="text-red-400 italic">75% OFF</span> em todos os planos
+                  </p>
+                  <p className="text-xs text-gray-500 mt-2">Oferta por tempo limitado</p>
+                </div>
               </FadeInView>
 
               <div className="md:grid md:grid-cols-2 md:gap-5">
