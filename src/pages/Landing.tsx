@@ -25,6 +25,7 @@ import LanguageSelector from '../components/LanguageSelector'
 import ScamCasesPanel from '../components/ScamCasesPanel'
 import ExtortionCasesPanel from '../components/ExtortionCasesPanel'
 import ProfileCarousel from '../components/ProfileCarousel'
+import GoldText from '../components/GoldText'
 
 /* ------------------------------------------------------------------ */
 /*  Data                                                               */
@@ -320,6 +321,9 @@ export default function Landing() {
                 <h1 className="relative font-display font-bold text-[2rem] md:text-[3.5rem] leading-[1.1] tracking-tight text-white">
                   Seus vídeos <span className="italic text-red-400">vazaram?</span>
                 </h1>
+                <p className="relative font-display italic text-lg md:text-2xl text-gray-300 mt-3 md:mt-4">
+                  Seu parceiro é do Job?
+                </p>
               </FadeInView>
 
               {/* Layer 2 — Subheadline (one line, data-driven) */}
@@ -411,12 +415,9 @@ export default function Landing() {
                 <div className="bg-gold/5 border border-gold/15 rounded-2xl p-5 md:p-6">
                   <div className="flex items-start gap-3">
                     <AlertTriangle className="h-5 w-5 text-gold shrink-0 mt-0.5" />
-                    <p
-                      className="text-xs md:text-sm text-white font-medium leading-relaxed"
-                      dangerouslySetInnerHTML={{
-                        __html: t('awareness.text').replace(/<gold>/g, '<span class="text-gold">').replace(/<\/gold>/g, '</span>'),
-                      }}
-                    />
+                    <p className="text-xs md:text-sm text-white font-medium leading-relaxed">
+                      <GoldText text={t('awareness.text')} />
+                    </p>
                   </div>
                 </div>
               </FadeInView>
@@ -797,9 +798,7 @@ export default function Landing() {
                   <p className="text-xs md:text-sm text-gray-400 mb-2 leading-relaxed">
                     {t('cta.subtext')}
                     <br />
-                    <span dangerouslySetInnerHTML={{
-                      __html: t('cta.scams').replace(/<gold>/g, '<span class="text-gold font-semibold">').replace(/<\/gold>/g, '</span>'),
-                    }} />
+                    <GoldText text={t('cta.scams')} boldGold />
                     <br />
                     {t('cta.deserve')}
                   </p>
