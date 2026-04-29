@@ -8,14 +8,16 @@ import Button from '../components/ui/Button'
 import { Check, Star, Zap, Crown } from 'lucide-react'
 import { cn } from '../lib/utils'
 
+const SHOW_ONLY_SINGLE = true
+
 function usePlans() {
   const { t } = useTranslation()
-  return [
+  const all = [
     {
       key: 'single',
       name: t('plans.single_name'),
       icon: Zap,
-      price: '$29',
+      price: 'R$ 49,90',
       period: t('plans.single_period'),
       credits: t('plans.single_credits'),
       features: [
@@ -25,7 +27,7 @@ function usePlans() {
         t('plans.feature_risk'),
         t('plans.feature_pdf'),
       ],
-      notIncluded: [
+      notIncluded: SHOW_ONLY_SINGLE ? [] : [
         t('plans.feature_monitoring'),
         t('plans.feature_api'),
         t('plans.feature_support'),
@@ -36,7 +38,7 @@ function usePlans() {
       key: 'pro',
       name: t('plans.pro_name'),
       icon: Crown,
-      price: '$99',
+      price: 'R$ 129/mês',
       period: t('plans.pro_period'),
       credits: t('plans.pro_credits'),
       features: [
@@ -54,9 +56,10 @@ function usePlans() {
       notIncluded: [],
     },
   ]
+  return SHOW_ONLY_SINGLE ? all.filter(p => p.key === 'single') : all
 }
 
-const creditPacks = [
+const creditPacks = SHOW_ONLY_SINGLE ? [] : [
   { amount: 2, price: '$54', perUnit: '$27/search', planType: 'pack2' },
   { amount: 3, price: '$75', perUnit: '$25/search', planType: 'pack3' },
   { amount: 5, price: '$115', perUnit: '$23/search', planType: 'pack5' },
@@ -97,7 +100,7 @@ export default function PlansPage() {
       </div>
 
       {/* Plans */}
-      <div className="grid md:grid-cols-2 gap-6 max-w-3xl">
+      <div className={cn('grid gap-6', SHOW_ONLY_SINGLE ? 'max-w-md' : 'md:grid-cols-2 max-w-3xl')}>
         {plans.map((plan) => {
           const isCurrent = (user?.plan || '').toLowerCase() === plan.key
           return (
@@ -165,7 +168,7 @@ export default function PlansPage() {
       </div>
 
       {/* Credit Packs */}
-      <div>
+      {!SHOW_ONLY_SINGLE && <div>
         <h2 className="font-display font-bold text-xl text-white mb-2">{t('plans.packs_title')}</h2>
         <p className="text-sm text-gray-500 mb-6">{t('plans.packs_desc')}</p>
         <div className="grid sm:grid-cols-3 gap-4">
@@ -187,7 +190,7 @@ export default function PlansPage() {
             </Card>
           ))}
         </div>
-      </div>
+      </div>}
     </div>
   )
 }
