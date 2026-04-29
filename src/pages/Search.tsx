@@ -94,7 +94,7 @@ export default function SearchPage() {
       }
 
       const { data } = await api.post('/search/full', payload)
-      setResult(data)
+      setResult(data.data)
       await refreshUser()
     } catch (err: unknown) {
       const msg = (err as { response?: { data?: { message?: string } } })?.response?.data?.message

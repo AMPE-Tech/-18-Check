@@ -290,13 +290,22 @@ export default function Landing() {
 
           {/* ===== TOP BAR ===== */}
           <header className="sticky top-0 z-40 bg-bg/80 backdrop-blur-xl border-b border-white/5">
-            <div className="px-6 md:px-10 h-16 flex items-center justify-between">
+            <div className="px-6 md:px-10 h-20 flex items-center justify-between">
               <Link to="/" className="flex items-center gap-2.5">
-                <ShieldCheck className="h-5 w-5 text-gold" />
-                <span className="font-display font-bold text-base text-white">
+                <ShieldCheck className="h-6 w-6 text-gold" />
+                <span className="font-display font-bold text-lg text-white">
                   <span className="text-gold">[18+]</span>Check
                 </span>
               </Link>
+
+              {/* Center nav — discreet section links (desktop only) */}
+              <nav className="hidden md:flex items-center gap-6">
+                <a href="#golpistas" className="text-[11px] font-light text-gray-500 hover:text-white tracking-wide transition-colors">Golpistas</a>
+                <a href="#quem-precisa" className="text-[11px] font-light text-gray-500 hover:text-white tracking-wide transition-colors">Quem Precisa</a>
+                <a href="#lgpd-gdpr" className="text-[11px] font-light text-gray-500 hover:text-white tracking-wide transition-colors">Vítimas LGPD &amp; GDPR</a>
+                <a href="#faq" className="text-[11px] font-light text-gray-500 hover:text-white tracking-wide transition-colors">Dúvidas</a>
+              </nav>
+
               <div className="flex items-center gap-3">
                 <LanguageSelector />
                 <ShimmerButton href="/register" className="!px-5 !py-2.5 !text-xs !rounded-lg">
@@ -333,6 +342,36 @@ export default function Landing() {
                 </p>
               </FadeInView>
 
+              {/* Layer 2.5 — Platform screenshots scrolling banner */}
+              <FadeInView delay={0.15}>
+                <div className="relative mt-6 md:mt-8 -mx-6 md:-mx-10 overflow-hidden" aria-hidden="true">
+                  <div className="flex items-center gap-3 animate-[scroll-left_50s_linear_infinite] w-max">
+                    {[
+                      { src: '/platforms/tinder.jpg', adult: false },
+                      { src: '/platforms/xvideos.jpg', adult: true },
+                      { src: '/platforms/dating.jpg', adult: false },
+                      { src: '/platforms/pornhub.jpg', adult: true },
+                      { src: '/platforms/xhamster.jpg', adult: true },
+                      { src: '/platforms/xnxx.jpg', adult: true },
+                      { src: '/platforms/tinder.jpg', adult: false },
+                      { src: '/platforms/xvideos.jpg', adult: true },
+                      { src: '/platforms/dating.jpg', adult: false },
+                      { src: '/platforms/pornhub.jpg', adult: true },
+                      { src: '/platforms/xhamster.jpg', adult: true },
+                      { src: '/platforms/xnxx.jpg', adult: true },
+                    ].map((img, i) => (
+                      <img
+                        key={i}
+                        src={img.src}
+                        alt=""
+                        className={`h-20 w-36 object-cover rounded-lg shrink-0 ${img.adult ? 'blur-[0.6px] opacity-80' : 'opacity-90'}`}
+                        loading="lazy"
+                      />
+                    ))}
+                  </div>
+                </div>
+              </FadeInView>
+
               {/* Layer 3 — CTA */}
               <FadeInView delay={0.2}>
                 <div className="relative mt-8 md:mt-10 max-w-[380px] mx-auto">
@@ -340,7 +379,7 @@ export default function Landing() {
                     onClick={() => navigate('/register')}
                     className="w-full bg-gold text-black font-body font-bold py-4 rounded-xl text-sm md:text-base tracking-wide hover:bg-gold-light transition-all hover:shadow-lg hover:shadow-gold/20"
                   >
-                    Descubra agora — 75% OFF
+                    Descubra agora — 25% OFF
                   </button>
                   <p className="text-[11px] text-gray-600 mt-3">Sigiloso. Resultado em minutos.</p>
                 </div>
@@ -354,32 +393,26 @@ export default function Landing() {
               </FadeInView>
             </section>
 
-            {/* --- PLATFORM SCREENSHOTS BANNER --- */}
-            <section className="py-4 overflow-hidden" aria-hidden="true">
-              <div className="flex items-center gap-3 animate-[scroll-left_50s_linear_infinite] w-max">
-                {[
-                  { src: '/platforms/tinder.jpg', adult: false },
-                  { src: '/platforms/xvideos.jpg', adult: true },
-                  { src: '/platforms/dating.jpg', adult: false },
-                  { src: '/platforms/pornhub.jpg', adult: true },
-                  { src: '/platforms/xhamster.jpg', adult: true },
-                  { src: '/platforms/xnxx.jpg', adult: true },
-                  { src: '/platforms/tinder.jpg', adult: false },
-                  { src: '/platforms/xvideos.jpg', adult: true },
-                  { src: '/platforms/dating.jpg', adult: false },
-                  { src: '/platforms/pornhub.jpg', adult: true },
-                  { src: '/platforms/xhamster.jpg', adult: true },
-                  { src: '/platforms/xnxx.jpg', adult: true },
-                ].map((img, i) => (
-                  <img
-                    key={i}
-                    src={img.src}
-                    alt=""
-                    className={`h-20 w-36 object-cover rounded-lg shrink-0 ${img.adult ? 'blur-[0.6px] opacity-80' : 'opacity-90'}`}
-                    loading="lazy"
-                  />
-                ))}
-              </div>
+            <Divider />
+
+            {/* ============================================================ */}
+            {/*  GOLPISTAS — casos reais (DOJ/FBI/Polícia Civil)             */}
+            {/* ============================================================ */}
+            <section id="golpistas" className="px-6 md:px-10 pt-12 md:pt-16 pb-4 scroll-mt-20">
+              <FadeInView delay={0.1}>
+                <div className="text-center mb-10">
+                  <p className="text-[9px] text-red-400 uppercase tracking-[3px] font-bold mb-2">⚠️ Golpistas identificados</p>
+                  <h2 className="font-display font-bold text-xl md:text-3xl text-white">
+                    Não é teoria. <span className="italic text-red-400">Casos reais.</span>
+                  </h2>
+                  <p className="text-xs text-gray-400 mt-3 max-w-2xl mx-auto">
+                    Casos investigados e documentados pelo DOJ, FBI e Polícia Civil. Fontes públicas oficiais — atualizado semanalmente.
+                  </p>
+                </div>
+              </FadeInView>
+
+              <ScamCasesPanel />
+              <ExtortionCasesPanel />
             </section>
 
             <Divider />
@@ -485,9 +518,9 @@ export default function Landing() {
             <Divider />
 
             {/* ============================================================ */}
-            {/*  PARA QUEM                                                   */}
+            {/*  PARA QUEM (Quem Precisa)                                    */}
             {/* ============================================================ */}
-            <section className="px-6 md:px-10 py-12 md:py-16">
+            <section id="quem-precisa" className="px-6 md:px-10 py-12 md:py-16 scroll-mt-20">
               <FadeInView delay={0.1}>
                 <p className="text-xs text-gray-500 uppercase tracking-[3px] font-semibold mb-8 md:mb-10 text-center">
                   {t('personas.title')}
@@ -610,18 +643,18 @@ export default function Landing() {
                     <span className="text-[10px] text-red-400 uppercase tracking-[3px] font-bold animate-pulse">Promoção Relâmpago</span>
                   </div>
                   <p className="font-display font-bold text-xl md:text-2xl text-white leading-tight">
-                    Até <span className="text-red-400 italic">75% OFF</span> em todos os planos
+                    <span className="text-red-400 italic">25% OFF</span> na Investigação Única
                   </p>
                   <p className="text-xs text-gray-500 mt-2">Oferta por tempo limitado</p>
                 </div>
               </FadeInView>
 
-              <div className="md:grid md:grid-cols-2 md:gap-5">
-                {/* Single Investigation — 60% OFF */}
+              <div className="md:grid md:grid-cols-2 md:gap-5 items-start">
+                {/* Single Investigation — 25% OFF */}
                 <FadeInView delay={0.15}>
                   <div className="relative rounded-2xl border-2 border-gold/40 shadow-lg shadow-gold/5 bg-surface/30 p-6 mb-4 md:mb-0">
                     <div className="absolute -top-3 left-5 bg-red-500 text-white text-[10px] font-bold px-3 py-1 rounded-full animate-pulse">
-                      60% OFF
+                      25% OFF
                     </div>
                     <div className="absolute -top-3 right-5 bg-gold text-black text-[10px] font-bold px-3 py-1 rounded-full flex items-center gap-1">
                       <Star className="h-3 w-3" /> {t('pricing.popular')}
@@ -630,12 +663,33 @@ export default function Landing() {
                       <h3 className="font-display font-bold text-base text-white">{t('pricing.single_name')}</h3>
                       <p className="text-xs text-gold font-medium mt-1">{t('pricing.single_credits')}</p>
                       <div className="mt-3 flex items-baseline gap-3">
-                        <span className="text-gray-500 line-through text-base">$29</span>
-                        <span className="font-display font-extrabold text-3xl text-gold">$9.90</span>
+                        <span className="text-gray-500 line-through text-base">R$ 67</span>
+                        <span className="font-display font-extrabold text-3xl text-gold">R$ 49,90</span>
                       </div>
-                      <p className="text-[10px] text-red-400 font-semibold mt-1">Save $19.10</p>
+                      <p className="text-[10px] text-red-400 font-semibold mt-1">Economize R$ 17,10</p>
                     </div>
-                    <ul className="mt-5 grid grid-cols-1 gap-2">
+
+                    {/* 3 cenários — você escolhe 1 */}
+                    <div className="mt-5 p-3 rounded-lg bg-gold/[0.06] border border-gold/20">
+                      <p className="text-[10px] text-gold font-bold uppercase tracking-[2px] mb-2.5">Você escolhe 1 dos 3 cenários*</p>
+                      <ul className="space-y-1.5">
+                        <li className="flex items-start gap-2 text-xs text-white">
+                          <span className="text-base leading-none">🛡️</span>
+                          <span><strong>Romance Scam</strong> — criminoso de app de relacionamento</span>
+                        </li>
+                        <li className="flex items-start gap-2 text-xs text-white">
+                          <span className="text-base leading-none">💔</span>
+                          <span><strong>Parceiro "do Job"</strong> — perfis ocultos em plataformas adultas</span>
+                        </li>
+                        <li className="flex items-start gap-2 text-xs text-white">
+                          <span className="text-base leading-none">📹</span>
+                          <span><strong>Vídeos íntimos vazados</strong> — sextorsão e exposição</span>
+                        </li>
+                      </ul>
+                      <p className="text-[9px] text-gray-500 mt-2.5 italic">*Em breve: seleção de cenário no app</p>
+                    </div>
+
+                    <ul className="mt-4 grid grid-cols-1 gap-2">
                       {['single_f1', 'single_f2', 'single_f3', 'single_f4', 'single_f5'].map((k) => (
                         <li key={k} className="flex items-start gap-2 text-xs text-gray-400">
                           <Check className="h-3.5 w-3.5 text-gold shrink-0 mt-0.5" />
@@ -644,100 +698,118 @@ export default function Landing() {
                       ))}
                     </ul>
                     <Link to="/register" className="flex items-center justify-center w-full mt-5 py-3.5 rounded-xl bg-gold text-black text-sm font-bold hover:bg-gold-light transition-all hover:shadow-lg hover:shadow-gold/20">
-                      Quero 60% OFF
+                      Quero 25% OFF
                     </Link>
                     <p className="mt-3 text-[10px] text-gray-600 line-through text-center">{t('pricing.single_compare')}</p>
                   </div>
                 </FadeInView>
 
-                {/* Pro Monitoring — 75% OFF */}
+                {/* Suporte Jurídico Especializado — Sob consulta */}
                 <FadeInView delay={0.2}>
-                  <div className="relative rounded-2xl border-2 border-red-500/40 shadow-lg shadow-red-500/5 bg-surface/30 p-6 mb-4 md:mb-0">
-                    <div className="absolute -top-3 left-5 bg-red-500 text-white text-[10px] font-bold px-3 py-1 rounded-full animate-pulse">
-                      75% OFF
+                  <div className="relative rounded-2xl bg-gold/5 border border-gold/15 p-6 mb-4 md:mb-0">
+                    <div className="flex items-center gap-2.5 mb-2">
+                      <Shield className="h-6 w-6 text-gold" />
+                      <p className="text-xs text-gold uppercase tracking-[3px] font-semibold">
+                        Suporte Jurídico Especializado
+                      </p>
                     </div>
-                    <div className="mt-3">
-                      <h3 className="font-display font-bold text-base text-white">{t('pricing.pro_name')}</h3>
-                      <p className="text-xs text-gold font-medium mt-1">{t('pricing.pro_credits')}</p>
-                      <div className="mt-3 flex items-baseline gap-3">
-                        <span className="text-gray-500 line-through text-base">$99/mo</span>
-                        <span className="font-display font-extrabold text-3xl text-gold">$24.90</span>
-                        <span className="text-gold/60 text-sm">/mês</span>
+                    <p className="text-sm text-gray-300 mb-6">Protegemos sua dignidade com ações concretas.</p>
+
+                    <div className="space-y-5">
+                      <div className="flex items-start gap-4">
+                        <div className="h-10 w-10 rounded-xl bg-gold/10 border border-gold/20 flex items-center justify-center shrink-0">
+                          <span className="text-gold font-bold text-sm">1</span>
+                        </div>
+                        <div>
+                          <p className="text-white text-sm font-semibold">Limpeza de Imagem</p>
+                          <p className="text-xs text-gray-400 mt-1 leading-relaxed">
+                            Exigimos a exclusão imediata do seu conteúdo em todas as plataformas onde foi publicado sem autorização.
+                          </p>
+                        </div>
                       </div>
-                      <p className="text-[10px] text-red-400 font-semibold mt-1">Save $74.10/mo</p>
+
+                      <div className="flex items-start gap-4">
+                        <div className="h-10 w-10 rounded-xl bg-gold/10 border border-gold/20 flex items-center justify-center shrink-0">
+                          <span className="text-gold font-bold text-sm">2</span>
+                        </div>
+                        <div>
+                          <p className="text-white text-sm font-semibold">Medidas Protetivas</p>
+                          <p className="text-xs text-gray-400 mt-1 leading-relaxed">
+                            Orientação jurídica para obter medidas protetivas contra o agressor através dos mecanismos legais disponíveis.
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start gap-4">
+                        <div className="h-10 w-10 rounded-xl bg-gold/10 border border-gold/20 flex items-center justify-center shrink-0">
+                          <span className="text-gold font-bold text-sm">3</span>
+                        </div>
+                        <div>
+                          <p className="text-white text-sm font-semibold">Processo por Danos</p>
+                          <p className="text-xs text-gray-400 mt-1 leading-relaxed">
+                            Assessoria para ação judicial por danos morais e falsidade ideológica contra o parceiro abusador e criminoso.
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                    <ul className="mt-5 grid grid-cols-1 gap-2">
-                      {['pro_f1', 'pro_f2', 'pro_f3', 'pro_f4', 'pro_f5', 'pro_f6'].map((k) => (
-                        <li key={k} className="flex items-start gap-2 text-xs text-gray-400">
-                          <Check className="h-3.5 w-3.5 text-gold shrink-0 mt-0.5" />
-                          <span>{t(`pricing.${k}`)}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <Link to="/register" className="flex items-center justify-center w-full mt-5 py-3.5 rounded-xl bg-red-500 text-white text-sm font-bold hover:bg-red-400 transition-all hover:shadow-lg hover:shadow-red-500/20">
-                      Quero 75% OFF
-                    </Link>
-                    <p className="mt-3 text-[10px] text-gray-600 line-through text-center">{t('pricing.pro_compare')}</p>
+
+                    <div className="mt-6 p-4 rounded-xl bg-black/30 border border-gold/15 text-center">
+                      <p className="text-[10px] text-gold uppercase tracking-[2px] font-semibold mb-1">Valor</p>
+                      <p className="text-white font-display font-bold text-lg">Sob consulta</p>
+                      <p className="text-[11px] text-gray-500 mt-1">Avaliamos seu caso individualmente</p>
+                    </div>
+
+                    <a
+                      href="#contact-form"
+                      className="flex items-center justify-center w-full mt-4 py-3.5 rounded-xl bg-gold text-black text-sm font-bold hover:bg-gold-light transition-all hover:shadow-lg hover:shadow-gold/20"
+                    >
+                      Solicitar orçamento
+                    </a>
                   </div>
                 </FadeInView>
               </div>
-
-              {/* Extra credits */}
-              <FadeInView delay={0.25}>
-                <div className="relative rounded-2xl border border-white/5 bg-surface/40 p-4 md:p-5 flex items-center justify-between gap-4 mt-5">
-                  <div className="absolute -top-2.5 left-5 bg-red-500 text-white text-[9px] font-bold px-2.5 py-0.5 rounded-full animate-pulse">
-                    50% OFF
-                  </div>
-                  <div>
-                    <p className="text-sm text-white font-medium">{t('pricing.extra_title')}</p>
-                    <p className="text-xs text-gray-400 mt-0.5">
-                      <span className="text-gray-500 line-through text-[10px]">$19.90</span>{' '}
-                      <span className="text-gold font-bold">$9.90</span> per extra search
-                    </p>
-                  </div>
-                  <Link to="/register" className="text-xs text-gold border border-gold/30 px-4 py-2 rounded-lg font-semibold hover:bg-gold/10 transition-colors shrink-0">
-                    Get 50% OFF
-                  </Link>
-                </div>
-              </FadeInView>
             </section>
 
             <Divider />
 
             {/* ============================================================ */}
-            {/*  LEGAL SUPPORT                                               */}
+            {/*  LGPD & GDPR                                                 */}
             {/* ============================================================ */}
-            <section className="px-6 md:px-10 py-12 md:py-16">
+            <section id="lgpd-gdpr" className="px-6 md:px-10 py-12 md:py-16 scroll-mt-20">
               <FadeInView delay={0.1}>
-                <div className="bg-gold/5 border border-gold/15 rounded-2xl p-6 md:p-8">
-                  <div className="flex items-center gap-2.5 mb-2">
-                    <Shield className="h-6 w-6 text-gold" />
-                    <p className="text-xs text-gold uppercase tracking-[3px] font-semibold">
-                      {t('legal_support.title')}
+                <div className="max-w-3xl mx-auto bg-gold/5 border border-gold/15 rounded-2xl p-6 md:p-8">
+                  <div className="flex items-center gap-2.5 mb-3">
+                    <Shield className="h-5 w-5 text-gold" />
+                    <p className="text-[10px] text-gold uppercase tracking-[3px] font-semibold">
+                      Vítimas LGPD &amp; GDPR
                     </p>
                   </div>
-                  <p className="text-xs text-gray-400 mb-6">{t('legal_support.subtitle')}</p>
-
-                  <div className="space-y-4">
-                    {[1, 2, 3].map((n) => (
-                      <div key={n} className="flex items-start gap-4">
-                        <div className="h-10 w-10 rounded-xl bg-gold/10 border border-gold/20 flex items-center justify-center shrink-0">
-                          <span className="text-gold font-bold text-sm">{n}</span>
-                        </div>
-                        <div>
-                          <p className="text-white text-sm font-semibold">{t(`legal_support.service${n}_title`)}</p>
-                          <p className="text-xs text-gray-400 mt-1 leading-relaxed">{t(`legal_support.service${n}_desc`)}</p>
-                        </div>
-                      </div>
-                    ))}
+                  <h3 className="font-display font-bold text-lg md:text-xl text-white mb-3 leading-tight">
+                    Seus dados expostos sem consentimento têm proteção legal.
+                  </h3>
+                  <p className="text-xs text-gray-300 leading-relaxed mb-6">
+                    A <strong className="text-white">LGPD</strong> (Brasil — Lei 13.709/2018) e o <strong className="text-white">GDPR</strong> (Europa — Regulamento UE 2016/679) garantem direitos a quem tem dados pessoais ou imagens íntimas expostas indevidamente. O [18+]Check ajuda a localizar onde seu conteúdo está publicado para que você exerça esses direitos.
+                  </p>
+                  <div className="space-y-3 mb-6">
+                    <div className="flex items-start gap-3">
+                      <Check className="h-3.5 w-3.5 text-gold shrink-0 mt-0.5" />
+                      <p className="text-[11px] text-gray-300"><strong className="text-white">Direito ao esquecimento</strong> — exigir a remoção de conteúdo pessoal não autorizado</p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <Check className="h-3.5 w-3.5 text-gold shrink-0 mt-0.5" />
+                      <p className="text-[11px] text-gray-300"><strong className="text-white">Direito de acesso</strong> — saber onde e como seus dados estão sendo tratados</p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <Check className="h-3.5 w-3.5 text-gold shrink-0 mt-0.5" />
+                      <p className="text-[11px] text-gray-300"><strong className="text-white">Direito à reparação</strong> — buscar indenização por danos morais e materiais</p>
+                    </div>
                   </div>
-
-                  <Link
-                    to="/register"
-                    className="flex items-center justify-center w-full mt-6 py-3.5 rounded-xl bg-gold text-black text-sm font-bold hover:bg-gold-light transition-all"
+                  <a
+                    href="#contact-form"
+                    className="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-gold text-black text-xs font-bold hover:bg-gold-light transition-all hover:shadow-lg hover:shadow-gold/20"
                   >
-                    {t('legal_support.cta')}
-                  </Link>
+                    Solicitar relatório de exposição
+                  </a>
                 </div>
               </FadeInView>
             </section>
@@ -747,7 +819,7 @@ export default function Landing() {
             {/* ============================================================ */}
             {/*  FAQ                                                         */}
             {/* ============================================================ */}
-            <section className="px-6 md:px-10 py-12 md:py-16">
+            <section id="faq" className="px-6 md:px-10 py-12 md:py-16 scroll-mt-20">
               <FadeInView delay={0.1}>
                 <p className="text-xs text-gray-500 uppercase tracking-[3px] font-semibold mb-8 md:mb-10 text-center">
                   {t('faq.title')}
@@ -762,14 +834,6 @@ export default function Landing() {
                 </div>
               </FadeInView>
             </section>
-
-            <Divider />
-
-            {/* --- SCAM + EXTORTION CASES --- */}
-            <div className="py-8">
-              <ScamCasesPanel />
-              <ExtortionCasesPanel />
-            </div>
 
             <Divider />
 
@@ -815,7 +879,7 @@ export default function Landing() {
             {/* ============================================================ */}
             {/*  CONTACT FORM                                                */}
             {/* ============================================================ */}
-            <section className="px-6 md:px-10 py-12 md:py-16">
+            <section id="contact-form" className="px-6 md:px-10 py-12 md:py-16 scroll-mt-6">
               <FadeInView delay={0.1}>
                 <p className="text-xs text-gray-500 uppercase tracking-[3px] font-semibold mb-2 text-center">
                   Precisa de ajuda?
