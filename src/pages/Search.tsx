@@ -20,16 +20,36 @@ import {
   Upload,
 } from 'lucide-react'
 
+interface Finding {
+  category: string
+  detail: string
+  severity: string
+  url?: string
+  platform?: string
+  score?: number
+  confidence?: number
+  signals?: string[]
+}
+
+interface AliasExtracted {
+  alias: string
+  count: number
+}
+
 interface SearchResult {
   id: string
   riskLevel: string
   riskScore: number
-  findings: {
-    category: string
-    detail: string
-    severity: string
-  }[]
+  findings: Finding[]
   summary: string
+  overallConfidence?: number
+  aliasesExtracted?: AliasExtracted[]
+  pipelineStoppedAt?: number
+  etapa1Positive?: boolean
+  etapa2Positive?: boolean
+  totalMatches?: number
+  adultMatches?: number
+  elapsedMs?: number
 }
 
 export default function SearchPage() {
@@ -43,6 +63,7 @@ export default function SearchPage() {
     { key: 'photo', label: t('search.tab_photo'), icon: Camera },
   ] as const
   const [activeTab, setActiveTab] = useState<string>('name')
+  const [scenarioType, setScenarioType] = useState<string>('romance_scam')
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
   const [social, setSocial] = useState('')
@@ -74,6 +95,7 @@ export default function SearchPage() {
 
     try {
       const payload: Record<string, string> = {}
+      payload.scenarioType = scenarioType
       if (name.trim()) payload.name = name.trim()
       if (phone.trim()) payload.phone = phone.trim()
       if (social.trim()) payload.social = social.trim()
@@ -87,7 +109,8 @@ export default function SearchPage() {
         payload.imagePath = base64
       }
 
-      if (Object.keys(payload).length === 0) {
+      const hasSearchData = name.trim() || phone.trim() || social.trim() || imageFile
+      if (!hasSearchData) {
         setError(t('search.subtitle'))
         setLoading(false)
         return
@@ -120,6 +143,72 @@ export default function SearchPage() {
         <p className="text-gray-500 mt-1">
           {t('search.subtitle')}
         </p>
+      </div>
+
+      {/* Seletor de Cenários */}
+      <div className="space-y-2">
+        <h2 className="text-sm font-medium text-gray-300">Tipo de Investigação</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          {/* Romance Scam */}
+          <button
+            onClick={() => setScenarioType('romance_scam')}
+            className={cn(
+              'p-4 rounded-lg border transition-all cursor-pointer text-left',
+              scenarioType === 'romance_scam'
+                ? 'border-gold bg-gold/10 ring-2 ring-gold/20'
+                : 'border-surface-border hover:border-gold/30 bg-surface'
+            )}
+          >
+            <div className="flex items-start gap-3">
+              <span className="text-xl">🛡️</span>
+              <div className="flex-1">
+                <p className="font-semibold text-white text-sm">Romance Scam</p>
+                <p className="text-xs text-gray-500 mt-0.5">Criminoso de app de relacionamento</p>
+                <p className="text-xs text-gold font-medium mt-2">R$ 49,90 · 1 crédito</p>
+              </div>
+            </div>
+          </button>
+
+          {/* Parceiro do Job */}
+          <button
+            onClick={() => setScenarioType('job_partner')}
+            className={cn(
+              'p-4 rounded-lg border transition-all cursor-pointer text-left',
+              scenarioType === 'job_partner'
+                ? 'border-gold bg-gold/10 ring-2 ring-gold/20'
+                : 'border-surface-border hover:border-gold/30 bg-surface'
+            )}
+          >
+            <div className="flex items-start gap-3">
+              <span className="text-xl">💔</span>
+              <div className="flex-1">
+                <p className="font-semibold text-white text-sm">Parceiro do Job</p>
+                <p className="text-xs text-gray-500 mt-0.5">Perfis ocultos em plataformas adultas</p>
+                <p className="text-xs text-gold font-medium mt-2">R$ 49,90 · 1 crédito</p>
+              </div>
+            </div>
+          </button>
+
+          {/* Vídeos Íntimos */}
+          <button
+            onClick={() => setScenarioType('intimate_video')}
+            className={cn(
+              'p-4 rounded-lg border transition-all cursor-pointer text-left',
+              scenarioType === 'intimate_video'
+                ? 'border-gold bg-gold/10 ring-2 ring-gold/20'
+                : 'border-surface-border hover:border-gold/30 bg-surface'
+            )}
+          >
+            <div className="flex items-start gap-3">
+              <span className="text-xl">📹</span>
+              <div className="flex-1">
+                <p className="font-semibold text-white text-sm">Vídeos Íntimos</p>
+                <p className="text-xs text-gray-500 mt-0.5">Sextorsão e exposição</p>
+                <p className="text-xs text-gold font-medium mt-2">R$ 49,90 · 1 crédito</p>
+              </div>
+            </div>
+          </button>
+        </div>
       </div>
 
       <Card>
@@ -178,8 +267,24 @@ export default function SearchPage() {
           {activeTab === 'photo' && (
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-1.5">
-                {t('search.tab_photo')}
+                Foto biométrica facial
               </label>
+
+              {/* UX biométrica — Marcos 29/04/2026 */}
+              <div className="mb-3 p-3 rounded-lg bg-gold/5 border border-gold/20 text-xs text-gray-400 leading-relaxed">
+                <p className="text-gold font-medium mb-1.5">📸 Não use foto de Instagram com filtro</p>
+                <p className="mb-2">
+                  Usamos biometria facial real (não reconhecimento por contexto). Pra funcionar, a foto precisa de:
+                </p>
+                <ul className="space-y-0.5 ml-3 list-disc text-gray-500">
+                  <li>Rosto de frente (não perfil, não de costas)</li>
+                  <li>Bem iluminado, sem filtros do Instagram/Snapchat</li>
+                  <li>Sem óculos escuros, máscara ou cabelo cobrindo</li>
+                  <li>Pessoa sozinha no frame</li>
+                  <li>Resolução mínima 640×640, formato JPG/PNG</li>
+                </ul>
+              </div>
+
               <label
                 className={cn(
                   'flex flex-col items-center justify-center w-full h-48 rounded-lg border-2 border-dashed cursor-pointer transition-colors',
@@ -193,13 +298,13 @@ export default function SearchPage() {
                 ) : (
                   <div className="text-center">
                     <Upload className="h-8 w-8 text-gray-600 mx-auto mb-2" />
-                    <p className="text-sm text-gray-500">{t('search.photo_label')}</p>
-                    <p className="text-xs text-gray-600 mt-1">{t('search.photo_formats')}</p>
+                    <p className="text-sm text-gray-500">Enviar foto biométrica</p>
+                    <p className="text-xs text-gray-600 mt-1">JPG ou PNG · ≥ 640×640 · sem filtros</p>
                   </div>
                 )}
                 <input
                   type="file"
-                  accept="image/*"
+                  accept="image/jpeg,image/png"
                   className="hidden"
                   onChange={handleFileChange}
                 />
@@ -286,6 +391,62 @@ export default function SearchPage() {
             </div>
           )}
 
+          {/* V6 — Confidence overall + status do pipeline */}
+          {result.overallConfidence !== undefined && result.overallConfidence > 0 && (
+            <div className="mb-6 p-4 rounded-lg bg-gold/5 border border-gold/20">
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">Confiança da identificação</p>
+                  <p className="text-2xl font-display font-bold text-gold mt-0.5">
+                    {result.overallConfidence}%
+                  </p>
+                </div>
+                <div className="text-right text-xs text-gray-500 leading-relaxed">
+                  {result.pipelineStoppedAt === 2 ? (
+                    <>
+                      <p className="text-gold font-medium">Validação cruzada cedo</p>
+                      <p>Foto + telefone confirmaram em 2 etapas.</p>
+                    </>
+                  ) : result.pipelineStoppedAt === 5 ? (
+                    <>
+                      <p className="text-gold font-medium">Pipeline completo</p>
+                      <p>5 etapas executadas, incluindo descoberta de pseudônimos.</p>
+                    </>
+                  ) : (
+                    <p className="text-gray-500">Pipeline executado.</p>
+                  )}
+                  {result.elapsedMs !== undefined && (
+                    <p className="text-gray-600 mt-1">{(result.elapsedMs / 1000).toFixed(1)}s</p>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* V6 — Pseudônimos descobertos (etapa 3) */}
+          {result.aliasesExtracted && result.aliasesExtracted.length > 0 && (
+            <div className="mb-6">
+              <h3 className="text-sm font-semibold text-gray-300 mb-2">
+                Pseudônimos descobertos
+                <span className="ml-2 text-xs font-normal text-gray-500">
+                  (extraídos automaticamente das URLs encontradas)
+                </span>
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {result.aliasesExtracted.map((a, i) => (
+                  <span
+                    key={i}
+                    className="inline-flex items-center gap-1.5 bg-gold/10 text-gold text-xs px-2.5 py-1 rounded-full border border-gold/20"
+                  >
+                    <AtSign className="h-3 w-3" />
+                    {a.alias}
+                    <span className="text-gray-500 font-mono">×{a.count}</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
           {result.findings && result.findings.length > 0 && (
             <div>
               <h3 className="text-sm font-semibold text-gray-300 mb-3">{t('search.findings')}</h3>
@@ -296,14 +457,46 @@ export default function SearchPage() {
                     className="flex items-start gap-3 p-3 rounded-lg bg-bg border border-surface-border"
                   >
                     <div className={cn(
-                      'mt-0.5 h-2 w-2 rounded-full shrink-0',
+                      'mt-1 h-2 w-2 rounded-full shrink-0',
                       f.severity === 'high' ? 'bg-red-400' :
                       f.severity === 'medium' ? 'bg-yellow-400' :
                       'bg-green-400'
                     )} />
-                    <div>
-                      <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">{f.category}</p>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between gap-2 mb-0.5">
+                        <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+                          {f.category === 'adult_content' ? 'Plataforma adulta' : f.category === 'social_presence' ? 'Rede social' : f.category}
+                        </p>
+                        {f.confidence !== undefined && f.confidence > 0 && (
+                          <span className={cn(
+                            'text-[10px] font-mono font-semibold px-1.5 py-0.5 rounded shrink-0',
+                            f.confidence >= 95 ? 'bg-red-500/15 text-red-300 border border-red-500/30' :
+                            f.confidence >= 85 ? 'bg-orange-500/15 text-orange-300 border border-orange-500/30' :
+                            f.confidence >= 50 ? 'bg-yellow-500/15 text-yellow-300 border border-yellow-500/30' :
+                            'bg-gray-500/15 text-gray-400 border border-gray-500/30'
+                          )}>
+                            {f.confidence}%
+                          </span>
+                        )}
+                      </div>
                       <p className="text-sm text-gray-300">{f.detail}</p>
+                      {f.url && (
+                        <a href={f.url} target="_blank" rel="noopener noreferrer" className="text-xs text-gold/70 hover:text-gold mt-1 truncate block">
+                          {f.url}
+                        </a>
+                      )}
+                      {f.signals && f.signals.length > 0 && (
+                        <div className="flex flex-wrap gap-1 mt-1.5">
+                          {f.signals.map((s, j) => (
+                            <span key={j} className="text-[10px] text-gray-500 bg-surface-border/50 px-1.5 py-0.5 rounded font-mono">
+                              {s === 'phone' ? '📞 telefone' :
+                                s === 'photo' ? '📸 foto' :
+                                  s === 'alias' ? '🎭 pseudo' :
+                                    s === 'name' ? '👤 nome' : s}
+                            </span>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </div>
                 ))}
