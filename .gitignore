@@ -22,3 +22,12 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Deploy scripts com credenciais (NUNCA commitar — DPO 01/05/2026)
+_deploy_hetzner_*.cjs
+
+# Imagens HEIC não otimizadas pra web (Revisor 01/05/2026)
+*.HEIC
+
+# Backups locais de dist/ (Revisor 01/05/2026)
+dist.bak-*
