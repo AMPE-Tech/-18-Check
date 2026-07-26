@@ -15,7 +15,6 @@ import {
   RefreshCw,
   ScanFace,
   ShieldCheck,
-  Upload,
 } from 'lucide-react'
 
 /* ------------------------------------------------------------------ */
@@ -59,7 +58,7 @@ function Stepper({ current }: { current: Step }) {
   const steps = [
     { key: 'consent', label: 'Consentimento', icon: ShieldCheck },
     { key: 'liveness', label: 'Captura ao vivo', icon: ScanFace },
-    { key: 'document', label: 'Documento', icon: IdCard },
+    { key: 'document', label: 'CPF', icon: IdCard },
     { key: 'result', label: 'Resultado', icon: FileCheck },
   ] as const
 
@@ -127,8 +126,7 @@ export default function SearchPage() {
   const [cameraOn, setCameraOn] = useState(false)
   const [recording, setRecording] = useState(false)
   const [livenessDone, setLivenessDone] = useState(false)
-  const [documentFile, setDocumentFile] = useState<File | null>(null)
-  const [documentPreview, setDocumentPreview] = useState<string | null>(null)
+  const [cpf, setCpf] = useState('')
 
   const [scan, setScan] = useState<SelfScan | null>(null)
 
@@ -235,40 +233,40 @@ export default function SearchPage() {
     }
   }
 
-  /* --- 3. documento --- */
-  function handleDocumentChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0]
-    if (!file) return
-    setDocumentFile(file)
-    const reader = new FileReader()
-    reader.onloadend = () => setDocumentPreview(reader.result as string)
-    reader.readAsDataURL(file)
+  /* --- 3. identidade (CPF contra base oficial) --- */
+  const cpfDigits = cpf.replace(/\D/g, '')
+
+  function handleCpfChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const digits = e.target.value.replace(/\D/g, '').slice(0, 11)
+    const masked = digits
+      .replace(/(\d{3})(\d)/, '$1.$2')
+      .replace(/(\d{3})\.(\d{3})(\d)/, '$1.$2.$3')
+      .replace(/(\d{3})\.(\d{3})\.(\d{3})(\d)/, '$1.$2.$3-$4')
+    setCpf(masked)
   }
 
-  async function submitDocument() {
-    if (!session || !documentFile) return
+  async function submitIdentity() {
+    if (!session || cpfDigits.length !== 11) return
     setLoading(true)
     setError('')
     try {
-      const form = new FormData()
-      form.append('sessionId', session.sessionId)
-      form.append('document', documentFile)
-
-      const { data } = await api.post('/identity/document', form, {
-        headers: { 'Content-Type': 'multipart/form-data' },
+      const { data } = await api.post('/identity/identity', {
+        sessionId: session.sessionId,
+        cpf: cpfDigits,
       })
-      const result = unwrap<{ status: string; confidence: number }>(data)
+      const result = unwrap<{ status: string; confidence: number; reason?: string }>(data)
 
       if (result.status !== 'matched') {
         setError(
-          'O rosto do documento não confere com a captura ao vivo. A verificação só libera a busca da sua própria imagem.'
+          result.reason ||
+            'O rosto capturado não confere com o registro oficial deste CPF. A verificação só libera a busca da sua própria imagem.'
         )
         return
       }
 
       await startScan()
     } catch (err) {
-      setError(readError(err, 'Falha ao validar o documento. Tente novamente.'))
+      setError(readError(err, 'Falha ao validar a identidade. Tente novamente.'))
     } finally {
       setLoading(false)
     }
@@ -310,8 +308,7 @@ export default function SearchPage() {
     setConsented(false)
     setRecording(false)
     setLivenessDone(false)
-    setDocumentFile(null)
-    setDocumentPreview(null)
+    setCpf('')
     setScan(null)
     setError('')
   }
@@ -473,46 +470,42 @@ export default function SearchPage() {
         {step === 'document' && (
           <div>
             <CardHeader>
-              <CardTitle>Documento com foto</CardTitle>
+              <CardTitle>Confirmação de identidade</CardTitle>
             </CardHeader>
 
             {livenessDone && (
-              <div className="flex items-center gap-2 text-xs text-gold mb-4">
+              <div className="flex items-center gap-2 text-xs text-gold mb-5">
                 <Check className="h-3.5 w-3.5" />
                 Captura ao vivo confirmada
               </div>
             )}
 
-            <label
-              className={cn(
-                'flex flex-col items-center justify-center w-full h-56 rounded-lg border-2 border-dashed cursor-pointer transition-colors',
-                documentPreview
-                  ? 'border-gold/30 bg-gold/5'
-                  : 'border-surface-border bg-surface hover:border-gold/20'
-              )}
-            >
-              {documentPreview ? (
-                <img src={documentPreview} alt="" className="h-full object-contain rounded p-2" />
-              ) : (
-                <div className="text-center px-6">
-                  <Upload className="h-8 w-8 text-gray-600 mx-auto mb-2" />
-                  <p className="text-sm text-gray-500">RG, CNH ou passaporte</p>
-                  <p className="text-xs text-gray-600 mt-1">
-                    A foto do documento precisa estar legível
-                  </p>
-                </div>
-              )}
-              <input
-                type="file"
-                accept="image/*"
-                className="hidden"
-                onChange={handleDocumentChange}
-              />
-            </label>
+            <p className="text-sm text-gray-400 leading-relaxed mb-5">
+              Informe seu CPF. Comparamos o rosto da captura que você acabou de fazer
+              com o registro oficial — <span className="text-gray-300">não é preciso
+              fotografar documento</span>.
+            </p>
 
-            {documentFile && (
-              <p className="text-xs text-gray-500 mt-2">{documentFile.name}</p>
-            )}
+            <div>
+              <label
+                htmlFor="cpf"
+                className="block text-sm font-medium text-gray-300 mb-1.5"
+              >
+                CPF
+              </label>
+              <input
+                id="cpf"
+                inputMode="numeric"
+                autoComplete="off"
+                value={cpf}
+                onChange={handleCpfChange}
+                placeholder="000.000.000-00"
+                className="w-full bg-bg border border-surface-border rounded-lg px-4 py-3 text-white placeholder-gray-600 font-mono tracking-wide focus:border-gold/40 focus:outline-none transition-colors"
+              />
+              <p className="text-xs text-gray-600 mt-2">
+                Usado apenas nesta conferência. Não fica guardado.
+              </p>
+            </div>
 
             {error && <ErrorBox message={error} />}
 
@@ -520,7 +513,11 @@ export default function SearchPage() {
               <Button variant="ghost" onClick={reset}>
                 Cancelar
               </Button>
-              <Button onClick={submitDocument} loading={loading} disabled={!documentFile}>
+              <Button
+                onClick={submitIdentity}
+                loading={loading}
+                disabled={cpfDigits.length !== 11}
+              >
                 <IdCard className="h-4 w-4" />
                 Confirmar identidade
               </Button>
