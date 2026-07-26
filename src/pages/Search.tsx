@@ -45,6 +45,12 @@ interface SelfScan {
 
 const STEP_ORDER: Step[] = ['consent', 'liveness', 'document', 'scanning', 'result']
 
+/* O backend responde { success, data }. Mesmo desembrulho já usado em auth.tsx. */
+function unwrap<T>(body: unknown): T {
+  const envelope = body as { data?: T }
+  return (envelope?.data ?? body) as T
+}
+
 /* ------------------------------------------------------------------ */
 /*  Stepper                                                            */
 /* ------------------------------------------------------------------ */
@@ -146,8 +152,8 @@ export default function SearchPage() {
     setError('')
     setLoading(true)
     try {
-      const { data } = await api.post<IdentitySession>('/identity/session')
-      setSession(data)
+      const { data } = await api.post('/identity/session')
+      setSession(unwrap<IdentitySession>(data))
       setStep('liveness')
     } catch (err) {
       setError(readError(err, 'Não foi possível iniciar a verificação. Tente novamente.'))
@@ -209,14 +215,13 @@ export default function SearchPage() {
       form.append('sessionId', session.sessionId)
       form.append('capture', blob, 'liveness.webm')
 
-      const { data } = await api.post<{ status: string; reason?: string }>(
-        '/identity/liveness',
-        form,
-        { headers: { 'Content-Type': 'multipart/form-data' } }
-      )
+      const { data } = await api.post('/identity/liveness', form, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      })
+      const result = unwrap<{ status: string; reason?: string }>(data)
 
-      if (data.status !== 'passed') {
-        setError(data.reason || 'Não conseguimos confirmar a captura ao vivo. Tente de novo.')
+      if (result.status !== 'passed') {
+        setError(result.reason || 'Não conseguimos confirmar a captura ao vivo. Tente de novo.')
         return
       }
 
@@ -249,13 +254,12 @@ export default function SearchPage() {
       form.append('sessionId', session.sessionId)
       form.append('document', documentFile)
 
-      const { data } = await api.post<{ status: string; confidence: number }>(
-        '/identity/document',
-        form,
-        { headers: { 'Content-Type': 'multipart/form-data' } }
-      )
+      const { data } = await api.post('/identity/document', form, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      })
+      const result = unwrap<{ status: string; confidence: number }>(data)
 
-      if (data.status !== 'matched') {
+      if (result.status !== 'matched') {
         setError(
           'O rosto do documento não confere com a captura ao vivo. A verificação só libera a busca da sua própria imagem.'
         )
@@ -275,10 +279,8 @@ export default function SearchPage() {
     if (!session) return
     setStep('scanning')
     try {
-      const { data } = await api.post<{ scanId: string }>('/scan/self', {
-        sessionId: session.sessionId,
-      })
-      await pollScan(data.scanId)
+      const { data } = await api.post('/scan/self', { sessionId: session.sessionId })
+      await pollScan(unwrap<{ scanId: string }>(data).scanId)
       await refreshUser()
     } catch (err) {
       setError(readError(err, 'Falha ao iniciar a varredura.'))
@@ -288,9 +290,10 @@ export default function SearchPage() {
 
   async function pollScan(scanId: string) {
     for (let attempt = 0; attempt < 60; attempt++) {
-      const { data } = await api.get<SelfScan>(`/scan/self/${scanId}`)
-      if (data.status !== 'processing') {
-        setScan(data)
+      const { data } = await api.get(`/scan/self/${scanId}`)
+      const result = unwrap<SelfScan>(data)
+      if (result.status !== 'processing') {
+        setScan(result)
         setStep('result')
         return
       }
