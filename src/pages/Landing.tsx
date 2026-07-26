@@ -8,9 +8,13 @@ import {
   ChevronDown,
   Clock,
   Eye,
+  FileSearch,
   Globe,
   Heart,
+  IdCard,
   Lock,
+  RefreshCw,
+  ScanFace,
   Search,
   Settings,
   Shield,
@@ -30,13 +34,6 @@ import GoldText from '../components/GoldText'
 /* ------------------------------------------------------------------ */
 /*  Data                                                               */
 /* ------------------------------------------------------------------ */
-
-const scoreColors: Record<string, string> = {
-  HIGH: 'bg-red-500/15 text-red-400 border-red-500/30',
-  MODERATE: 'bg-yellow-500/15 text-yellow-400 border-yellow-500/30',
-  LOW: 'bg-green-500/15 text-green-400 border-green-500/30',
-  NONE: 'bg-gray-500/15 text-gray-400 border-gray-500/30',
-}
 
 /* Gradient divider component */
 function Divider() {
@@ -193,73 +190,6 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Testimonials data                                                  */
-/* ------------------------------------------------------------------ */
-
-const testimonials = [
-  {
-    slug: 'user-01', flag: '🇺🇸', name: 'Sarah M.', location: 'Texas, EUA',
-    score: 'ALTO', scoreKey: 'HIGH',
-    text: 'Estávamos juntos há 2 anos. O [18+]Check encontrou 3 perfis ativos no OnlyFans que ele escondia. Eu merecia saber.',
-    platforms: ['OnlyFans', 'Fansly'],
-  },
-  {
-    slug: 'user-02', flag: '🇧🇷', name: 'Rafael T.', location: 'São Paulo, Brasil',
-    score: 'ALTO', scoreKey: 'HIGH',
-    text: 'Minha noiva tinha perfil ativo em 2 plataformas adultas. Descobri a 3 meses do casamento. Melhor saber antes do que depois.',
-    platforms: ['Privacy', 'XVideos'],
-  },
-  {
-    slug: 'user-03', flag: '🇬🇧', name: 'Emma L.', location: 'Londres, UK',
-    score: 'ALTO', scoreKey: 'HIGH',
-    text: 'He told me he was a consultant. The facial scan matched him to 5 escort profiles across Europe. Absolutely shocking.',
-    platforms: ['EscortDirectory', 'AdultWork'],
-  },
-  {
-    slug: 'user-04', flag: '🇩🇪', name: 'Thomas K.', location: 'Berlim, Alemanha',
-    score: 'NENHUM', scoreKey: 'NONE',
-    text: 'Ich hatte Zweifel, aber der Bericht war eindeutig: nichts gefunden. Jetzt habe ich Sicherheit und Vertrauen zurück.',
-    platforms: [],
-  },
-  {
-    slug: 'user-05', flag: '🇲🇽', name: 'Carolina V.', location: 'Cidade do México',
-    score: 'ALTO', scoreKey: 'HIGH',
-    text: 'Mi esposo viajaba mucho "por trabajo". El escaneo facial lo encontró en apps de citas en 3 países diferentes. Le confronté con las pruebas.',
-    platforms: ['Tinder', 'Bumble', 'Ashley Madison'],
-  },
-  {
-    slug: 'user-06', flag: '🇫🇷', name: 'Marie D.', location: 'Paris, França',
-    score: 'MODERADO', scoreKey: 'MODERATE',
-    text: "J'ai trouvé son profil sur un site de rencontres alors qu'on était ensemble depuis 4 ans. Le rapport m'a ouvert les yeux.",
-    platforms: ['Gleeden'],
-  },
-  {
-    slug: 'user-07', flag: '🇯🇵', name: 'Yuki S.', location: 'Tóquio, Japão',
-    score: 'ALTO', scoreKey: 'HIGH',
-    text: '3年間信じていた彼が、別の名前でアダルトサイトにプロフィールを持っていました。このサービスがなかったら、一生知らなかったかもしれません。',
-    platforms: ['FC2', 'DXLive'],
-  },
-  {
-    slug: 'user-08', flag: '🇦🇺', name: 'James W.', location: 'Sydney, Austrália',
-    score: 'ALTO', scoreKey: 'HIGH',
-    text: 'My girlfriend of 18 months had an active adult profile with 200+ posts. The facial recognition matched her instantly. I needed to know.',
-    platforms: ['OnlyFans', 'ManyVids'],
-  },
-  {
-    slug: 'user-09', flag: '🇮🇹', name: 'Giulia R.', location: 'Milão, Itália',
-    score: 'NENHUM', scoreKey: 'NONE',
-    text: 'Avevo dei sospetti dopo che ha cambiato la password del telefono. Il rapporto è tornato pulito. Ora posso fidarmi di nuovo.',
-    platforms: [],
-  },
-  {
-    slug: 'user-10', flag: '🇰🇷', name: 'Min-ji P.', location: 'Seul, Coreia do Sul',
-    score: 'ALTO', scoreKey: 'HIGH',
-    text: '소개팅 앱에서 만난 남자가 다른 이름으로 성인 사이트에 활동하고 있었어요. 첫 데이트 전에 확인해서 다행이에요.',
-    platforms: ['AfreecaTV'],
-  },
-]
-
-/* ------------------------------------------------------------------ */
 /*  Component                                                          */
 /* ------------------------------------------------------------------ */
 
@@ -270,8 +200,8 @@ export default function Landing() {
   const personas = [
     { key: 'partners', icon: Heart },
     { key: 'dating', icon: Smartphone },
-    { key: 'business', icon: Users },
-    { key: 'hr', icon: Settings },
+    { key: 'business', icon: Lock },
+    { key: 'hr', icon: RefreshCw },
   ]
 
   const faqKeys = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6']
@@ -319,17 +249,17 @@ export default function Landing() {
               {/* Layer 1 — Headline (max impact, minimal words) */}
               <FadeInView delay={0}>
                 <h1 className="relative font-display font-bold text-[2rem] md:text-[3.5rem] leading-[1.1] tracking-tight text-white">
-                  Seus vídeos <span className="italic text-red-400">vazaram?</span>
+                  Sua imagem íntima <span className="italic text-red-400">vazou?</span>
                 </h1>
                 <p className="relative font-display italic text-lg md:text-2xl text-gray-300 mt-3 md:mt-4">
-                  Seu parceiro é do Job?
+                  Descubra onde está — e tire do ar.
                 </p>
               </FadeInView>
 
               {/* Layer 2 — Subheadline (one line, data-driven) */}
               <FadeInView delay={0.1}>
                 <p className="relative text-sm md:text-lg text-gray-400 font-body mt-4 md:mt-6">
-                  Varredura facial em <span className="text-gold">+50 plataformas</span> adultas. <span className="text-gold">396 milhões</span> de perfis.
+                  Você se verifica, nós varremos <span className="text-gold">+50 plataformas</span> atrás do seu rosto.
                 </p>
               </FadeInView>
 
@@ -340,11 +270,46 @@ export default function Landing() {
                     onClick={() => navigate('/register')}
                     className="w-full bg-gold text-black font-body font-bold py-4 rounded-xl text-sm md:text-base tracking-wide hover:bg-gold-light transition-all hover:shadow-lg hover:shadow-gold/20"
                   >
-                    Descubra agora — 75% OFF
+                    Verificar minha imagem — 75% OFF
                   </button>
-                  <p className="text-[11px] text-gray-600 mt-3">Sigiloso. Resultado em minutos.</p>
+                  <p className="text-[11px] text-gray-600 mt-3">
+                    Só você pode verificar a sua imagem. Resultado em minutos.
+                  </p>
                 </div>
               </FadeInView>
+            </section>
+
+            {/* ============================================================ */}
+            {/*  TRÊS CASOS DE USO                                           */}
+            {/* ============================================================ */}
+            <section className="px-6 md:px-10 pb-4">
+              <div className="space-y-3 md:grid md:grid-cols-3 md:gap-4 md:space-y-0">
+                {[
+                  { key: 'leak', icon: ScanFace, accent: 'gold' },
+                  { key: 'scam', icon: FileSearch, accent: 'gold' },
+                  { key: 'sextortion', icon: Shield, accent: 'gold' },
+                ].map((u, i) => (
+                  <FadeInView key={u.key} delay={0.25 + i * 0.06}>
+                    <div className="h-full bg-surface/50 rounded-2xl border border-white/5 p-5 hover:border-gold/15 transition-colors flex flex-col">
+                      <div className="h-10 w-10 rounded-xl bg-gold/10 border border-gold/20 flex items-center justify-center mb-3.5">
+                        <u.icon className="h-4.5 w-4.5 text-gold" />
+                      </div>
+                      <p className="text-white text-sm font-semibold">
+                        {t(`usecases.${u.key}_title`)}
+                      </p>
+                      <p className="text-gray-400 text-xs mt-1.5 leading-relaxed flex-1">
+                        {t(`usecases.${u.key}_desc`)}
+                      </p>
+                      <Link
+                        to="/register"
+                        className="text-[11px] text-gold font-semibold mt-4 inline-flex items-center gap-1.5 hover:gap-2.5 transition-all"
+                      >
+                        {t(`usecases.${u.key}_cta`)} →
+                      </Link>
+                    </div>
+                  </FadeInView>
+                ))}
+              </div>
             </section>
 
             {/* --- CAROUSEL --- */}
@@ -426,65 +391,6 @@ export default function Landing() {
             <Divider />
 
             {/* ============================================================ */}
-            {/*  TESTIMONIALS                                                */}
-            {/* ============================================================ */}
-            <section className="px-6 md:px-10 py-12 md:py-16">
-              <FadeInView delay={0.1}>
-                <p className="text-xs text-gray-500 uppercase tracking-[3px] font-semibold mb-2 text-center">
-                  Veja o que nossos usuários descobriram
-                </p>
-                <p className="text-sm text-gold/50 text-center mb-8 md:mb-10 font-body">
-                  Histórias reais de quem teve coragem de saber a verdade
-                </p>
-              </FadeInView>
-
-              <div className="space-y-4 md:grid md:grid-cols-2 md:gap-4 md:space-y-0">
-                {testimonials.map((tm, i) => (
-                  <FadeInView key={tm.name} delay={0.15 + i * 0.05}>
-                    <div className="bg-surface/50 rounded-2xl border border-white/5 p-5 hover:border-gold/10 transition-colors">
-                      <div className="flex items-start gap-3.5">
-                        <div className="relative shrink-0">
-                          <img
-                            src={`/assets/profiles/${tm.slug}.jpg`}
-                            alt=""
-                            className="h-14 w-14 rounded-full object-cover border-2 border-gold/20 blur-[1.5px]"
-                            onError={(e) => {
-                              const el = e.currentTarget
-                              if (el.src.endsWith('.jpg')) el.src = `/assets/profiles/${tm.slug}.svg`
-                            }}
-                          />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center justify-between gap-2">
-                            <span className="text-white font-semibold text-sm">{tm.flag} {tm.name}</span>
-                            <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full border ${scoreColors[tm.scoreKey]}`}>
-                              {tm.score}
-                            </span>
-                          </div>
-                          <p className="text-[10px] text-gray-500 mt-0.5">{tm.location}</p>
-                        </div>
-                      </div>
-                      <p className="text-xs text-gray-300 mt-4 leading-relaxed italic pl-1 border-l-2 border-gold/20 ml-1">
-                        "{tm.text}"
-                      </p>
-                      {tm.platforms.length > 0 && (
-                        <div className="flex flex-wrap gap-1.5 mt-4">
-                          {tm.platforms.map((p) => (
-                            <span key={p} className="text-[10px] text-red-400/80 bg-red-500/8 border border-red-500/15 rounded-md px-2.5 py-1 font-medium">
-                              {p}
-                            </span>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  </FadeInView>
-                ))}
-              </div>
-            </section>
-
-            <Divider />
-
-            {/* ============================================================ */}
             {/*  PARA QUEM                                                   */}
             {/* ============================================================ */}
             <section className="px-6 md:px-10 py-12 md:py-16">
@@ -535,19 +441,19 @@ export default function Landing() {
                       <div className="flex items-start gap-3">
                         <span className="text-red-400 text-sm mt-0.5">01</span>
                         <p className="text-gray-300 text-xs md:text-sm leading-relaxed">
-                          Parceiros gravam vídeos — com ou sem consentimento — e vendem em plataformas adultas <span className="text-white font-medium">fora do seu país</span>, onde você jamais descobriria.
+                          Conteúdo gravado a dois — com ou sem consentimento — acaba publicado em plataformas <span className="text-white font-medium">fora do seu país</span>, onde você jamais descobriria sozinho.
                         </p>
                       </div>
                       <div className="flex items-start gap-3">
                         <span className="text-red-400 text-sm mt-0.5">02</span>
                         <p className="text-gray-300 text-xs md:text-sm leading-relaxed">
-                          Dizem que filmam <span className="text-white font-medium">"por prazer"</span>. Destino real: OnlyFans, XVideos, Pornhub e dezenas de plataformas menores.
+                          Removido de um site, ele <span className="text-white font-medium">reaparece em espelho</span> semanas depois. Uma varredura única não resolve o caso.
                         </p>
                       </div>
                       <div className="flex items-start gap-3">
                         <span className="text-red-400 text-sm mt-0.5">03</span>
                         <p className="text-gray-300 text-xs md:text-sm leading-relaxed">
-                          Nosso <span className="text-gold font-semibold">reconhecimento facial</span> varre 50+ plataformas e identifica se sua imagem aparece sem autorização.
+                          Você se verifica, nós varremos 50+ plataformas atrás do <span className="text-gold font-semibold">seu rosto</span>, entramos com o pedido de remoção e seguimos monitorando.
                         </p>
                       </div>
                     </div>
@@ -573,11 +479,12 @@ export default function Landing() {
                 <p className="text-xs text-gray-500 uppercase tracking-[3px] font-semibold mb-8 md:mb-10 text-center">
                   {t('how_it_works.title')}
                 </p>
-                <div className="flex items-start justify-between gap-4 md:gap-8 max-w-[500px] mx-auto">
+                <div className="flex items-start justify-between gap-3 md:gap-6 max-w-[560px] mx-auto">
                   {[
-                    { icon: Camera, key: 'step1', step: '1' },
-                    { icon: Search, key: 'step2', step: '2' },
-                    { icon: Check, key: 'step3', step: '3' },
+                    { icon: ShieldCheck, key: 'step1', step: '1' },
+                    { icon: ScanFace, key: 'step2', step: '2' },
+                    { icon: IdCard, key: 'step3', step: '3' },
+                    { icon: Check, key: 'step4', step: '4' },
                   ].map((s) => (
                     <div key={s.key} className="flex flex-col items-center gap-3 flex-1">
                       <div className="relative">
