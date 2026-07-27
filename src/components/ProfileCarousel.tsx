@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
-import { AlertTriangle, ExternalLink, HeartCrack, Eye } from 'lucide-react'
+import { ExternalLink, Eye } from 'lucide-react'
+import CaseIllustration from './CaseIllustration'
+import { outcomeFromStatus } from '../lib/caseOutcome'
 
 /**
  * Carrossel de casos reais no topo da Landing.
@@ -15,8 +17,9 @@ import { AlertTriangle, ExternalLink, HeartCrack, Eye } from 'lucide-react'
  * de golpe, inventar processo criminal destrói a credibilidade de tudo mais
  * que a página afirma.
  *
- * Também não exibimos foto. Os casos reais não trazem imagem, e publicar
- * retrato de pessoa condenada, extraído de notícia, é risco sem retorno.
+ * Não exibimos foto de ninguém. No lugar, uma ilustração do DESFECHO —
+ * algema para prisão, martelo para condenação, globo para extradição. O card
+ * mostra o que aconteceu com o caso, não o rosto de quem responde por ele.
  */
 
 type Category = 'romance_scam' | 'sextortion'
@@ -145,7 +148,7 @@ export default function ProfileCarousel() {
 
   const c = cases[current]
   const isRomance = c.category === 'romance_scam'
-  const Icon = isRomance ? HeartCrack : AlertTriangle
+  const outcome = outcomeFromStatus(c.status)
 
   return (
     <div className="w-full">
@@ -162,13 +165,17 @@ export default function ProfileCarousel() {
         <div className="p-4">
           <div className="flex items-start gap-3 mb-3">
             <div
-              className={`h-12 w-12 rounded-xl border flex items-center justify-center shrink-0 transition-colors duration-500 ${
-                isRomance
-                  ? 'bg-red-500/10 border-red-500/25'
-                  : 'bg-orange-500/10 border-orange-500/25'
+              className={`relative h-16 w-16 rounded-xl border flex items-center justify-center shrink-0 overflow-hidden transition-colors duration-500 ${
+                showDetail ? 'border-gold/35 bg-gold/[0.07]' : 'border-surface-border bg-bg'
               }`}
             >
-              <Icon className={`h-5 w-5 ${isRomance ? 'text-red-400' : 'text-orange-400'}`} />
+              <div className="absolute inset-0 bg-gradient-to-br from-gold/[0.06] to-transparent" />
+              <CaseIllustration
+                outcome={outcome}
+                className={`relative h-9 w-9 transition-colors duration-500 ${
+                  showDetail ? 'text-gold' : 'text-gold/45'
+                }`}
+              />
             </div>
 
             <div className="flex-1 min-w-0">
