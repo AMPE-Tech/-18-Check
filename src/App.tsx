@@ -10,6 +10,7 @@ import ForgotPassword from './pages/ForgotPassword'
 import Dashboard from './pages/Dashboard'
 import HistoryPage from './pages/History'
 import PlansPage from './pages/Plans'
+import Account from './pages/Account'
 import ToastContainer from './components/ui/Toast'
 import { lazy, Suspense, type ReactNode } from 'react'
 
@@ -93,6 +94,7 @@ export default function App() {
             <Route path="history" element={<HistoryPage />} />
             <Route path="history/:id" element={<HistoryPage />} />
             <Route path="plans" element={<PlansPage />} />
+            <Route path="conta" element={<Account />} />
           </Route>
 
           {/* Catch-all */}

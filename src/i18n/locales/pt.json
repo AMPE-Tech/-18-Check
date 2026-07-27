@@ -38,7 +38,7 @@
   "usecases": {
     "title": "Para que serve o [18+]Check",
     "leak_title": "Vazamento da sua imagem",
-    "leak_desc": "Você se verifica por captura ao vivo e documento. Varremos as plataformas atrás do seu rosto e pedimos a remoção do que for encontrado.",
+    "leak_desc": "Você se verifica por captura ao vivo e CPF. Varremos as plataformas atrás do seu rosto e pedimos a remoção do que for encontrado.",
     "leak_cta": "Verificar minha imagem",
     "scam_title": "Golpe romântico",
     "scam_desc": "Recebeu foto de alguém que conheceu online? Checamos se aquela imagem é reaproveitada — em quantos perfis aparece, sob quantos nomes. A resposta é sobre a foto ser falsa, não sobre quem é a pessoa.",
@@ -62,7 +62,7 @@
     "title": "Como funciona a verificação",
     "step1": "Consentimento",
     "step2": "Captura ao vivo",
-    "step3": "Documento com foto",
+    "step3": "Confirmação por CPF",
     "step4": "Resultado e remoção"
   },
   "pricing": {
@@ -76,7 +76,7 @@
     "single_f2": "Verificação de identidade por captura ao vivo",
     "single_f3": "Relatório com todas as ocorrências",
     "single_f4": "Pedido de remoção incluído",
-    "single_f5": "Captura e documento descartados após a conferência",
+    "single_f5": "Captura ao vivo e CPF descartados após a conferência",
     "single_price": "$29",
     "single_compare": "Ação de remoção avulsa: $500+",
     "pro_name": "Monitoramento Contínuo",
@@ -99,11 +99,11 @@
   "faq": {
     "title": "Tire suas dúvidas",
     "q1": "Posso verificar a imagem de outra pessoa?",
-    "a1": "Não. A varredura facial só roda depois que você prova ser a pessoa retratada, por captura ao vivo conferida contra documento com foto. A busca usa o rosto dessa captura — não existe campo para enviar foto de terceiro, nem busca por nome, telefone ou CPF de outra pessoa.",
-    "q2": "Por que preciso enviar documento?",
-    "a2": "Porque é o que impede que alguém use o serviço para procurar outra pessoa. Sem essa conferência, a ferramenta viraria um mecanismo de exposição — exatamente o oposto do que ela existe para fazer.",
-    "q3": "O que acontece com minha captura e meu documento?",
-    "a3": "São descartados assim que a conferência termina. Se você assinar o monitoramento contínuo, guardamos apenas a assinatura facial necessária para os alertas — e você pode apagá-la a qualquer momento pelo painel.",
+    "a1": "Não. A varredura facial só roda depois que você prova ser a pessoa retratada: uma captura ao vivo confirma que há alguém presente, e o rosto capturado é comparado com o registro oficial do seu CPF. A busca usa esse rosto — não existe campo para enviar foto de terceiro, nem busca por nome, telefone ou CPF alheio.",
+    "q2": "Por que preciso informar meu CPF?",
+    "a2": "Porque é o que impede que alguém use o serviço para procurar outra pessoa. Comparamos o rosto que você acabou de capturar com o registro oficial daquele CPF. Sem essa conferência, a ferramenta viraria um mecanismo de exposição — exatamente o oposto do que ela existe para fazer.",
+    "q3": "O que acontece com minha captura e meu CPF?",
+    "a3": "A captura ao vivo vai direto do seu navegador ao serviço de verificação e não passa pelos nossos servidores. O CPF é usado uma única vez, na conferência, e não é guardado. A referência facial é apagada ao fim da varredura, a menos que você autorize o monitoramento contínuo — e essa autorização é revogável na sua conta, a qualquer momento.",
     "q4": "E se encontrarem minha imagem?",
     "a4": "Você recebe o relatório com cada ocorrência e pode disparar o pedido de remoção direto do painel. O suporte jurídico acompanha os casos em que a plataforma não responde.",
     "q5": "Como funciona a checagem de golpe romântico?",
@@ -123,6 +123,7 @@
     "search": "Verificar",
     "history": "Histórico",
     "plans": "Planos",
+    "account": "Conta",
     "logout": "Sair"
   },
   "auth": {
@@ -246,6 +247,20 @@
     "cancel": "Cancelar",
     "no_credits": "Sem créditos. Adquira um plano para continuar.",
     "generic_error": "Não foi possível iniciar a verificação. Tente novamente."
+  },
+  "account": {
+    "title": "Minha conta",
+    "subtitle": "Seus dados e o que guardamos sobre você",
+    "data_title": "Dados da conta",
+    "biometric_title": "Referência facial",
+    "biometric_stored": "Sua referência facial está guardada",
+    "biometric_stored_desc": "Você autorizou guardá-la para o monitoramento contínuo — é ela que permite avisar se o conteúdo reaparecer depois da remoção. Apagando, o monitoramento para e cada nova verificação recomeça do zero.",
+    "biometric_revoke": "Apagar minha referência facial",
+    "biometric_confirm": "Isso apaga a referência de verdade, agora. O monitoramento contínuo é interrompido e não há como desfazer — uma nova verificação exigirá refazer a captura ao vivo e a conferência de CPF.",
+    "biometric_confirm_button": "Apagar definitivamente",
+    "biometric_none": "Nada guardado",
+    "biometric_none_desc": "Nenhuma referência facial sua está armazenada. Ela é apagada ao fim de cada varredura, a menos que você autorize o monitoramento contínuo na próxima verificação.",
+    "privacy_note": "Saiba o que tratamos e por quanto tempo na"
   },
   "history": {
     "title": "Histórico de Verificações",
