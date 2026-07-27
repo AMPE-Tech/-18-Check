@@ -227,6 +227,15 @@ export default function Landing() {
                   <span className="text-gold">[18+]</span>Check
                 </span>
               </Link>
+
+              {/* Navegação discreta por seção — só desktop */}
+              <nav className="hidden md:flex items-center gap-5">
+                <a href="#casos" className="text-[11px] font-light text-gray-500 hover:text-white tracking-wide transition-colors">Casos</a>
+                <a href="#quem-precisa" className="text-[11px] font-light text-gray-500 hover:text-white tracking-wide transition-colors">Quem Precisa</a>
+                <a href="#lgpd-gdpr" className="text-[11px] font-light text-gray-500 hover:text-white tracking-wide transition-colors">Vítimas LGPD &amp; GDPR</a>
+                <a href="#faq" className="text-[11px] font-light text-gray-500 hover:text-white tracking-wide transition-colors">Dúvidas</a>
+              </nav>
+
               <div className="flex items-center gap-3">
                 <LanguageSelector />
                 <ShimmerButton href="/register" className="!px-5 !py-2.5 !text-xs !rounded-lg">
@@ -282,7 +291,7 @@ export default function Landing() {
             {/* ============================================================ */}
             {/*  TRÊS CASOS DE USO                                           */}
             {/* ============================================================ */}
-            <section className="px-6 md:px-10 pb-4">
+            <section id="casos" className="px-6 md:px-10 pb-4 scroll-mt-20">
               <div className="space-y-3 md:grid md:grid-cols-3 md:gap-4 md:space-y-0">
                 {[
                   { key: 'leak', icon: ScanFace, accent: 'gold' },
@@ -393,7 +402,7 @@ export default function Landing() {
             {/* ============================================================ */}
             {/*  PARA QUEM                                                   */}
             {/* ============================================================ */}
-            <section className="px-6 md:px-10 py-12 md:py-16">
+            <section id="quem-precisa" className="px-6 md:px-10 py-12 md:py-16 scroll-mt-20">
               <FadeInView delay={0.1}>
                 <p className="text-xs text-gray-500 uppercase tracking-[3px] font-semibold mb-8 md:mb-10 text-center">
                   {t('personas.title')}
@@ -652,9 +661,53 @@ export default function Landing() {
             <Divider />
 
             {/* ============================================================ */}
+            {/*  LGPD & GDPR                                                 */}
+            {/* ============================================================ */}
+            <section id="lgpd-gdpr" className="px-6 md:px-10 py-12 md:py-16 scroll-mt-20">
+              <FadeInView delay={0.1}>
+                <div className="max-w-3xl mx-auto bg-gold/5 border border-gold/15 rounded-2xl p-6 md:p-8">
+                  <div className="flex items-center gap-2.5 mb-3">
+                    <Shield className="h-5 w-5 text-gold" />
+                    <p className="text-[10px] text-gold uppercase tracking-[3px] font-semibold">
+                      Vítimas LGPD &amp; GDPR
+                    </p>
+                  </div>
+                  <h3 className="font-display font-bold text-lg md:text-xl text-white mb-3 leading-tight">
+                    Seus dados expostos sem consentimento têm proteção legal.
+                  </h3>
+                  <p className="text-xs text-gray-300 leading-relaxed mb-6">
+                    A <strong className="text-white">LGPD</strong> (Brasil — Lei 13.709/2018) e o <strong className="text-white">GDPR</strong> (Europa — Regulamento UE 2016/679) garantem direitos a quem tem dados pessoais ou imagens íntimas expostas indevidamente. O [18+]Check ajuda a localizar onde seu conteúdo está publicado para que você exerça esses direitos.
+                  </p>
+                  <div className="space-y-3 mb-6">
+                    <div className="flex items-start gap-3">
+                      <Check className="h-3.5 w-3.5 text-gold shrink-0 mt-0.5" />
+                      <p className="text-[11px] text-gray-300"><strong className="text-white">Direito ao esquecimento</strong> — exigir a remoção de conteúdo pessoal não autorizado</p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <Check className="h-3.5 w-3.5 text-gold shrink-0 mt-0.5" />
+                      <p className="text-[11px] text-gray-300"><strong className="text-white">Direito de acesso</strong> — saber onde e como seus dados estão sendo tratados</p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <Check className="h-3.5 w-3.5 text-gold shrink-0 mt-0.5" />
+                      <p className="text-[11px] text-gray-300"><strong className="text-white">Direito à reparação</strong> — buscar indenização por danos morais e materiais</p>
+                    </div>
+                  </div>
+                  <a
+                    href="#contact-form"
+                    className="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-gold text-black text-xs font-bold hover:bg-gold-light transition-all hover:shadow-lg hover:shadow-gold/20"
+                  >
+                    Solicitar relatório de exposição
+                  </a>
+                </div>
+              </FadeInView>
+            </section>
+
+            <Divider />
+
+            {/* ============================================================ */}
             {/*  FAQ                                                         */}
             {/* ============================================================ */}
-            <section className="px-6 md:px-10 py-12 md:py-16">
+            <section id="faq" className="px-6 md:px-10 py-12 md:py-16 scroll-mt-20">
               <FadeInView delay={0.1}>
                 <p className="text-xs text-gray-500 uppercase tracking-[3px] font-semibold mb-8 md:mb-10 text-center">
                   {t('faq.title')}
@@ -722,7 +775,7 @@ export default function Landing() {
             {/* ============================================================ */}
             {/*  CONTACT FORM                                                */}
             {/* ============================================================ */}
-            <section className="px-6 md:px-10 py-12 md:py-16">
+            <section id="contact-form" className="px-6 md:px-10 py-12 md:py-16 scroll-mt-20">
               <FadeInView delay={0.1}>
                 <p className="text-xs text-gray-500 uppercase tracking-[3px] font-semibold mb-2 text-center">
                   Precisa de ajuda?
