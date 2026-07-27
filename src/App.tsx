@@ -8,11 +8,23 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import ForgotPassword from './pages/ForgotPassword'
 import Dashboard from './pages/Dashboard'
-import SearchPage from './pages/Search'
 import HistoryPage from './pages/History'
 import PlansPage from './pages/Plans'
 import ToastContainer from './components/ui/Toast'
-import type { ReactNode } from 'react'
+import { lazy, Suspense, type ReactNode } from 'react'
+
+/* A tela de verificação carrega o FaceLivenessDetector, que traz o
+   TensorFlow.js junto — sozinho ele mais que dobra o bundle. Separado por
+   rota, quem só abre a Landing não paga por isso. */
+const SearchPage = lazy(() => import('./pages/Search'))
+
+function RouteFallback() {
+  return (
+    <div className="flex items-center justify-center py-24">
+      <div className="h-8 w-8 border-2 border-gold border-t-transparent rounded-full animate-spin" />
+    </div>
+  )
+}
 
 function PrivateRoute({ children }: { children: ReactNode }) {
   const { user, loading } = useAuth()
@@ -70,7 +82,14 @@ export default function App() {
             element={<PrivateRoute><Layout /></PrivateRoute>}
           >
             <Route index element={<Dashboard />} />
-            <Route path="search" element={<SearchPage />} />
+            <Route
+              path="search"
+              element={
+                <Suspense fallback={<RouteFallback />}>
+                  <SearchPage />
+                </Suspense>
+              }
+            />
             <Route path="history" element={<HistoryPage />} />
             <Route path="history/:id" element={<HistoryPage />} />
             <Route path="plans" element={<PlansPage />} />

@@ -1,7 +1,12 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { FaceLivenessDetectorCore } from '@aws-amplify/ui-react-liveness'
+import type { AwsCredentialProvider } from '@aws-amplify/ui-react-liveness'
+import { ThemeProvider as AmplifyThemeProvider } from '@aws-amplify/ui-react'
+import '@aws-amplify/ui-react/styles.css'
 import { useAuth } from '../lib/auth'
 import api from '../lib/api'
+import { amplifyLivenessTheme } from '../lib/amplifyTheme'
 import Card, { CardHeader, CardTitle } from '../components/ui/Card'
 import Button from '../components/ui/Button'
 import { cn } from '../lib/utils'
@@ -25,8 +30,18 @@ type Step = 'consent' | 'liveness' | 'document' | 'scanning' | 'result'
 
 interface IdentitySession {
   sessionId: string
-  challenge: string[]
+  /* id da sessão de vivacidade na AWS — o navegador fala direto com ela */
+  providerSessionId: string
+  region: string
   expiresAt: string
+}
+
+interface LivenessCredentials {
+  accessKeyId: string
+  secretAccessKey: string
+  sessionToken: string
+  expiration: string
+  region: string
 }
 
 interface SelfMatch {
@@ -124,27 +139,10 @@ export default function SearchPage() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
-  const [cameraOn, setCameraOn] = useState(false)
-  const [recording, setRecording] = useState(false)
   const [livenessDone, setLivenessDone] = useState(false)
   const [cpf, setCpf] = useState('')
 
   const [scan, setScan] = useState<SelfScan | null>(null)
-
-  const videoRef = useRef<HTMLVideoElement | null>(null)
-  const streamRef = useRef<MediaStream | null>(null)
-  const recorderRef = useRef<MediaRecorder | null>(null)
-  const chunksRef = useRef<Blob[]>([])
-
-  /* --- limpeza da câmera --- */
-  const stopCamera = useCallback(() => {
-    streamRef.current?.getTracks().forEach((track) => track.stop())
-    streamRef.current = null
-    if (videoRef.current) videoRef.current.srcObject = null
-    setCameraOn(false)
-  }, [])
-
-  useEffect(() => stopCamera, [stopCamera])
 
   /* --- 1. consentimento + abertura de sessão --- */
   async function startSession() {
@@ -161,61 +159,30 @@ export default function SearchPage() {
     }
   }
 
-  /* --- 2. captura ao vivo --- */
-  async function startCamera() {
-    setError('')
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({
-        video: { facingMode: 'user' },
-        audio: false,
-      })
-      streamRef.current = stream
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream
-        await videoRef.current.play()
-      }
-      setCameraOn(true)
-    } catch {
-      setError('Não conseguimos acessar sua câmera. Autorize o acesso para continuar.')
+  /* --- 2. prova de vida ---
+     O vídeo vai do navegador direto para a AWS. Nada de captura passa por
+     aqui — só pedimos o veredito ao nosso backend quando ela termina. */
+
+  /* Credenciais curtas emitidas pelo nosso backend via STS, escopadas só a
+     iniciar a checagem de vivacidade. O formato é o que a Amplify espera. */
+  const fetchLivenessCredentials: AwsCredentialProvider = async () => {
+    const { data } = await api.get('/identity/liveness-credentials')
+    const creds = unwrap<LivenessCredentials>(data)
+    return {
+      accessKeyId: creds.accessKeyId,
+      secretAccessKey: creds.secretAccessKey,
+      sessionToken: creds.sessionToken,
+      expiration: creds.expiration ? new Date(creds.expiration) : undefined,
     }
   }
 
-  function recordLiveness() {
-    const stream = streamRef.current
-    if (!stream || !session) return
-
-    chunksRef.current = []
-    const recorder = new MediaRecorder(stream, { mimeType: pickMimeType() })
-    recorderRef.current = recorder
-
-    recorder.ondataavailable = (e) => {
-      if (e.data.size > 0) chunksRef.current.push(e.data)
-    }
-    recorder.onstop = () => {
-      void submitLiveness(new Blob(chunksRef.current, { type: recorder.mimeType }))
-    }
-
-    recorder.start()
-    setRecording(true)
-
-    // janela fixa de captura — tempo suficiente para os gestos do desafio
-    window.setTimeout(() => {
-      if (recorder.state !== 'inactive') recorder.stop()
-      setRecording(false)
-    }, 6000)
-  }
-
-  async function submitLiveness(blob: Blob) {
+  async function confirmLiveness() {
     if (!session) return
     setLoading(true)
     setError('')
     try {
-      const form = new FormData()
-      form.append('sessionId', session.sessionId)
-      form.append('capture', blob, 'liveness.webm')
-
-      const { data } = await api.post('/identity/liveness', form, {
-        headers: { 'Content-Type': 'multipart/form-data' },
+      const { data } = await api.post('/identity/liveness', {
+        sessionId: session.sessionId,
       })
       const result = unwrap<{ status: string; reason?: string }>(data)
 
@@ -224,11 +191,10 @@ export default function SearchPage() {
         return
       }
 
-      stopCamera()
       setLivenessDone(true)
       setStep('document')
     } catch (err) {
-      setError(readError(err, 'Falha ao enviar a captura. Tente novamente.'))
+      setError(readError(err, 'Falha ao confirmar a captura. Tente novamente.'))
     } finally {
       setLoading(false)
     }
@@ -303,12 +269,10 @@ export default function SearchPage() {
   }
 
   function reset() {
-    stopCamera()
     setStep('consent')
     setSession(null)
     setConsented(false)
     setRetentionConsent(false)
-    setRecording(false)
     setLivenessDone(false)
     setCpf('')
     setScan(null)
@@ -343,11 +307,11 @@ export default function SearchPage() {
               {[
                 {
                   icon: ScanFace,
-                  text: 'Você faz uma captura ao vivo pela câmera, seguindo gestos que o sistema pede na hora.',
+                  text: 'Você centraliza o rosto no oval e segue as instruções na tela. Isso confirma que há uma pessoa presente, e não uma foto ou gravação.',
                 },
                 {
                   icon: IdCard,
-                  text: 'Envia um documento com foto. Comparamos com a captura para confirmar que é você.',
+                  text: 'Informa seu CPF. Comparamos o rosto capturado com o registro oficial — sem precisar fotografar documento.',
                 },
                 {
                   icon: ShieldCheck,
@@ -433,59 +397,46 @@ export default function SearchPage() {
               <CardTitle>Captura ao vivo</CardTitle>
             </CardHeader>
 
-            <div className="rounded-lg bg-bg border border-surface-border p-4 mb-4">
-              <p className="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-3">
-                Faça estes gestos, nesta ordem
+            <div className="flex items-start gap-3 rounded-lg bg-bg border border-surface-border p-4 mb-5">
+              <Camera className="h-4 w-4 text-gold shrink-0 mt-0.5" />
+              <p className="text-xs text-gray-400 leading-relaxed">
+                Centralize o rosto no oval e siga as instruções na tela. A captura é
+                transmitida direto ao serviço de verificação —{' '}
+                <span className="text-gray-300">o vídeo não passa pelos nossos servidores</span>.
               </p>
-              <div className="flex flex-wrap gap-2">
-                {session.challenge.map((gesture, i) => (
-                  <span
-                    key={gesture}
-                    className="inline-flex items-center gap-2 bg-gold/10 text-gold text-xs px-3 py-1.5 rounded-full border border-gold/20"
-                  >
-                    <span className="font-bold">{i + 1}</span>
-                    {humanizeGesture(gesture)}
-                  </span>
-                ))}
-              </div>
             </div>
 
-            <div className="relative rounded-lg overflow-hidden bg-bg border border-surface-border aspect-video flex items-center justify-center">
-              <video
-                ref={videoRef}
-                playsInline
-                muted
-                className="h-full w-full object-cover"
-              />
-              {!cameraOn && (
-                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-                  <Camera className="h-8 w-8 text-gray-600" />
-                  <Button variant="outline" size="sm" onClick={startCamera}>
-                    Ativar câmera
-                  </Button>
-                </div>
-              )}
-              {recording && (
-                <div className="absolute top-3 left-3 flex items-center gap-2 bg-red-500/90 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">
-                  <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" />
-                  GRAVANDO
-                </div>
-              )}
-            </div>
+            {loading ? (
+              <div className="py-16 text-center">
+                <Loader2 className="h-8 w-8 text-gold animate-spin mx-auto mb-4" />
+                <p className="text-sm text-gray-500">Conferindo a captura...</p>
+              </div>
+            ) : (
+              <div className="rounded-lg overflow-hidden border border-surface-border">
+                <AmplifyThemeProvider theme={amplifyLivenessTheme} colorMode="dark">
+                  <FaceLivenessDetectorCore
+                    sessionId={session.providerSessionId}
+                    region={session.region}
+                    config={{ credentialProvider: fetchLivenessCredentials }}
+                    onAnalysisComplete={confirmLiveness}
+                    onError={(err) => {
+                      setError(
+                        err?.state === 'CAMERA_ACCESS_ERROR'
+                          ? 'Não conseguimos acessar sua câmera. Autorize o acesso para continuar.'
+                          : 'A verificação ao vivo falhou. Tente de novo, em local bem iluminado.'
+                      )
+                    }}
+                    disableStartScreen
+                  />
+                </AmplifyThemeProvider>
+              </div>
+            )}
 
             {error && <ErrorBox message={error} />}
 
             <div className="mt-6 flex justify-between">
               <Button variant="ghost" onClick={reset}>
                 Cancelar
-              </Button>
-              <Button
-                onClick={recordLiveness}
-                loading={loading}
-                disabled={!cameraOn || recording}
-              >
-                <ScanFace className="h-4 w-4" />
-                {recording ? 'Gravando...' : 'Gravar captura'}
               </Button>
             </div>
           </div>
@@ -659,21 +610,7 @@ function readError(err: unknown, fallback: string) {
   return msg || fallback
 }
 
-function humanizeGesture(gesture: string) {
-  const map: Record<string, string> = {
-    virar_esquerda: 'Vire o rosto à esquerda',
-    virar_direita: 'Vire o rosto à direita',
-    piscar: 'Pisque devagar',
-    sorrir: 'Sorria',
-    aproximar: 'Aproxime-se da câmera',
-  }
-  return map[gesture] || gesture
-}
 
-function pickMimeType() {
-  const candidates = ['video/webm;codecs=vp9', 'video/webm;codecs=vp8', 'video/webm', 'video/mp4']
-  return candidates.find((type) => MediaRecorder.isTypeSupported(type)) || ''
-}
 
 function formatDate(iso: string) {
   const date = new Date(iso)
