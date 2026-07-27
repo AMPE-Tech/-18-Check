@@ -74,10 +74,10 @@ saldo atualizado).
 { "success": true, "data": { "scanId": "sus_01H..." } }
 ```
 
-**Erros** — o frontend lê `response.data.message` e mostra ao usuário:
+**Erros** — mesma forma do resto da API (`utils/response.js`), com o texto em `error`:
 
 ```json
-{ "success": false, "message": "Você não tem checagens disponíveis." }
+{ "success": false, "error": "Créditos insuficientes" }
 ```
 
 `413` também precisa devolver JSON. O nginx da API já está com
@@ -148,8 +148,6 @@ Campos ausentes são tolerados: o frontend esconde o bloco correspondente. `stat
 Quando só vier `handle`/`phone` (sem foto), use `inconclusive` no `verdict` e preencha
 `handleReports` — o bloco de denúncias do contato é renderizado independente do veredito
 da foto, então a informação chega ao usuário do mesmo jeito.
-
----
 
 ---
 
