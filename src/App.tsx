@@ -3,6 +3,7 @@ import { AuthProvider, useAuth } from './lib/auth'
 import PublicLayout from './components/PublicLayout'
 import Layout from './components/Layout'
 import Landing from './pages/Landing'
+import Privacy from './pages/Privacy'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import ForgotPassword from './pages/ForgotPassword'
@@ -45,6 +46,7 @@ export default function App() {
         <Routes>
           {/* Landing — standalone, no PublicLayout wrapper */}
           <Route index element={<Landing />} />
+          <Route path="privacidade" element={<Privacy />} />
 
           {/* Public routes with header/footer */}
           <Route element={<PublicLayout />}>

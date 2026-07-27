@@ -249,7 +249,12 @@
   },
   "history": {
     "title": "Histórico de Verificações",
-    "query": "Consulta",
+    "query": "Verificação",
+    "status": "Situação",
+    "occurrences": "Ocorrências",
+    "status_processing": "Em andamento",
+    "status_done": "Concluída",
+    "status_failed": "Falhou",
     "type": "Tipo",
     "score": "Score",
     "risk": "Risco",

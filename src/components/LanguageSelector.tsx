@@ -8,8 +8,8 @@ export default function LanguageSelector() {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
-  const langBase = i18n.language?.split('-')[0] || 'en'
-  const currentLang = languages.find((l) => l.code === langBase) || languages.find((l) => l.code === 'en') || languages[1]
+  const langBase = i18n.language?.split('-')[0] || 'pt'
+  const currentLang = languages.find((l) => l.code === langBase) || languages[0]
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {

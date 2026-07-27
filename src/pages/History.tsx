@@ -8,34 +8,44 @@ import Badge from '../components/ui/Badge'
 import { formatDate } from '../lib/utils'
 import { History as HistoryIcon, Search, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react'
 
-interface SearchItem {
+interface ScanItem {
   id: string
-  name?: string
-  phone?: string
-  social?: string
-  riskLevel: string
-  riskScore?: number
-  createdAt: string
   status: string
+  matchCount: number
+  createdAt: string
+  completedAt?: string
 }
 
 export default function HistoryPage() {
   const { t } = useTranslation()
-  const [items, setItems] = useState<SearchItem[]>([])
+  const [items, setItems] = useState<ScanItem[]>([])
   const [loading, setLoading] = useState(true)
   const [page, setPage] = useState(1)
   const [hasMore, setHasMore] = useState(false)
 
   useEffect(() => {
-    setLoading(true)
-    api.get(`/search/history?page=${page}&limit=10`)
-      .then(({ data }) => {
-        const list = data.items || data || []
+    let active = true
+
+    async function load() {
+      setLoading(true)
+      try {
+        const { data: res } = await api.get(`/scan/self?page=${page}`)
+        if (!active) return
+        const payload = res.data || res
+        const list: ScanItem[] = payload.items || []
         setItems(list)
-        setHasMore(data.hasMore ?? list.length === 10)
-      })
-      .catch(() => {})
-      .finally(() => setLoading(false))
+        setHasMore(payload.total > page * (payload.perPage || 20))
+      } catch {
+        /* lista vazia já é o estado de erro visível */
+      } finally {
+        if (active) setLoading(false)
+      }
+    }
+
+    void load()
+    return () => {
+      active = false
+    }
   }, [page])
 
   return (
@@ -75,9 +85,8 @@ export default function HistoryPage() {
             {/* Table header */}
             <div className="hidden md:grid grid-cols-12 gap-4 px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider border-b border-surface-border">
               <div className="col-span-4">{t('history.query')}</div>
-              <div className="col-span-2">{t('history.type')}</div>
-              <div className="col-span-2">{t('history.score')}</div>
-              <div className="col-span-2">{t('history.risk')}</div>
+              <div className="col-span-3">{t('history.status')}</div>
+              <div className="col-span-3">{t('history.occurrences')}</div>
               <div className="col-span-2">{t('history.date')}</div>
             </div>
 
@@ -91,22 +100,20 @@ export default function HistoryPage() {
                 >
                   <div className="col-span-4 flex items-center gap-2">
                     <p className="text-sm font-medium text-white truncate">
-                      {item.name || item.phone || item.social || 'Pesquisa'}
+                      {t('dashboard.search_label')}
                     </p>
                     <ExternalLink className="h-3.5 w-3.5 text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
                   </div>
-                  <div className="col-span-2 flex items-center">
+                  <div className="col-span-3 flex items-center">
                     <span className="text-xs text-gray-500">
-                      {item.name ? 'Nome' : item.phone ? 'Telefone' : item.social ? 'Social' : 'Multi'}
+                      {t(`history.status_${item.status}`, { defaultValue: item.status })}
                     </span>
                   </div>
-                  <div className="col-span-2 flex items-center">
-                    <span className="text-sm font-mono text-gray-400">
-                      {item.riskScore !== undefined ? `${item.riskScore}/100` : '---'}
-                    </span>
-                  </div>
-                  <div className="col-span-2 flex items-center">
-                    <Badge level={item.riskLevel} />
+                  <div className="col-span-3 flex items-center">
+                    <Badge level={item.matchCount > 0 ? 'HIGH' : 'NONE'} />
+                    {item.matchCount > 0 && (
+                      <span className="text-xs text-gray-400 ml-2">{item.matchCount}</span>
+                    )}
                   </div>
                   <div className="col-span-2 flex items-center">
                     <span className="text-xs text-gray-500">{formatDate(item.createdAt)}</span>

@@ -120,6 +120,7 @@ export default function SearchPage() {
   const [step, setStep] = useState<Step>('consent')
   const [session, setSession] = useState<IdentitySession | null>(null)
   const [consented, setConsented] = useState(false)
+  const [retentionConsent, setRetentionConsent] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
@@ -150,7 +151,7 @@ export default function SearchPage() {
     setError('')
     setLoading(true)
     try {
-      const { data } = await api.post('/identity/session')
+      const { data } = await api.post('/identity/session', { retentionConsent })
       setSession(unwrap<IdentitySession>(data))
       setStep('liveness')
     } catch (err) {
@@ -306,6 +307,7 @@ export default function SearchPage() {
     setStep('consent')
     setSession(null)
     setConsented(false)
+    setRetentionConsent(false)
     setRecording(false)
     setLivenessDone(false)
     setCpf('')
@@ -373,7 +375,7 @@ export default function SearchPage() {
               </div>
             </div>
 
-            <label className="flex items-start gap-3 cursor-pointer mb-6">
+            <label className="flex items-start gap-3 cursor-pointer mb-4">
               <input
                 type="checkbox"
                 checked={consented}
@@ -381,10 +383,33 @@ export default function SearchPage() {
                 className="mt-0.5 h-4 w-4 rounded border-surface-border bg-bg accent-gold cursor-pointer"
               />
               <span className="text-xs text-gray-400 leading-relaxed">
-                Declaro que sou a pessoa retratada e autorizo o uso da captura e do documento
-                exclusivamente para esta verificação. Ambos são descartados após a conferência.
+                Declaro que sou a pessoa retratada e autorizo o uso da captura ao vivo e do meu
+                CPF exclusivamente para esta verificação. São descartados após a conferência.
               </span>
             </label>
+
+            {/* Consentimento separado, e opcional de propósito: aceitar ser
+                verificado agora não é aceitar ter a biometria arquivada. */}
+            <div className="rounded-lg border border-surface-border bg-bg/60 p-4 mb-6">
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={retentionConsent}
+                  onChange={(e) => setRetentionConsent(e.target.checked)}
+                  className="mt-0.5 h-4 w-4 rounded border-surface-border bg-bg accent-gold cursor-pointer"
+                />
+                <span className="text-xs text-gray-400 leading-relaxed">
+                  <span className="text-gray-300 font-medium">Opcional — monitoramento contínuo.</span>{' '}
+                  Autorizo guardar minha referência facial para avisar se o conteúdo reaparecer
+                  depois da remoção. Sem isso, ela é apagada ao fim desta varredura e cada nova
+                  verificação recomeça do zero.
+                </span>
+              </label>
+              <p className="text-[11px] text-gray-600 mt-2.5 pl-7">
+                Pode ser revogado a qualquer momento na sua conta — a revogação apaga a
+                referência, não apenas desativa.
+              </p>
+            </div>
 
             {noCredits && (
               <div className="mb-4 rounded-lg bg-red-500/10 border border-red-500/30 px-4 py-3 text-sm text-red-400">
