@@ -17,9 +17,10 @@
 set -euo pipefail
 
 # --- Configuração --------------------------------------------------------
-# Pasta que o nginx serve. Se a sua for diferente, edite aqui OU rode com:
-#   WEB_ROOT=/caminho/certo ./deploy/deploy.sh
-WEB_ROOT="${WEB_ROOT:-/var/www/18check.online}"
+# Pasta que o nginx serve. Confirmada em /etc/nginx/sites-enabled/18check:
+#   root /var/www/18check-frontend/dist;
+# Se mudar, rode com: WEB_ROOT=/caminho/certo ./deploy/deploy.sh
+WEB_ROOT="${WEB_ROOT:-/var/www/18check-frontend/dist}"
 
 # Onde os backups ficam guardados
 BACKUP_DIR="${BACKUP_DIR:-/var/backups/18check}"
@@ -92,17 +93,18 @@ else
 fi
 ok "dependências ok"
 
-log "5/7  Gerando build de produção"
-if [ "$DRY_RUN" = "1" ]; then
-  echo "  [dry-run] npm run build"
+# Neste servidor o nginx serve o próprio dist/ do repositório, então o build
+# escreve direto na pasta que está no ar. Duas consequências: o backup TEM de
+# vir antes do build (senão salvaria a versão nova) e não existe etapa de
+# cópia depois. O script detecta os dois layouts sozinho.
+if [ "$(readlink -f "$WEB_ROOT")" = "$(readlink -f "$REPO_DIR/dist")" ]; then
+  IN_PLACE=1
 else
-  npm run build
-  [ -f dist/index.html ] || fail "build não gerou dist/index.html"
+  IN_PLACE=0
 fi
-ok "build gerado"
 
 STAMP="$(date +%Y%m%d-%H%M%S)"
-log "6/7  Backup do site que está no ar"
+log "5/7  Backup do site que está no ar"
 if [ "$DRY_RUN" = "1" ]; then
   echo "  [dry-run] cp -a $WEB_ROOT $BACKUP_DIR/$STAMP"
 else
@@ -117,8 +119,31 @@ else
 fi
 ok "backup feito"
 
-log "7/7  Publicando"
+log "6/7  Gerando build de produção"
+if [ "$IN_PLACE" = "1" ]; then
+  echo "  o nginx serve o próprio dist/ — o build publica direto"
+fi
 if [ "$DRY_RUN" = "1" ]; then
+  echo "  [dry-run] npm run build"
+else
+  # Com o build escrevendo direto na pasta publicada, uma falha no meio pode
+  # deixar o site pela metade. O 'tsc -b' roda antes e pega a maioria dos
+  # erros sem tocar em nada, mas se escapar, o backup acima é a saída.
+  if ! npm run build; then
+    if [ "$IN_PLACE" = "1" ]; then
+      printf '\n\033[1;31m  O build falhou COM a pasta publicada em uso.\033[0m\n'
+      printf '  Restaure agora:  ./deploy/rollback.sh %s\n\n' "$STAMP"
+    fi
+    fail "build falhou — nada foi publicado a partir daqui"
+  fi
+  [ -f dist/index.html ] || fail "build não gerou dist/index.html"
+fi
+ok "build gerado"
+
+log "7/7  Publicando"
+if [ "$IN_PLACE" = "1" ]; then
+  echo "  nada a copiar: o build já escreveu em $WEB_ROOT"
+elif [ "$DRY_RUN" = "1" ]; then
   echo "  [dry-run] rsync dist/ -> $WEB_ROOT/"
 else
   if command -v rsync >/dev/null; then

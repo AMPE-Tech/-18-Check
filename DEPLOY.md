@@ -172,11 +172,35 @@ Você tem **um servidor** rodando **três coisas**:
               ┌───────────┴───────────┐
               │                       │
      18check.online          api.18check.online
-     (arquivos estáticos)    (repassa p/ Node na porta 3000)
+     (arquivos estáticos)    (repassa p/ Node)
               │                       │
-    /var/www/18check.online   /var/www/18check-backend
-       (build do React)          (Node + Express)
+ /var/www/18check-frontend/dist  /var/www/18check-backend
+     (build do React)              (Node + Express)
 ```
+
+### ⚠️ Este servidor hospeda outros projetos
+
+Verificado em 27/07/2026 — além do 18check, rodam aqui `auracarbo`, `auralo-crm`,
+`auratg-gate`, `auralegal`, `auratg-demo`, `auraaudit` e `auraloa`. O pm2 tem
+**quatro** aplicações online.
+
+Consequência prática, sem exceção:
+
+- **Nunca** `pm2 restart all`, `pm2 delete all` ou `pm2 kill`
+- **Sempre** pelo nome: `pm2 restart 18check-backend`
+- Cuidado com `nginx -s reload` durante instabilidade — ele recarrega **todos** os sites
+
+O nome do processo do 18check no pm2 é **`18check-backend`**.
+
+### O frontend é publicado no lugar
+
+O nginx serve `/var/www/18check-frontend/dist` — a própria pasta `dist/` do
+repositório. Não existe etapa de cópia: o `npm run build` escreve direto no que está
+no ar. Por isso o `deploy.sh` faz o **backup antes** do build, e não depois.
+
+Se um build falhar no meio nesse layout, o site pode ficar pela metade. O `tsc -b`
+roda primeiro e pega a maioria dos erros sem tocar em nada, mas se escapar, o script
+avisa e aponta o backup para restaurar.
 
 ### Descobrir os caminhos reais
 

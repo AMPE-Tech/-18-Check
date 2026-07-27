@@ -9,7 +9,7 @@
 
 set -euo pipefail
 
-WEB_ROOT="${WEB_ROOT:-/var/www/18check.online}"
+WEB_ROOT="${WEB_ROOT:-/var/www/18check-frontend/dist}"
 BACKUP_DIR="${BACKUP_DIR:-/var/backups/18check}"
 
 log()  { printf '\n\033[1;33m==> %s\033[0m\n' "$*"; }
