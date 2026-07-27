@@ -86,45 +86,69 @@ tmux attach -t deploy
 
 ---
 
-## 1. ATENÇÃO — o site no ar está DIFERENTE do repositório
+## 1. ATENÇÃO — NÃO faça deploy da branch `main`
 
-Isto é o mais importante deste guia. **Não rode `git pull` + `npm run build` no
-frontend antes de ler.**
+**Nada foi perdido.** O que está publicado no ar está salvo em git, na branch
+`feat/save-v8-bundle-2026-05-01`. O problema é outro: a `main` está **atrás** do
+que está no ar.
 
-Comparei o JavaScript que está publicado em `https://18check.online` com o que o
-repositório gera hoje:
+### O mapa das branches
 
-| | No ar agora | No repositório (branch `main`) |
+| Branch | O que é | Situação |
 |---|---|---|
-| Arquivo | `index-BeJZ0wsI.js` | `index-BEHwYhUD.js` |
-| Tamanho | 795.932 bytes | 783.393 bytes |
-| Preços | `R$ 49,90`, **`R$ 17,10`**, **`R$ 67`** | `R$ 49,90`, `$24.90`, `$74.10`, `$9.90`, `$19.10` |
-| Publicado em | 30/04/2026 | último commit: 29/04/2026 |
+| `main` | commit `fc4168b`, 29/04 | **Atrasada.** Deploy dela faz o site regredir |
+| `feat/save-v8-bundle-2026-05-01` | commit `48eaa81`, 01/05 | **É o que está no ar hoje** (`index-BeJZ0wsI.js`) |
+| `claude/update-check-landing-files-lwjwgz` | nova direção do produto | Não continha o v8 |
+| `claude/18check-landing-page-setup-wssq65` | **os dois integrados** | ✅ **É esta que vai para produção** |
 
-Os valores **R$ 17,10** e **R$ 67** existem no site no ar e **não existem em lugar
-nenhum do repositório**. Ou seja: alguém editou e compilou direto no servidor,
-depois do último commit, e essas mudanças nunca voltaram para o GitHub.
+O que aconteceu: a branch da nova direção foi criada a partir da `main`, e não a
+partir do v8. Então ela não tinha os três commits que estão publicados (seletor de
+cenários, preço único R$ 49,90, nav de topo, seção LGPD). Publicar ela sozinha faria
+o site perder esse trabalho.
 
-**Consequência:** se você rodar `git pull && npm run build` na pasta do frontend
-agora, o site no ar volta para a versão de 29/04 e **os preços atuais somem**.
+A branch `claude/18check-landing-page-setup-wssq65` já resolve isso: ela é a nova
+direção **mais** o que valia salvar do v8. Detalhes do que entrou e do que ficou de
+fora estão no commit `dd8f937`.
 
-### Antes de qualquer deploy do frontend — recuperar o que está no servidor
+### A nova direção do produto
+
+A branch nova muda o produto de forma importante: em vez de **buscar a imagem de
+outra pessoa** em plataformas adultas, o usuário **verifica a própria imagem** — com
+confirmação de identidade por CPF e prova de vida (AWS Rekognition Face Liveness),
+para provar que ele é mesmo quem diz ser antes de buscar o próprio rosto.
+
+Isso não é só mudança de texto. É o que torna o produto defensável sob a LGPD:
+buscar e tratar dado biométrico de terceiro sem consentimento é exposição legal séria.
+Verificar a própria imagem, com consentimento explícito e opção de revogar a
+referência facial (tela `/app/conta`), é outra coisa. As páginas de Privacidade
+(`/privacidade`) e Termos (`/termos`) que a branch adiciona existem por causa disso.
+
+### Pré-requisito: o backend precisa estar pronto ANTES
+
+O commit `e97ec65` da branch nova deixou registrado:
+
+> *"Pendente: os endpoints `/identity/*` e `/scan/self` ainda não existem [...]
+> Não publicar até que isso seja resolvido."*
+
+Pelos commits do backend, eles **já foram implementados** (`3e9028f`, `0c51e04`,
+`d433192`, `98c46c2`). Mas confirme antes de publicar o frontend — se o frontend
+subir e o backend não tiver os endpoints, a tela de verificação quebra:
 
 ```bash
-cd /var/www/18check-frontend      # confirme o caminho real (seção 2)
-
-# O que foi alterado e nunca foi commitado?
-git status
-git diff > /root/mudancas-servidor-$(date +%F).patch
+# Endpoints novos precisam responder 401 (protegido) e NÃO 404 (não existe)
+curl -s -o /dev/null -w "/identity/status -> %{http_code}\n" https://api.18check.online/api/identity/status
+curl -s -o /dev/null -w "/scan/self      -> %{http_code}\n" -X POST https://api.18check.online/api/scan/self
 ```
 
-Olhe o `git status`. Se aparecerem arquivos modificados, essas são as alterações
-de 30/04. Guarde o `.patch` gerado — ele é o seu seguro. Depois decida com o
-Marcos se essas mudanças entram no repositório (commit + push) ou se são descartadas.
+**401 = ok, pode publicar. 404 = o backend ainda não subiu, não publique o frontend.**
 
-Se o `git status` vier **limpo**, significa que o build no ar foi gerado a partir de
-código que nem chegou a ser salvo na pasta — nesse caso o backup do `dist/` publicado
-é a única cópia:
+E confirme que o `.env` do backend tem as variáveis do liveness preenchidas
+(`LIVENESS_PROVIDER`, `AWS_REGION`, `AWS_LIVENESS_ROLE_ARN`) e que o processo foi
+reiniciado depois de editá-las.
+
+### Backup antes de publicar
+
+O `deploy.sh` já faz backup sozinho, mas na primeira vez vale um extra à mão:
 
 ```bash
 cp -a /var/www/18check.online /root/backup-site-no-ar-$(date +%F)
@@ -192,15 +216,23 @@ Testei de fora e está tudo funcionando:
 
 Depois de resolver a seção 1, o processo vira um comando só.
 
+> ⚠️ A branch de produção **não é a `main`** (veja a seção 1). Passe sempre a branch
+> integrada em `BRANCH=`, senão o site regride.
+
 ```bash
 cd /var/www/18check-frontend        # ajuste ao caminho real
 
+BRANCH=claude/18check-landing-page-setup-wssq65
+
 # 1. Simule primeiro — não altera nada, só mostra o que faria
-./deploy/deploy.sh --dry-run
+BRANCH=$BRANCH ./deploy/deploy.sh --dry-run
 
 # 2. Rode de verdade
-WEB_ROOT=/var/www/18check.online ./deploy/deploy.sh
+BRANCH=$BRANCH WEB_ROOT=/var/www/18check.online ./deploy/deploy.sh
 ```
+
+Depois que essa branch for revisada e integrada à `main` pelo Marcos, aí sim o
+comando volta a ser só `./deploy/deploy.sh`.
 
 O script faz, nesta ordem:
 1. Confere se `node` e `npm` existem
