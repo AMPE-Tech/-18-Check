@@ -1,8 +1,13 @@
 # Contrato — checagem de contato suspeito
 
-O que o frontend (`src/pages/PhotoCheck.tsx`, rota `/app/checar-contato`) espera do
-backend. Os endpoints **ainda não existem** — este documento é a especificação para
-implementá-los em `AuraDUE/18check-backend`.
+O que o frontend (`src/pages/PhotoCheck.tsx`, rota `/app/checar-contato`) troca com o
+backend.
+
+**Estado: implementado** em `AuraDUE/18check-backend`, branch
+`claude/18check-landing-page-setup-wssq65` — `src/modules/scan/suspect.service.js` e
+`src/modules/scan/signals.js`. A busca reversa entra pelo `facial.engine` que já
+existia (FaceCheck), com o mesmo guard de orçamento e cache por sha. Falta rodar a
+migração `20260727130000_suspect_scan_and_scam_signals` no servidor.
 
 O par de endpoints segue o mesmo formato de `/scan/self`: um POST que abre a checagem
 e devolve um `scanId`, e um GET que o frontend consulta a cada 3 s até sair de

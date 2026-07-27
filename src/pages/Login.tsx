@@ -5,6 +5,7 @@ import { z } from 'zod'
 import { Link, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useAuth } from '../lib/auth'
+import { readApiError } from '../lib/apiError'
 import { ShieldCheck, Lock } from 'lucide-react'
 import Input from '../components/ui/Input'
 import Button from '../components/ui/Button'
@@ -35,7 +36,7 @@ export default function Login() {
       await login(data.email, data.password)
       navigate('/app')
     } catch (err: unknown) {
-      const msg = (err as { response?: { data?: { message?: string } } })?.response?.data?.message
+      const msg = readApiError(err, '')
       setError(msg || t('auth.login_error'))
     } finally {
       setLoading(false)

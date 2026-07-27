@@ -6,6 +6,7 @@ import { ThemeProvider as AmplifyThemeProvider } from '@aws-amplify/ui-react'
 import '@aws-amplify/ui-react/styles.css'
 import { useAuth } from '../lib/auth'
 import api from '../lib/api'
+import { readApiError } from '../lib/apiError'
 import { amplifyLivenessTheme } from '../lib/amplifyTheme'
 import Card, { CardHeader, CardTitle } from '../components/ui/Card'
 import Button from '../components/ui/Button'
@@ -606,8 +607,7 @@ function ErrorBox({ message }: { message: string }) {
 }
 
 function readError(err: unknown, fallback: string) {
-  const msg = (err as { response?: { data?: { message?: string } } })?.response?.data?.message
-  return msg || fallback
+  return readApiError(err, fallback)
 }
 
 

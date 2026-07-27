@@ -16,6 +16,7 @@ import {
   Upload,
 } from 'lucide-react'
 import api from '../lib/api'
+import { readApiError } from '../lib/apiError'
 import { useAuth } from '../lib/auth'
 
 /* ------------------------------------------------------------------ */
@@ -90,8 +91,7 @@ function unwrap<T>(body: unknown): T {
 }
 
 function readError(err: unknown, fallback: string) {
-  const msg = (err as { response?: { data?: { message?: string } } })?.response?.data?.message
-  return msg || fallback
+  return readApiError(err, fallback)
 }
 
 function formatDate(iso?: string) {

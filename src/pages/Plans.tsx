@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useAuth } from '../lib/auth'
+import { readApiError } from '../lib/apiError'
 import { useTranslation } from 'react-i18next'
 import api from '../lib/api'
 import { toast } from '../components/ui/Toast'
@@ -81,7 +82,7 @@ export default function PlansPage() {
         window.location.href = result.url
       }
     } catch (err: unknown) {
-      const msg = (err as { response?: { data?: { message?: string } } })?.response?.data?.message
+      const msg = readApiError(err, '')
       toast('error', msg || 'Erro ao iniciar pagamento. Tente novamente.')
     } finally {
       setLoadingPlan(null)
