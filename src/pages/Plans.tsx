@@ -60,11 +60,18 @@ function usePlans() {
   return SHOW_ONLY_SINGLE ? all.filter(p => p.key === 'single') : all
 }
 
+/* Pacotes de busca — ancorados na avulsa de R$ 49,90, com desconto crescente.
+   Antes estavam em dólar, herdados de quando a avulsa custava $29: o pacote de
+   2 saía a $27 por busca, o equivalente a R$ 137 — quase três vezes o preço de
+   comprar avulso. Ninguém compraria, e quem comprasse teria sido lesado.
+
+   ATENÇÃO antes de ligar o SHOW_ONLY_SINGLE: estes planos exigem
+   STRIPE_PRICE_PACK3, PACK5 e PACK10 no .env do backend. Sem eles, o checkout
+   responde "Plano invalido". Hoje não é um problema porque a lista fica vazia. */
 const creditPacks = SHOW_ONLY_SINGLE ? [] : [
-  { amount: 2, price: '$54', perUnit: '$27/search', planType: 'pack2' },
-  { amount: 3, price: '$75', perUnit: '$25/search', planType: 'pack3' },
-  { amount: 5, price: '$115', perUnit: '$23/search', planType: 'pack5' },
-  { amount: 10, price: '$199', perUnit: '$19.90/search', planType: 'pack10' },
+  { amount: 3, price: 'R$ 129,90', perUnit: 'R$ 43,30/busca', planType: 'pack3' },
+  { amount: 5, price: 'R$ 199,90', perUnit: 'R$ 39,98/busca', planType: 'pack5' },
+  { amount: 10, price: 'R$ 349,90', perUnit: 'R$ 34,99/busca', planType: 'pack10' },
 ]
 
 export default function PlansPage() {
