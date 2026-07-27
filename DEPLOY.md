@@ -4,6 +4,9 @@ Guia para quem nunca mexeu com servidor. Servidor: **Hetzner, Ubuntu, `ubuntu-4g
 
 ---
 
+> **Opera do Windows?** Existe uma versão deste roteiro passo a passo pelo PowerShell,
+> separando o que roda no seu PC do que roda no servidor: [DEPLOY-WINDOWS.md](DEPLOY-WINDOWS.md).
+
 ## 0. RESOLVER AGORA: o `git fetch` pedindo usuário e senha
 
 Foi isso que aconteceu no seu terminal:
