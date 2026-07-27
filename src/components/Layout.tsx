@@ -5,6 +5,7 @@ import {
   ShieldCheck,
   LayoutDashboard,
   Search,
+  ScanSearch,
   History,
   CreditCard,
   UserCog,
@@ -26,6 +27,7 @@ export default function Layout() {
   const navItems = [
     { to: '/app', icon: LayoutDashboard, label: t('layout.panel') },
     { to: '/app/search', icon: Search, label: t('layout.search') },
+    { to: '/app/checar-contato', icon: ScanSearch, label: t('layout.photo_check') },
     { to: '/app/history', icon: History, label: t('layout.history') },
     { to: '/app/plans', icon: CreditCard, label: t('layout.plans') },
     { to: '/app/conta', icon: UserCog, label: t('layout.account') },
