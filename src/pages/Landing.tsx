@@ -750,6 +750,12 @@ export default function Landing() {
                 </div>
                 <div className="flex items-center gap-4">
                   <Link
+                    to="/termos"
+                    className="text-[10px] text-gray-600 hover:text-gold transition-colors"
+                  >
+                    {t('footer.terms')}
+                  </Link>
+                  <Link
                     to="/privacidade"
                     className="text-[10px] text-gray-600 hover:text-gold transition-colors"
                   >
