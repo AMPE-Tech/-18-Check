@@ -9,14 +9,11 @@ import Badge from '../components/ui/Badge'
 import { formatDate } from '../lib/utils'
 import { Search, CreditCard, History, ArrowRight, AlertTriangle, Shield } from 'lucide-react'
 
-interface SearchItem {
+interface ScanItem {
   id: string
-  name?: string
-  phone?: string
-  social?: string
-  riskLevel: string
-  createdAt: string
   status: string
+  matchCount: number
+  createdAt: string
 }
 
 function SkeletonCard() {
@@ -46,15 +43,15 @@ function SkeletonRow() {
 export default function Dashboard() {
   const { user } = useAuth()
   const { t } = useTranslation()
-  const [recent, setRecent] = useState<SearchItem[]>([])
+  const [recent, setRecent] = useState<ScanItem[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    api.get('/search/history?limit=5')
+    api.get('/scan/self')
       .then(({ data: res }) => {
         const payload = res.data || res
-        const items = Array.isArray(payload) ? payload : payload.items || payload.searches || []
-        setRecent(items)
+        const items: ScanItem[] = Array.isArray(payload) ? payload : payload.items || []
+        setRecent(items.slice(0, 5))
       })
       .catch(() => setRecent([]))
       .finally(() => setLoading(false))
@@ -188,11 +185,11 @@ export default function Dashboard() {
               >
                 <div>
                   <p className="text-sm font-medium text-white group-hover:text-gold transition-colors">
-                    {s.name || s.phone || s.social || t('dashboard.search_label')}
+                    {t('dashboard.search_label')}
                   </p>
                   <p className="text-xs text-gray-500">{formatDate(s.createdAt)}</p>
                 </div>
-                <Badge level={s.riskLevel} />
+                <Badge level={s.matchCount > 0 ? 'HIGH' : 'NONE'} />
               </Link>
             ))}
           </div>

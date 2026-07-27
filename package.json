@@ -10,9 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@aws-amplify/ui-react-liveness": "^3.6.7",
     "@hookform/resolvers": "^5.2.2",
     "@tailwindcss/vite": "^4.2.2",
     "autoprefixer": "^10.4.27",
+    "aws-amplify": "^6.19.0",
     "axios": "^1.14.0",
     "clsx": "^2.1.1",
     "framer-motion": "^12.38.0",

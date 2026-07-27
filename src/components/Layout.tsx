@@ -7,6 +7,7 @@ import {
   Search,
   History,
   CreditCard,
+  UserCog,
   LogOut,
   Menu,
   X,
@@ -27,6 +28,7 @@ export default function Layout() {
     { to: '/app/search', icon: Search, label: t('layout.search') },
     { to: '/app/history', icon: History, label: t('layout.history') },
     { to: '/app/plans', icon: CreditCard, label: t('layout.plans') },
+    { to: '/app/conta', icon: UserCog, label: t('layout.account') },
   ]
 
   return (
