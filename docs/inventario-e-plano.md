@@ -217,8 +217,37 @@ no ar e que os clientes já viram.
 | Pacote 5 buscas | R$ 199,90 | R$ 39,98 | 20% |
 | Pacote 10 buscas | R$ 349,90 | R$ 34,99 | 30% |
 | Monitoramento mensal | R$ 129,00/mês | — | — |
+| **Consulta oficial** (adicional) | **+ R$ 25,00** | por consulta | — |
 
 Descontinuar os pacotes de 2 e 4 — granularidade demais para pouca diferença.
+
+### Consulta oficial — o adicional de R$ 25
+
+Decidido em 27/07/2026. Cobrado **por consulta**, somado a qualquer investigação.
+Entrega as duas checagens em base oficial:
+
+- **CPF e nome** contra a base da Receita, via Serpro Datavalid (`/pf-basica`)
+- **Mandado de prisão em aberto** no BNMP do CNJ, por nome ou alcunha
+
+Não é um degrau da escada e sim um acréscimo, porque depende de dado que o
+usuário pode não ter — se ele não recebeu CPF nem nome, não há o que consultar.
+
+**Margem.** O Serpro cobra por consulta e o BNMP via provedor idem; somados
+ficam na casa de poucos reais. Contra R$ 25,00 de receita, a margem é larga
+mesmo no pior cenário de preço. Confirme a tabela da sua contratação Serpro
+para fechar o número — trabalhei com a ordem de grandeza, não com o contrato.
+
+**O que falta para vender.** O preço está decidido, mas ainda não é cobrável:
+precisa de um `STRIPE_PRICE_CONSULTA_OFICIAL` criado no Stripe e declarado no
+`.env`, de um `planType` correspondente no `billing.service.js`, e da chamada
+ao `validateRegistration` já implementado no adaptador Serpro. Enquanto isso
+não existir, o valor fica só registrado aqui.
+
+**Uma observação sobre a proporção.** R$ 25,00 sobre uma entrada de R$ 29,90
+quase dobra o ticket. O valor percebido justifica — "checamos na base oficial
+do governo" é argumento forte — mas vale acompanhar a taxa de adesão nas
+primeiras semanas. Se poucos aceitarem, o problema tende a ser a proporção e
+não o valor absoluto.
 
 Custo de provedor por busca fica em torno de **R$ 1 a R$ 3** (FaceCheck mais prova
 de vida AWS), contra R$ 49,90 de receita. A margem é confortável mesmo depois da
