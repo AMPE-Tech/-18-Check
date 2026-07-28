@@ -221,6 +221,37 @@ no ar e que os clientes já viram.
 
 Descontinuar os pacotes de 2 e 4 — granularidade demais para pouca diferença.
 
+### Confirmar não é documentar — e é isso que sustenta o preço
+
+Decidido em 27/07/2026, corrigindo a proposta anterior de baixar a entrada para
+R$ 29,90.
+
+| | | O que entrega |
+|---|---|---|
+| Investigação | **R$ 49,90** | a **confirmação** — o usuário sabe o que houve e consegue agir |
+| Consulta oficial | + R$ 25,00 | CPF e nome na Receita, mandado em aberto no BNMP |
+| Dossiê documentado | **a definir** | a **prova** — documento oficial, rastreio das alterações, relatório datado |
+
+Dizer "essa imagem é falsa" e **provar** que se trata de outra pessoa são
+produtos diferentes. O primeiro resolve a decisão imediata: cortar contato, não
+transferir dinheiro. O segundo serve a boletim de ocorrência, contestação
+bancária e notificação à plataforma — e consome muito mais, porque envolve
+recuperar documento oficial, acompanhar as alterações ao longo do tempo e gerar
+relatório.
+
+A investigação não desce de R$ 49,90. Baratear a entrada desvalorizaria a
+confirmação, que é o produto — e não um degrau para vender o próximo.
+
+**O dossiê tem urgência real, não fabricada.** O perfil, as fotos e o número
+ficam no ar só até o golpe se completar; depois o golpista apaga tudo. Quem
+compra o dossiê está dentro da janela em que a prova ainda existe, e essa janela
+não volta. É o argumento de venda mais honesto que este produto tem.
+
+**Faixa sugerida para o dossiê: R$ 149,90 a R$ 299,90.** Um laudo pericial no
+Brasil custa de R$ 500 a R$ 3.000; o dossiê é mais simples que isso, mas muito
+acima da consulta. R$ 199,90 fica no meio e mantém a proporção de quatro vezes a
+investigação, que é fácil de justificar. **Decisão pendente do proprietário.**
+
 ### Consulta oficial — o adicional de R$ 25
 
 Decidido em 27/07/2026. Cobrado **por consulta**, somado a qualquer investigação.
