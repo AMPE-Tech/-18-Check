@@ -98,6 +98,43 @@ export default function Privacy() {
           </p>
         </Section>
 
+        <Section title="Checagem de um contato suspeito">
+          <p>
+            Quando você pede a checagem de alguém que te procurou, trata-se de dado de
+            terceiro. Fazemos isso com base no{' '}
+            <span className="text-gray-300">legítimo interesse</span> (art. 7º, IX da LGPD):
+            você tem interesse legítimo em não ser vítima de fraude, e a consulta se limita ao
+            necessário para responder isso.
+          </p>
+          <p>
+            <span className="text-gray-300">O que consultamos.</span> A foto que você recebeu,
+            para verificar se a mesma imagem circula em outros perfis e sob outros nomes. O @,
+            o telefone e o nome informados, contra a nossa base de sinais e contra registros
+            públicos — a validade do CPF e a correspondência com o nome, junto à base oficial, e
+            mandados de prisão em aberto no Banco Nacional de Medidas Penais e Prisões do CNJ,
+            que é publicado justamente para consulta pública.
+          </p>
+          <p>
+            <span className="text-gray-300">O que não fazemos.</span> Não identificamos a
+            pessoa retratada na foto — em golpe romântico esse rosto costuma ser de outra
+            vítima, que também teve a imagem roubada. Não abrimos, não acessamos e não
+            copiamos o perfil informado. Não emitimos certidão de antecedentes de ninguém, nem
+            consultamos base restrita ou sigilosa.
+          </p>
+          <p>
+            <span className="text-gray-300">O que guardamos.</span> Da foto, apenas um código
+            derivado que permite reconhecer a mesma imagem numa checagem futura — o arquivo é
+            descartado ao fim do processamento. Do contato, o @, o nome e o telefone
+            normalizados, com a data em que foram vistos. É o que faz a próxima pessoa a
+            consultar aquele mesmo número receber o alerta que você não teve.
+          </p>
+          <p>
+            <span className="text-gray-300">Direito de oposição.</span> Quem for objeto de uma
+            checagem pode solicitar a exclusão dos seus dados da nossa base de sinais pelo
+            e-mail do encarregado, abaixo. Avaliamos cada pedido e respondemos no prazo legal.
+          </p>
+        </Section>
+
         <Section title="Com quem compartilhamos">
           <p>
             <span className="text-gray-300">Provedor de prova de vida</span> — recebe o vídeo
@@ -111,6 +148,12 @@ export default function Privacy() {
           <p>
             <span className="text-gray-300">Serviço de busca facial</span> — recebe a imagem de
             referência para localizar ocorrências nas plataformas monitoradas.
+          </p>
+          <p>
+            <span className="text-gray-300">Conselho Nacional de Justiça (BNMP)</span> — na
+            checagem de contato suspeito, consultamos o nome ou apelido informado no banco
+            público de mandados de prisão em aberto. É consulta a registro publicado, não envio
+            dos seus dados.
           </p>
           <p>
             <span className="text-gray-300">Stripe</span> — processa pagamentos. Não temos
